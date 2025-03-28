@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id_visi_misi')->primary();
             $table->text('visi');
             $table->text('misi');
-            $table->string('gambar_url');
+            $table->string('gambar_url')->nullable(); //tambah nullable()
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
