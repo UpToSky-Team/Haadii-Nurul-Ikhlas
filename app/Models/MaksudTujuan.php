@@ -12,8 +12,9 @@ class MaksudTujuan extends Model
     /** @use HasFactory<\Database\Factories\MaksudTujuanFactory> */
     use HasFactory, HasUuids;
 
+    protected $primaryKey = 'id_maksud_tujuan';
     protected $fillable = [
-        'maksud_tujuan',
+        'id_maksud_tujuan',
         'maksud',
         'tujuan',
         'gambar_url',
@@ -23,6 +24,6 @@ class MaksudTujuan extends Model
     // Relationship User
     public function users() : BelongsTo 
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_admin', 'id_admin');
     }
 }

@@ -6,12 +6,23 @@ use App\Filament\Resources\MaksudTujuanResource\Pages;
 use App\Filament\Resources\MaksudTujuanResource\RelationManagers;
 use App\Models\MaksudTujuan;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class MaksudTujuanResource extends Resource
 {
@@ -26,21 +37,48 @@ class MaksudTujuanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('maksud_tujuan')
-                    ->required()
-                    ->maxLength(36),
-                Forms\Components\Textarea::make('maksud')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('tujuan')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('gambar_url')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('id_admin')
-                    ->required()
-                    ->maxLength(36),
+                RichEditor::make('maksud')
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->required(),
+                RichEditor::make('tujuan')
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->required(),
+                FileUpload::make('gambar_url')
+                    ->label('Foto')
+                    ->image()
+                    ->imageEditor()
+                    ->disk('public')
+                    ->directory('MaksudTujuan'),
+                Hidden::make('id_admin')
+                    ->default(Auth::user()->id_admin),
             ]);
     }
 
@@ -48,17 +86,17 @@ class MaksudTujuanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('maksud_tujuan')
+                ImageColumn::make('gambar_url')
+                    ->label('Gambar')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('gambar_url')
+                TextColumn::make('users.name')
+                    ->label('Pembuat')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('id_admin')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -67,8 +105,12 @@ class MaksudTujuanResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ViewAction::make()
+                    ->label('Lihat'),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

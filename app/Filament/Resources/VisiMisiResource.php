@@ -74,6 +74,7 @@ class VisiMisiResource extends Resource
                 FileUpload::make('gambar_url')
                     ->label('Gambar Visi Misi')
                     ->image()
+                    ->imageEditor()
                     ->disk('public')
                     ->directory('visi_misi'),
                 Hidden::make('id_admin')
