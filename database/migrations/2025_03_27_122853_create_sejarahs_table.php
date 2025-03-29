@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sejarahs', function (Blueprint $table) {
             $table->uuid('id_sejarah')->primary();
             $table->text('konten');
-            $table->string('gambar_url');
+            $table->string('gambar_url')->nullable(); //tambah nullable()
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
