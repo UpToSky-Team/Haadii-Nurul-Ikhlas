@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\MaksudTujuan;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class MaksudTujuanPolicy
 {
@@ -13,7 +14,7 @@ class MaksudTujuanPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class MaksudTujuanPolicy
      */
     public function view(User $user, MaksudTujuan $maksudTujuan): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class MaksudTujuanPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class MaksudTujuanPolicy
      */
     public function update(User $user, MaksudTujuan $maksudTujuan): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class MaksudTujuanPolicy
      */
     public function delete(User $user, MaksudTujuan $maksudTujuan): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

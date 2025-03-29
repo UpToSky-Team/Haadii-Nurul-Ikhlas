@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\VisiMisiResource\Pages;
-use App\Filament\Resources\VisiMisiResource\RelationManagers;
-use App\Models\VisiMisi;
+use App\Filament\Resources\StrukturResource\Pages;
+use App\Filament\Resources\StrukturResource\RelationManagers;
+use App\Models\Struktur;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,62 +22,33 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
-class VisiMisiResource extends Resource
+class StrukturResource extends Resource
 {
-    protected static ?string $model = VisiMisi::class;
+    protected static ?string $model = Struktur::class;
+    protected static ?string $pluralLabel = 'Struktur Organisasi';
+    protected static ?string $navigationLabel = 'Struktur Organisasi';
 
-    protected static ?string $pluralLabel = 'Visi Misi';
-    protected static ?string $navigationLabel = 'Visi Misi';
-
-    protected static ?string $navigationIcon = 'heroicon-o-rocket-launch';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Profile';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                RichEditor::make('visi')
+                TextInput::make('nama')
                     ->required()
-                    ->toolbarButtons([
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'h1',
-                        'h2',
-                        'h3',
-                        'italic',
-                        'link',
-                        'orderedList',
-                        'redo',
-                        'strike',
-                        'underline',
-                        'undo',
-                    ]),
-                RichEditor::make('misi')
+                    ->maxLength(255),
+                TextInput::make('jabatan')
                     ->required()
-                    ->toolbarButtons([
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'h1',
-                        'h2',
-                        'h3',
-                        'italic',
-                        'link',
-                        'orderedList',
-                        'redo',
-                        'strike',
-                        'underline',
-                        'undo',
-                    ]),
+                    ->maxLength(255),
                 FileUpload::make('gambar_url')
-                    ->label('Gambar Visi Misi')
+                    ->label('Foto')
                     ->image()
                     ->disk('public')
-                    ->directory('visi_misi'),
+                    ->imageEditor()
+                    ->directory('Struktur'),
                 Hidden::make('id_admin')
-                    ->default(Auth::user()->id_admin)
-                    ->required(),
+                    ->default(Auth::user()->id_admin),
             ]);
     }
 
@@ -86,10 +56,14 @@ class VisiMisiResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('nama')
+                    ->searchable(),
+                TextColumn::make('jabatan')
+                    ->searchable(),
                 ImageColumn::make('gambar_url')
-                    ->label('Gambar'),
-                TextColumn::make('users.name')
-                    ->label('Pembuat'),
+                    ->label('Foto')
+                    ->searchable()
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -127,10 +101,10 @@ class VisiMisiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListVisiMisis::route('/'),
-            'create' => Pages\CreateVisiMisi::route('/create'),
-            'view' => Pages\ViewVisiMisi::route('/{record}'),
-            'edit' => Pages\EditVisiMisi::route('/{record}/edit'),
+            'index' => Pages\ListStrukturs::route('/'),
+            'create' => Pages\CreateStruktur::route('/create'),
+            'view' => Pages\ViewStruktur::route('/{record}'),
+            'edit' => Pages\EditStruktur::route('/{record}/edit'),
         ];
     }
 }
