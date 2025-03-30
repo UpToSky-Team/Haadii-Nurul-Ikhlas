@@ -15,9 +15,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasUuids;
-
-    protected $primaryKey = 'id_admin';
-
+    
     /**
      * The attributes that are mass assignable.
      *
