@@ -46,7 +46,7 @@ class ArtikelResource extends Resource
             ->schema([
                 Hidden::make('id_admin')
                     ->default(Auth::user()->id_admin),
-                textarea::make('judul')
+                Textarea::make('judul')
                     ->label('Judul Artikel')
                     ->required()
                     ->maxLength(255),
