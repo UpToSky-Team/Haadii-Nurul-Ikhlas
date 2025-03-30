@@ -7,22 +7,16 @@
             <!-- Visi -->
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-gray-700 mb-3 text-center">Visi</h2>
-                <p class="text-justify leading-relaxed bg-orange-100 p-4 rounded-lg">
-                    “Menjadi yayasan yang berperan aktif dalam menciptakan generasi yang berakhlak mulia, cerdas, mandiri, dan memiliki kepedulian sosial tinggi melalui pendidikan, pemberdayaan, dan bantuan kemanusiaan.”
-                </p>
+                <div class="text-justify leading-relaxed richeditor-content bg-orange-100 p-4 rounded-lg">
+                    {!! $visiMisi->visi !!}
+                </div>
             </div>
 
             <!-- Misi -->
             <div>
                 <h2 class="text-2xl font-semibold text-gray-700 mb-3 text-center">Misi</h2>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <ul class="list-decimal list-inside text-gray-700 space-y-3">
-                        <li>Memberikan pendidikan berkualitas dan berbasis nilai-nilai keislaman bagi anak-anak yatim dan dhuafa.</li>
-                        <li>Menyediakan bantuan sosial dan kemanusiaan bagi masyarakat yang membutuhkan.</li>
-                        <li>Mengembangkan program pemberdayaan ekonomi untuk meningkatkan kesejahteraan umat.</li>
-                        <li>Menjalin kemitraan dengan berbagai pihak dalam mendukung keberlanjutan program yayasan.</li>
-                        <li>Membantu menciptakan lingkungan yang peduli dan memiliki solidaritas sosial tinggi.</li>
-                    </ul>
+                <div class="text-justify bg-gray-50 p-6 rounded-lg richeditor-content shadow-sm">
+                    {!! $visiMisi->misi !!}
                 </div>
             </div>
 
