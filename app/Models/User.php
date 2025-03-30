@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasUuids;
 
     protected $primaryKey = 'id_admin';
 
@@ -21,9 +23,13 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $primaryKey = 'id_admin';
+
     protected $fillable = [
+        'id_admin',
         'name',
-        'email',
+        'ussername',
+        'role',
         'password',
     ];
 
