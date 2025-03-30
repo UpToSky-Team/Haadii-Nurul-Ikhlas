@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BeritaPolicy
 {
@@ -13,7 +14,7 @@ class BeritaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class BeritaPolicy
      */
     public function view(User $user, Berita $berita): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class BeritaPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class BeritaPolicy
      */
     public function update(User $user, Berita $berita): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class BeritaPolicy
      */
     public function delete(User $user, Berita $berita): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
