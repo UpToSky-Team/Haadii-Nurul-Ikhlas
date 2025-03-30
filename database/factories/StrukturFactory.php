@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Struktur>
@@ -17,7 +19,10 @@ class StrukturFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_struktur' => Str::uuid(),
+            'nama' => 'jhone',
+            'jabatan' => 'Kepala Yayasan',
+            'id_admin' => User::factory(),
         ];
     }
 }
