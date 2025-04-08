@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Galeri;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class GaleriPolicy
 {
@@ -13,7 +14,7 @@ class GaleriPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class GaleriPolicy
      */
     public function view(User $user, Galeri $galeri): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class GaleriPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class GaleriPolicy
      */
     public function update(User $user, Galeri $galeri): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class GaleriPolicy
      */
     public function delete(User $user, Galeri $galeri): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('caption');
             $table->enum('jenis', ['video', 'gambar'])->default('gambar');
             $table->uuid('id_admin');
-            $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
+            $table->foreign('id_admin')->references(columns: 'id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

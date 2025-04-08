@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\VisiMisi;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class VisiMisiPolicy
 {
@@ -13,7 +14,7 @@ class VisiMisiPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class VisiMisiPolicy
      */
     public function view(User $user, VisiMisi $visiMisi): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class VisiMisiPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class VisiMisiPolicy
      */
     public function update(User $user, VisiMisi $visiMisi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class VisiMisiPolicy
      */
     public function delete(User $user, VisiMisi $visiMisi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

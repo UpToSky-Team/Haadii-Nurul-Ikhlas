@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Sejarah;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SejarahPolicy
 {
@@ -13,7 +14,7 @@ class SejarahPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class SejarahPolicy
      */
     public function view(User $user, Sejarah $sejarah): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class SejarahPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class SejarahPolicy
      */
     public function update(User $user, Sejarah $sejarah): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class SejarahPolicy
      */
     public function delete(User $user, Sejarah $sejarah): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

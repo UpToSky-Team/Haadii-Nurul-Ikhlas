@@ -15,7 +15,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasUuids;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -30,6 +30,11 @@ class User extends Authenticatable
         'role',
         'password',
     ];
+
+    protected $casts = [
+        'id_admin' => 'string',
+    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
