@@ -1,61 +1,68 @@
-<body class="bg-gray-100 text-gray-800 mt-20">
+<body class="bg-gray-100 text-gray-800 mt-20 " >
     <div class="container mx-auto px-6 py-12 max-w-5xl pt-40">
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-            <!-- Judul -->
-            <h1 class="text-3xl font-bold text-center text-orange-600 mb-6">Struktur Organisasi Yayasan Haadi Nurul Ikhlas</h1>
-
-            <!-- Struktur Organisasi -->
-            <div class="flex flex-col items-center">
-                <!-- Ketua Yayasan -->
-                <div class="bg-orange-600 text-white px-6 py-4 rounded-lg shadow-md w-full text-center font-semibold transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    Ketua Yayasan: <span class="font-bold">Nama Ketua</span>
+        <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10 border-t-4 border-yellow-400">
+            <div class="flex items-center space-x-6">
+                <img src="/img/profile_picture/profile.jpg" alt="Dr. Murinto" class="w-32 h-32 rounded-full border-4 border-gray-300">
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700">KEPALA YAYASAN</h2>
+                    <h1 class="text-2xl font-extrabold">Lorem ipsum dolor sit amet.</h1>
+                    <ul class="mt-2 text-gray-700">
+                        <li><strong>NIDN:</strong> 0510077302</li>
+                        <li><strong>NIY:</strong> 60040496</li>
+                        <li><strong>Jabatan Fungsional:</strong> Lektor</li>
+                        <li><strong>S1:</strong> FMIPA Matematika UNS Solo – Indonesia</li>
+                        <li><strong>S2:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>S3:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>Bidang Keahlian:</strong> Grafika Komputer, Pengolahan Citra, Computer Vision, Sistem Cerdas</li>
+                        <li><strong>Email:</strong> murintokusno[at]tif.uad.ac.id</li>
+                        <li><strong>Website:</strong> <a href="http://lorem.wordpress.com" class="text-blue-500 hover:underline">murintokusno.wordpress.com</a></li>
+                    </ul>
                 </div>
-
-                <!-- Pengurus Inti -->
-                <div class="flex flex-wrap justify-center mt-6 gap-4">
-                    <div class="bg-gray-200 p-4 rounded-lg shadow-md w-64 text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold">Sekretaris</p>
-                        <p class="text-gray-700">Nama Sekretaris</p>
-                    </div>
-                    <div class="bg-gray-200 p-4 rounded-lg shadow-md w-64 text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold">Bendahara</p>
-                        <p class="text-gray-700">Nama Bendahara</p>
-                    </div>
-                </div>
-
-                <!-- Divisi -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Pendidikan</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Sosial & Kemanusiaan</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Keuangan</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Kesehatan</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Humas & Kemitraan</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <p class="font-semibold text-orange-600">Divisi Pengembangan Ekonomi</p>
-                        <p class="text-gray-700">Nama Kepala Divisi</p>
-                    </div>
-                </div>
-
-                <!-- Ajakan -->
-                <p class="text-center text-lg font-semibold text-gray-800 mt-8">
-                    Bersama membangun yayasan yang lebih baik untuk masa depan yang cerah!
-                </p>
             </div>
         </div>
+
+        <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10 border-t-4 border-yellow-400">
+            <div class="flex items-center space-x-6">
+                <img src="/img/profile_picture/profile.jpg" alt="Dr. Murinto" class="w-32 h-32 rounded-full border-4 border-gray-300">
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700">WAKIL KEPALA YAYASAN</h2>
+                    <h1 class="text-2xl font-extrabold">Lorem ipsum dolor sit amet.</h1>
+                    <ul class="mt-2 text-gray-700">
+                        <li><strong>NIDN:</strong> 0510077302</li>
+                        <li><strong>NIY:</strong> 60040496</li>
+                        <li><strong>Jabatan Fungsional:</strong> Lektor</li>
+                        <li><strong>S1:</strong> FMIPA Matematika UNS Solo – Indonesia</li>
+                        <li><strong>S2:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>S3:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>Bidang Keahlian:</strong> Grafika Komputer, Pengolahan Citra, Computer Vision, Sistem Cerdas</li>
+                        <li><strong>Email:</strong> murintokusno[at]tif.uad.ac.id</li>
+                        <li><strong>Website:</strong> <a href="http://lorem.wordpress.com" class="text-blue-500 hover:underline">murintokusno.wordpress.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg mt-10 border-t-4 border-yellow-400">
+            <div class="flex items-center space-x-6">
+                <img src="/img/profile_picture/profile.jpg" alt="Dr. Murinto" class="w-32 h-32 rounded-full border-4 border-gray-300">
+                <div>
+                    <h2 class="text-lg font-bold text-blue-700">KEPALA SEKOLAH</h2>
+                    <h1 class="text-2xl font-extrabold">Lorem ipsum dolor sit amet.</h1>
+                    <ul class="mt-2 text-gray-700">
+                        <li><strong>NIDN:</strong> 0510077302</li>
+                        <li><strong>NIY:</strong> 60040496</li>
+                        <li><strong>Jabatan Fungsional:</strong> Lektor</li>
+                        <li><strong>S1:</strong> FMIPA Matematika UNS Solo – Indonesia</li>
+                        <li><strong>S2:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>S3:</strong> Ilmu Komputer UGM – Indonesia</li>
+                        <li><strong>Bidang Keahlian:</strong> Grafika Komputer, Pengolahan Citra, Computer Vision, Sistem Cerdas</li>
+                        <li><strong>Email:</strong> murintokusno[at]tif.uad.ac.id</li>
+                        <li><strong>Website:</strong> <a href="http://lorem.wordpress.com" class="text-blue-500 hover:underline">murintokusno.wordpress.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </body>

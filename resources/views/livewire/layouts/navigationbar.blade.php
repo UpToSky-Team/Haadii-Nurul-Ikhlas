@@ -24,12 +24,12 @@
 </head>
 <body class="text-green-600 font-poppins">
     <header class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[90%] bg-white/20 backdrop-blur-md shadow-md rounded-full px-8 py-3 flex justify-between items-center z-50">
-        <div class="flex items-center space-x-3">
+        <div class="lex items-center space-x-3">
             <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
                     <img src="/img/logoyayasan.png" alt="Logo" class="h-10">
                 </div>
-                <h1 class="text-xl font-bold text-black">Yayasan Haadi Nurul Ikhlas</h1>
+                <a href="/" class="hidden sm:inline-block text-xl font-bold text-black ">Yayasan Haadi Nurul Ikhlas</a>
             </div>
         </div>
 

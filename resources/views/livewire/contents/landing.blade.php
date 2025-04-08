@@ -1,44 +1,55 @@
 <main class="">
 <!-- Section Selamat Datang -->
-<section class="relative bg-emerald-500 p-6 sm:p-10 text-white w-full min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]
-rounded-bl-none flex flex-col sm:flex-row items-center justify-center gap-16 sm:gap-20 lg:gap-64 overflow-hidden
-pt-[80px] sm:pt-[100px]">
+<section class="relative p-6 sm:p-10 text-white w-full min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]
+rounded-bl-none flex flex-col sm:flex-row items-center justify-center gap-16 sm:gap-20 lg:gap-64 overflow-hidden pt-[80px] sm:pt-[100px] "
+style="background-image: url('/img/section-bg.svg'); background-size: cover; background-position: center;">
 
+<div class="bg-white/10 backdrop-blur-md h-[280px] w-full sm:w-[80%] mx-auto rounded-tl-[20px] rounded-br-[20px] flex items-center justify-between px-6 sm:px-12 border border-white/30 shadow-lg">
     <!-- Teks -->
-    <div class="relative z-10 max-w-lg px-4 sm:px-8 text-center sm:text-left">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-2 leading-tight">
-            SELAMAT DATANG DI <span class="block sm:inline">YAYASAN</span>
-        </h2>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-4">
+    <div class="relative z-10 max-w-xl text-center sm:text-left">
+        <p class="text-2xl font-bold mb-2 leading-tight text-white">
+            SELAMAT DATANG DI YAYASAN
+        </p>
+        <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-white">
             HAADI NURUL IKHLAS
         </h3>
-        <p class="text-gray-200 mb-6 leading-relaxed text-sm sm:text-base">
+        <p class="text-black mb-6 leading-relaxed text-sm sm:text-base">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
         <!-- Sosial Media & CTA -->
         <div class="flex items-center gap-4 justify-center sm:justify-start flex-wrap">
-            <a href="#" class="bg-pink-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
+            <a href="https://www.instagram.com/yayasanhaadiinurulikhlas/" class="bg-pink-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
                 <img src="/img/icon/instagram.png" alt="Instagram" class="w-6 h-6">
             </a>
             <a href="#" class="bg-black p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
                 <img src="/img/icon/tiktok.png" alt="TikTok" class="w-6 h-6">
             </a>
-            <a href="#" class="bg-red-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
+            <a href="https://www.youtube.com/@YayasanHaadiiNurulIkhlas" class="bg-red-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
                 <img src="/img/icon/youtube.png" alt="YouTube" class="w-6 h-6">
+            </a>
+            <a href="https://x.com/YayasanHNI" class="bg-white p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
+                <img src="/img/icon/twitter.png" alt="twitter" class="w-6 h-6">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61572579006943" class="bg-blue-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
+                <img src="/img/icon/facebook.png" alt="facebook" class="w-6 h-6">
             </a>
             <a href="#" class="bg-white text-black py-2 px-5 sm:px-6 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md hover:bg-gray-200">
                 Hubungi Kami
             </a>
         </div>
     </div>
+
     <!-- Logo Yayasan (Hilang di Mobile) -->
     <div class="hidden sm:flex">
-        <div class="relative z-10 flex w-40 h-40 sm:w-56 sm:h-56 items-center justify-center transition-transform duration-300 hover:scale-105">
+        <div class="relative z-10 flex w-44 h-44 sm:w-60 sm:h-60 items-center justify-center transition-transform duration-300 hover:scale-105">
             <div class="absolute w-full h-full bg-white rounded-full shadow-md"></div>
             <img src="/img/logoyayasan.png" alt="Logo Yayasan" class="relative w-[85%] h-[85%] object-contain">
         </div>
     </div>
+</div>
+
+
 </section>
 
 
@@ -260,16 +271,9 @@ pt-[80px] sm:pt-[100px]">
                     <div>
                         <h2 class="text-2xl font-semibold text-white mb-4 text-center">Dokumentasi Video</h2>
                         <div class="flex flex-col items-center space-y-6">
-                            <iframe class="w-full md:w-2/3 h-64 md:h-96 rounded-lg shadow-md"
+                            <iframe class="w-full md:w-2/3 h-64 md:h-96 rounded-lg shadow-md transition-transform duration-300 hover:scale-110"
                                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                                 title="Video Kegiatan Yayasan" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-
-                            <iframe class="w-full md:w-2/3 h-64 md:h-96 rounded-lg shadow-md"
-                                src="https://www.youtube.com/embed/your-video-link-here"
-                                title="Video Kegiatan Yayasan 2" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
