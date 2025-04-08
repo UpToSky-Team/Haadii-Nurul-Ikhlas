@@ -11,7 +11,7 @@
             </div>
             <h1 class="text-3xl font-bold text-start text-orange-600 mb-6">Sejarah Berdirinya Yayasan Haadi Nurul Ikhlas</h1>
 
-            <div class="text-justify richeditor-content leading-relaxed mb-4">
+            <div class="text-justify richeditor-content leading-relaxed mb-4 value-db">
                 {!!$sejarah->konten !!}
             </div>
 

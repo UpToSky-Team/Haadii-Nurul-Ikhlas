@@ -7,7 +7,7 @@
             <!-- Visi -->
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-gray-700 mb-3 text-center">Visi</h2>
-                <div class="text-justify leading-relaxed richeditor-content bg-orange-100 p-4 rounded-lg">
+                <div class="text-justify leading-relaxed richeditor-content bg-orange-100 p-4 rounded-lg value-db">
                     {!! $visiMisi->visi !!}
                 </div>
             </div>
@@ -15,7 +15,7 @@
             <!-- Misi -->
             <div>
                 <h2 class="text-2xl font-semibold text-gray-700 mb-3 text-center">Misi</h2>
-                <div class="text-justify bg-gray-50 p-6 rounded-lg richeditor-content shadow-sm">
+                <div class="text-justify bg-gray-50 p-6 rounded-lg richeditor-content shadow-sm value-db">
                     {!! $visiMisi->misi !!}
                 </div>
             </div>

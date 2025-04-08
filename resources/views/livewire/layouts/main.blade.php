@@ -20,6 +20,16 @@
             list-style-type: disc; /* Pastikan bullet muncul */
             margin-left: 20px;
         }
+
+        .value-db h1 {
+            font-size: 32px;
+        }
+        .value-db h2 {
+            font-size: 24px;
+        }
+        .value-db h3 {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body class="bg-whitefont-poppins">
