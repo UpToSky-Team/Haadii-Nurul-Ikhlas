@@ -22,3 +22,18 @@ Route::get('/struktur-yayasan', function () {
 Route::get('/visi-misi', function () {
     return view('pages.menu.profile.visi-misi');
 });
+Route::get('/publikasi', function () {
+    return view('pages.menu.publikasi');
+});
+Route::get('/detail-berita', function () {
+    return view('pages.menu.detail-berita');
+});
+Route::get('/detail-artikel', function () {
+    return view('pages.menu.detail-artikel');
+});
+Route::get('/layanan-donasi', function () {
+    return view('pages.menu.layanan-donasi');
+});
+Route::get('/hubungi-kami', function () {
+    return view('pages.menu.hubungi-kami');
+});

@@ -1,6 +1,6 @@
 @extends('livewire.layouts.main')
 @section('content')
     <div>
-        @livewire('menu.hubungi-kami')
+        @livewire('menu.detail-artikel')
     </div>
 @endsection

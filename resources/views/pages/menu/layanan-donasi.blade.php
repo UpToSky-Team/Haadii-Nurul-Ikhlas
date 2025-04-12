@@ -1,3 +1,6 @@
-<div>
-    {{-- The best athlete wants his opponent at his best. --}}
-</div>
+@extends('livewire.layouts.main')
+@section('content')
+    <div>
+        @livewire('menu.layanan-donasi')
+    </div>
+@endsection

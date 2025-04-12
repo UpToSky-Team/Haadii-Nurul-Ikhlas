@@ -7,14 +7,14 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
 <div class="bg-white/10 backdrop-blur-md h-[280px] w-full sm:w-[80%] mx-auto rounded-tl-[20px] rounded-br-[20px] flex items-center justify-between px-6 sm:px-12 border border-white/30 shadow-lg">
     <!-- Teks -->
     <div class="relative z-10 max-w-xl text-center sm:text-left">
-        <p class="text-2xl font-bold mb-2 leading-tight text-white">
+        <p class="text-[36px] font-bold mb-2 leading-tight text-black text-shadow">
             SELAMAT DATANG DI YAYASAN
         </p>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-white">
-            HAADI NURUL IKHLAS
+        <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-black">
+            HAADII NURUL IKHLAS
         </h3>
         <p class="text-black mb-6 leading-relaxed text-sm sm:text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Yayasan Haadii Nurul Ikhlas Merupakan Yayasan Panti Asuhan Muhammadiyah
         </p>
 
         <!-- Sosial Media & CTA -->
@@ -265,7 +265,7 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
                             @if (!empty($foto))
                                 @foreach ($foto as $data)
                                     @if ($data->jenis == 'gambar')
-                                    <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="{{ Storage::url($data->galeri_url) }}" alt="Kegiatan 1">            
+                                    <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="{{ Storage::url($data->galeri_url) }}" alt="Kegiatan 1">
                                     @endif
                                 @endforeach
                             @endif

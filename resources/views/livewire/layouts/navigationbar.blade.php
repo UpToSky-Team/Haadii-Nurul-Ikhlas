@@ -29,7 +29,7 @@
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
                     <img src="/img/logoyayasan.png" alt="Logo" class="h-10">
                 </div>
-                <a href="/" class="hidden sm:inline-block text-xl font-bold text-black ">Yayasan Haadi Nurul Ikhlas</a>
+                <a href="/" class="hidden sm:inline-block text-xl font-bold text-black ">Yayasan Haadii Nurul Ikhlas</a>
             </div>
         </div>
 
@@ -67,14 +67,14 @@
                     </button>
                     <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white border rounded-md shadow-md z-50">
                         <ul class="py-2 text-sm text-gray-700">
-                            <li><a href="#" class="block px-4 py-2 hover:text-green-600">Penerimaan Murid Baru</a></li>
-                            <li><a href="#" class="block px-4 py-2 hover:text-green-600">Rincian Kegiatan</a></li>
+                            <li><a href="/penerimaan-murid-baru" class="block px-4 py-2 hover:text-green-600">Penerimaan Murid Baru</a></li>
+                            <li><a href="/rincian-kegiatan" class="block px-4 py-2 hover:text-green-600">Rincian Kegiatan</a></li>
                         </ul>
                     </div>
                 </div>
-            <a href="#" class="block text-black hover:text-green-600 py-2">Layanan Donasi</a>
-            <a href="#" class="block text-black hover:text-green-600 py-2">Publikasi</a>
-            <a href="#" class="block text-black hover:text-green-600 py-2">Hubungi Kami</a>
+            <a href="/layanan-donasi" class="block text-black hover:text-green-600 py-2">Layanan Donasi</a>
+            <a href="/publikasi" class="block text-black hover:text-green-600 py-2">Publikasi</a>
+            <a href="/hubungi-kami" class="block text-black hover:text-green-600 py-2">Hubungi Kami</a>
         </nav>
     </header>
 
