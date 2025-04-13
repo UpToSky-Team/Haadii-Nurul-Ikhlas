@@ -1,77 +1,103 @@
 <body class="bg-gray-100 font-sans text-gray-800">
 
-    <div class="max-w-6xl mx-auto pt-[120px] px-6 sm:px-6 lg:px-8 py-10">
-      <!-- Judul -->
-      <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-center">Publikasi</h1>
+    <div class="mx-auto max-w-6xl px-6 py-10 pt-[120px] sm:px-6 lg:px-8">
+        <!-- Judul -->
+        <h1 class="mb-8 text-center text-3xl font-bold sm:text-4xl">Publikasi</h1>
 
-      <!-- Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-10">
-        <button onclick="showTab(event, 'berita')" class="tab-button bg-blue-500 text-white px-4 py-2 rounded-lg text-sm sm:text-base">Berita</button>
-        <button onclick="showTab(event, 'artikel')" class="tab-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm sm:text-base">Artikel</button>
-        <button onclick="showTab(event, 'dokumentasi')" class="tab-button bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm sm:text-base">Dokumentasi</button>
-      </div>
-
-      <!-- Tab Berita -->
-      <div id="berita" class="tab-content">
-        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Berita Pilihan</h2>
-        <a href="/detail-berita" class="block bg-white p-5 rounded-xl shadow hover:shadow-md transition-transform duration-300 hover:scale-105">
-          <h3 class="font-semibold text-lg mb-1">Peluncuran Program Pendidikan Digital</h3>
-          <p class="text-gray-600 mb-1">Pemerintah meluncurkan program digitalisasi sekolah...</p>
-          <p class="text-sm text-gray-500">Tanggal: 5 April 2025</p>
-        </a>
-      </div>
-
-      <!-- Tab Artikel -->
-      <div id="artikel" class="tab-content hidden">
-        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Artikel Pilihan</h2>
-        <a href="/detail-artikel" class="block bg-white p-5 rounded-xl shadow hover:shadow-md transition-transform duration-300 hover:scale-105">
-          <h3 class="font-semibold text-lg mb-1">Pentingnya Literasi Digital</h3>
-          <p class="text-gray-600 mb-1">Artikel ini membahas pentingnya literasi digital bagi generasi muda...</p>
-          <p class="text-sm text-gray-500">Oleh: Rina Dewi | 2 April 2025</p>
-        </a>
-      </div>
-
-      <!-- Tab Dokumentasi -->
-      <div id="dokumentasi" class="tab-content hidden">
-        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Galeri Dokumentasi</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <a href="/img/fotoketiga.png" data-lightbox="galeri">
-            <img src="/img/fotoketiga.png" alt="Dokumentasi 1" class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
-          </a>
-          <a href="/img/fotoketiga.png" data-lightbox="galeri">
-            <img src="/img/fotoketiga.png" alt="Dokumentasi 2" class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
-          </a>
-          <a href="/img/fotoketiga.png" data-lightbox="galeri">
-            <img src="/img/fotoketiga.png" alt="Dokumentasi 3" class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
-          </a>
-          <a href="/img/fotoketiga.png" data-lightbox="galeri">
-            <img src="/img/fotoketiga.png" alt="Dokumentasi 4" class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
-          </a>
+        <!-- Tabs -->
+        <div class="mb-10 flex flex-wrap justify-center gap-2">
+            <button onclick="showTab(event, 'berita')"
+                class="tab-button rounded-lg bg-blue-500 px-4 py-2 text-sm text-white sm:text-base">Berita</button>
+            <button onclick="showTab(event, 'artikel')"
+                class="tab-button rounded-lg bg-gray-200 px-4 py-2 text-sm text-gray-800 sm:text-base">Artikel</button>
+            <button onclick="showTab(event, 'dokumentasi')"
+                class="tab-button rounded-lg bg-gray-200 px-4 py-2 text-sm text-gray-800 sm:text-base">Dokumentasi</button>
         </div>
-      </div>
+
+        <!-- Tab Berita -->
+        <div id="berita" class="tab-content">
+            <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Berita Pilihan</h2>
+            @foreach ($berita as $data)
+                <a href="{{ route('berita.detail', $data->id_berita) }}"
+                    class="flex flex-col rounded-xl bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
+                    <div class="flex-shrink-0">
+                        <img src="{{ Storage::url($data->slug) }}" alt="{{ $data->slug }}"
+                            class="h-full w-full rounded-t-xl object-cover sm:h-full sm:w-80 sm:rounded-l-xl sm:rounded-t-none">
+                    </div>
+                    <div class="p-4 sm:m-5 sm:ml-4">
+                        <h3 class="mb-1 text-lg font-semibold">{{ $data->judul }}</h3>
+                        <div class="mb-1 text-gray-600">{!! Str::words($data->content, 25, '...') !!}</div>
+                        <p class="text-sm text-gray-500">Tanggal: {{ $data->created_at->format('d F Y') }}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+
+        <!-- Tab Artikel -->
+        <div id="artikel" class="tab-content hidden">
+            <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Artikel Pilihan</h2>
+            <a href="/detail-artikel"
+                class="block rounded-xl bg-white p-5 shadow transition-transform duration-300 hover:scale-105 hover:shadow-md">
+                <h3 class="mb-1 text-lg font-semibold">Pentingnya Literasi Digital</h3>
+                <p class="mb-1 text-gray-600">Artikel ini membahas pentingnya literasi digital bagi generasi muda...</p>
+                <p class="text-sm text-gray-500">Oleh: Rina Dewi | 2 April 2025</p>
+            </a>
+        </div>
+
+        <!-- Tab Dokumentasi -->
+        <div id="dokumentasi" class="tab-content hidden">
+            <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Galeri Dokumentasi</h2>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                @if (!empty($foto))
+                    @foreach ($foto as $data)
+                        <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
+                            <img src="{{ Storage::url($data->galeri_url) }}" alt="{{ $data->galeri_url }}"
+                                class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
+                        </a>
+                    @endforeach
+                @endif
+            </div>
+            <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                @if (!empty($video))
+                    @foreach ($video as $data)
+                        <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
+                            <div class="relative overflow-hidden rounded-lg shadow-md">
+                              <iframe class="h-64 w-full md:h-96"
+                                src="{{ Storage::url($data->galeri_url) }}" title="Video Kegiatan Yayasan"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                              </iframe>
+                              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
+                            </div>
+                        </a>
+                    @endforeach
+                @endif
+            </div>
+        </div>
     </div>
 
     <script>
-      function showTab(event, tabId) {
-        const tabs = document.querySelectorAll('.tab-content');
-        const buttons = document.querySelectorAll('.tab-button');
+        function showTab(event, tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
 
-        buttons.forEach(btn => {
-          btn.classList.remove('bg-blue-500', 'text-white');
-          btn.classList.add('bg-gray-200', 'text-gray-800');
-        });
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-800');
+            });
 
-        event.currentTarget.classList.remove('bg-gray-200', 'text-gray-800');
-        event.currentTarget.classList.add('bg-blue-500', 'text-white');
+            event.currentTarget.classList.remove('bg-gray-200', 'text-gray-800');
+            event.currentTarget.classList.add('bg-blue-500', 'text-white');
 
-        tabs.forEach(tab => {
-          if (tab.id === tabId) {
-            tab.classList.remove('hidden');
-          } else {
-            tab.classList.add('hidden');
-          }
-        });
-      }
+            tabs.forEach(tab => {
+                if (tab.id === tabId) {
+                    tab.classList.remove('hidden');
+                } else {
+                    tab.classList.add('hidden');
+                }
+            });
+        }
     </script>
 
-  </body>
+</body>

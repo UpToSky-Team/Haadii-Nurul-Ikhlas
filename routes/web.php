@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Home;
+use App\Livewire\Menu\DetailBerita;
+use App\Livewire\Pages\DetailBerita as PagesDetailBerita;
 use App\Livewire\Pages\Profile\Sejarah;
 use Illuminate\Support\Facades\Route;
 use Livewire\Attributes\Layout;
@@ -25,9 +27,12 @@ Route::get('/visi-misi', function () {
 Route::get('/publikasi', function () {
     return view('pages.menu.publikasi');
 });
-Route::get('/detail-berita', function () {
-    return view('pages.menu.detail-berita');
-});
+Route::get('/detail-berita/{id}', function ($id_berita) {
+    return view('pages.menu.detail-berita', ['id_berita' => $id_berita]);
+})->name('berita.detail');
+
+// Route::get('/detail-berita/{id}', DetailBerita::class)->name('berita.detail');
+
 Route::get('/detail-artikel', function () {
     return view('pages.menu.detail-artikel');
 });

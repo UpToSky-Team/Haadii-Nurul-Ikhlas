@@ -3,29 +3,35 @@
 
     <!-- Judul Berita -->
     <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      Peluncuran Program Pendidikan Digital
+      {{ $berita?->judul }}
     </h1>
 
     <!-- Tanggal & Penulis -->
     <div class="text-sm text-gray-500 mb-6">
-      Dipublikasikan pada <span class="font-medium">5 April 2025</span> oleh <span class="font-medium">Admin</span>
+      Dipublikasikan pada <span class="font-medium">{{ $berita?->created_at->format('d F Y') }}</span> oleh <span class="font-medium">{{ $berita->users->name }}</span>
     </div>
 
     <!-- Gambar -->
-    <img src="/img/fotokedua.png" alt="Gambar Berita" class="rounded-xl shadow mb-6 w-full object-cover" />
-
+    <img src="{{ Storage::url($berita?->slug)}}" alt="{{$berita?->slug}}" class="rounded-xl shadow mb-6 w-full object-cover" />
+    
     <!-- Isi Berita -->
-    <div class="prose max-w-none prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-xl">
-      <p>
-        Ini adalah paragraf pertama dari berita. Biasanya berisi ringkasan singkat atau pengantar dari isi berita.
-      </p>
-      <p>
-        Paragraf kedua bisa menjelaskan lebih dalam tentang topik yang dibahas. Misalnya, menjelaskan latar belakang kejadian, pendapat narasumber, atau data yang relevan.
-      </p>
-      <h2>Subjudul Berita</h2>
-      <p>
-        Dalam bagian ini, berita dapat dibagi ke dalam bagian-bagian dengan subjudul untuk memperjelas isi berita.
-      </p>
+    <div class="prose max-w-none prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-x">
+      <div class="text-justify">
+        {!! $berita?->content !!}
+      </div>
+    </div>
+    
+    <div class="flex gap-4 flex-wrap">
+      @foreach ($berita?->gambarberitas as $gambarberita)
+      <div class="w-1/3">
+        <div class="relative group">
+          <img src="{{ Storage::url($gambarberita->gambar_url) }}" alt="{{ $gambarberita->gambar_url }}" class="rounded-xl shadow object-cover w-full" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <p class="text-white text-sm px-2 text-center">{{ $gambarberita->caption }}</p>
+          </div>
+        </div>
+      </div>
+      @endforeach
     </div>
 
     <!-- Tombol Kembali -->

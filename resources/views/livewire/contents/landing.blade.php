@@ -146,74 +146,26 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
             <div class="flex flex-wrap justify-center gap-8 lg:gap-12">
                 <!-- Card 1 -->
                 @if (!empty($berita))
-                    @foreach (@$berita as $data)
-                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105">
-                        <a href="#">
-                            <img class="rounded-t-lg" src="{{ Storage::url($data->slug ) }}" alt="Tech News Image 1" />
-                        </a>
-                        <div class="p-5">
-                            <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                    {!! Str::words($data->judul, 4, '...') !!}
-                                </h5>
-                            </a>
-                            <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                {!!  Str::words($data->content, 10, '...') !!}
+                    @foreach ($berita as $data)
+                    <a wire:click="openDetailBerita('{{$data->id_berita}}')">
+                        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105 cursor-pointer">
+                            <div>
+                                <img class="rounded-t-lg" src="{{ Storage::url($data->slug ) }}" alt="Tech News Image 1" />
                             </div>
-                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
+                            <div class="p-5">
+                                <div>
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                        {!! Str::words($data->judul, 4, '...') !!}
+                                    </h5>
+                                </div>
+                                <div class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    {!!  Str::words($data->content, 10, '...') !!}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 @endif
-                <!-- Card 2 -->
-                {{-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105">
-                    <a href="#">
-                        <img class="rounded-t-lg" src="/img/content/dummy1.png" alt="Tech News Image 2" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Noteworthy technology acquisitions 2021
-                            </h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                        </p>
-                        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Read more
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 transition-transform duration-300 hover:scale-105">
-                    <a href="#">
-                        <img class="rounded-t-lg" src="/img/content/dummy1.png" alt="Tech News Image 3" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Noteworthy technology acquisitions 2021
-                            </h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                            Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-                        </p>
-                        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Read more
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
-                    </div>
-                </div> --}}
             </div>
         </section>
     <!-- Section Donasi -->
@@ -269,12 +221,6 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
                                     @endif
                                 @endforeach
                             @endif
-                            {{-- <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 1">
-                            <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 3">
-                            <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 4">
-                            <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 5">
-                            <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 2">
-                            <img class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" src="/img/content/dummy1.png" alt="Kegiatan 6"> --}}
                         </div>
                     </div>
 
@@ -294,13 +240,6 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
                                     @endif
                                 @endforeach
                             @endif
-
-                            {{-- <iframe class="w-full md:w-2/3 h-64 md:h-96 rounded-lg shadow-md"
-                                src="https://www.youtube.com/embed/your-video-link-here"
-                                title="Video Kegiatan Yayasan 2" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe> --}}
                         </div>
                     </div>
 

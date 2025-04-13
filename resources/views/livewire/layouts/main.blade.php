@@ -31,6 +31,7 @@
             font-size: 18px;
         }
     </style>
+    @livewireStyles
 </head>
 <body class="bg-whitefont-poppins">
         @livewire('layouts.navigationbar')
@@ -41,4 +42,5 @@
 <footer>
     @livewire('layouts.footer')
 </footer>
+@livewireScripts
 </html>

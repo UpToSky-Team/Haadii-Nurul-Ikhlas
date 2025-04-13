@@ -8,6 +8,15 @@ use Livewire\Component;
 
 class Landing extends Component
 {
+    public $id;
+
+    public function openDetailBerita($id)
+    {
+        $this->id = $id;
+        $this->dispatch('showUserDetail', $id)->to('menu.detail-berita');
+        
+        return redirect()->route('berita.detail', ['id' => $id]);
+    }
     public function render()
     {
         $dataBerita = Berita::latest()->take(3)->get();
