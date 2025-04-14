@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone');
             $table->uuid('id_jenis_donasi');
-            $table->foreign('id_jenis_donasi')->references(columns: 'id_jenis_donasi')->on('jenis_donasis')->cascadeOnDelete();
+            $table->foreign('id_jenis_donasi')->references('id_jenis_donasi')->on('jenis_donasis')->cascadeOnDelete();
             $table->string('bank_name');
             $table->string('jumlah_donasi');
             $table->string('bukti_transfer');
