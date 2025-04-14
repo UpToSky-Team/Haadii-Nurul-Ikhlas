@@ -31,11 +31,10 @@ Route::get('/detail-berita/{id}', function ($id_berita) {
     return view('pages.menu.detail-berita', ['id_berita' => $id_berita]);
 })->name('berita.detail');
 
-// Route::get('/detail-berita/{id}', DetailBerita::class)->name('berita.detail');
+Route::get('/detail-artikel/{id}', function ($id_artikel) {
+    return view('pages.menu.detail-artikel', ['id_artikel' => $id_artikel]);
+})->name('artikel.detail');
 
-Route::get('/detail-artikel', function () {
-    return view('pages.menu.detail-artikel');
-});
 Route::get('/layanan-donasi', function () {
     return view('pages.menu.layanan-donasi');
 });

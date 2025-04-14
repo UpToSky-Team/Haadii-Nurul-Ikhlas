@@ -3,29 +3,35 @@
 
     <!-- Judul Artikel -->
     <h1 class="text-3xl md:text-4xl font-bold mb-4">
-      Pentingnya Literasi Digital bagi Generasi Muda
+      {{ $artikel->judul }}
     </h1>
 
     <!-- Tanggal & Penulis -->
     <div class="text-sm text-gray-500 mb-6">
-      Ditulis oleh <span class="font-medium">Rina Dewi</span> pada <span class="font-medium">2 April 2025</span>
+      Ditulis oleh <span class="font-medium">{{ $artikel->users->name }}</span> pada <span class="font-medium">{{ $artikel->created_at->format('d F Y') }}</span>
     </div>
 
     <!-- Gambar Artikel -->
-    <img src="/img/fotokedua.png" alt="Gambar Artikel" class="rounded-xl shadow mb-6 w-full object-cover" />
+    <img src="{{ Storage::url($artikel->slug) }}" alt="{{$artikel->slug}}" class="rounded-xl shadow mb-6 w-full object-cover" />
 
     <!-- Isi Artikel -->
     <div class="prose max-w-none prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-xl">
-      <p>
-        Literasi digital menjadi keterampilan penting di era teknologi saat ini. Anak muda perlu dibekali kemampuan untuk memahami, menggunakan, dan mengevaluasi informasi digital secara kritis.
-      </p>
-      <p>
-        Tantangan seperti hoaks, cyberbullying, dan penyalahgunaan media sosial membuat literasi digital semakin penting untuk diajarkan sejak dini.
-      </p>
-      <h2>Manfaat Literasi Digital</h2>
-      <p>
-        Dengan literasi digital yang baik, generasi muda dapat lebih bijak dalam menggunakan internet, lebih siap menghadapi tantangan dunia kerja digital, serta mampu menciptakan konten yang positif dan bermanfaat.
-      </p>
+      <div class="text-justify">
+        {!! $artikel->content !!}
+      </div>
+    </div>
+    
+    <div class="flex gap-4 flex-wrap mt-4">
+      @foreach ($artikel->gambarartikels as $gambarartikel)
+      <div class="w-1/3">
+        <div class="relative group">
+          <img src="{{ Storage::url($gambarartikel->gambar_url) }}" alt="{{ $gambarartikel->gambar_url }}" class="rounded-xl shadow object-cover w-full" />
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <p class="text-white text-sm px-2 text-center">{{ $gambarartikel->caption }}</p>
+          </div>
+        </div>
+      </div>
+      @endforeach
     </div>
 
     <!-- Tombol Kembali -->

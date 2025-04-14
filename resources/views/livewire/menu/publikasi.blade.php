@@ -35,13 +35,21 @@
 
         <!-- Tab Artikel -->
         <div id="artikel" class="tab-content hidden">
-            <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Artikel Pilihan</h2>
-            <a href="/detail-artikel"
-                class="block rounded-xl bg-white p-5 shadow transition-transform duration-300 hover:scale-105 hover:shadow-md">
-                <h3 class="mb-1 text-lg font-semibold">Pentingnya Literasi Digital</h3>
-                <p class="mb-1 text-gray-600">Artikel ini membahas pentingnya literasi digital bagi generasi muda...</p>
-                <p class="text-sm text-gray-500">Oleh: Rina Dewi | 2 April 2025</p>
-            </a>
+            <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Berita Pilihan</h2>
+            @foreach ($artikel as $data)
+                <a href="{{ route('artikel.detail', $data->id_artikel) }}"
+                    class="flex flex-col rounded-xl bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
+                    <div class="flex-shrink-0">
+                        <img src="{{ Storage::url($data->slug) }}" alt="{{ $data->slug }}"
+                            class="h-full w-full rounded-t-xl object-cover sm:h-full sm:w-80 sm:rounded-l-xl sm:rounded-t-none">
+                    </div>
+                    <div class="p-4 sm:m-5 sm:ml-4">
+                        <h3 class="mb-1 text-lg font-semibold">{{ $data->judul }}</h3>
+                        <div class="mb-1 text-gray-600">{!! Str::words($data->content, 25, '...') !!}</div>
+                        <p class="text-sm text-gray-500">Oleh: {{$data->users->name}} | {{ $data->created_at->format('d F Y') }}</p>
+                    </div>
+                </a>
+            @endforeach
         </div>
 
         <!-- Tab Dokumentasi -->

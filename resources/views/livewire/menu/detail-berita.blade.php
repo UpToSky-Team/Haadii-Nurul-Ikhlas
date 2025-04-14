@@ -21,7 +21,7 @@
       </div>
     </div>
     
-    <div class="flex gap-4 flex-wrap">
+    <div class="flex gap-4 flex-wrap mt-4">
       @foreach ($berita?->gambarberitas as $gambarberita)
       <div class="w-1/3">
         <div class="relative group">
