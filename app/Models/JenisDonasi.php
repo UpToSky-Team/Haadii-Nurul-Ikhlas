@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class JenisDonasi extends Model
 {
@@ -18,4 +19,11 @@ class JenisDonasi extends Model
         'description',
         'id_admin',
     ];
+    use HasFactory;
+
+    //Relationships User
+    public function users() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
