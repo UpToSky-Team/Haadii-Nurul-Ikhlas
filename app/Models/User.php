@@ -102,4 +102,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Struktur::class);
     }
+
+    // Relationships UserDonatur
+    public function jenisdonasi() : HasMany
+    {
+        return $this->hasMany(JenisDonasi::class);
+    }
 }
