@@ -30,7 +30,7 @@ class StrukturPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ class StrukturPolicy
      */
     public function update(User $user, Struktur $struktur): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class StrukturPolicy
      */
     public function delete(User $user, Struktur $struktur): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;

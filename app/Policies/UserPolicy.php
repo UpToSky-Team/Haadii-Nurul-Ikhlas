@@ -2,27 +2,31 @@
 
 namespace App\Policies;
 
-use App\Models\Sejarah;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Auth;
 
-class SejarahPolicy
+class UserPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * Create a new policy instance.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Sejarah $sejarah): bool
+    public function view(User $user): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -30,7 +34,7 @@ class SejarahPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
             return true;
         }
         return false;
@@ -39,9 +43,9 @@ class SejarahPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Sejarah $sejarah): bool
+    public function update(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
             return true;
         }
         return false;
@@ -50,9 +54,9 @@ class SejarahPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Sejarah $sejarah): bool
+    public function delete(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
             return true;
         }
         return false;
@@ -61,7 +65,7 @@ class SejarahPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Sejarah $sejarah): bool
+    public function restore(User $user): bool
     {
         return false;
     }
@@ -69,7 +73,7 @@ class SejarahPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Sejarah $sejarah): bool
+    public function forceDelete(User $user): bool
     {
         return false;
     }

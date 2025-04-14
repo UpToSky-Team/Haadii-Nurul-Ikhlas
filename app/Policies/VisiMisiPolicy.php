@@ -30,7 +30,7 @@ class VisiMisiPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ class VisiMisiPolicy
      */
     public function update(User $user, VisiMisi $visiMisi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class VisiMisiPolicy
      */
     public function delete(User $user, VisiMisi $visiMisi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
