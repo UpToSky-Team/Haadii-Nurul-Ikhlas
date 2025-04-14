@@ -97,4 +97,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Struktur::class);
     }
+
+    // Relationships UserDonatur
+    public function userdonaturs() : HasMany
+    {
+        return $this->hasMany(UserDonatur::class);
+    }
+
+    // Relationships JenisDonasi
+    public function jenisdonasis() : HasMany
+    {
+        return $this->hasMany(JenisDonasi::class);
+    }
 }

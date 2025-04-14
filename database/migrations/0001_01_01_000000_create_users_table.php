@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('ussername')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'humas'])->default('humas');
+            $table->enum('role', ['admin', 'humas', 'bendahara'])->default('humas');
             $table->rememberToken();
             $table->timestamps();
         });
