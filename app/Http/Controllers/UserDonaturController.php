@@ -45,7 +45,7 @@ class UserDonaturController extends Controller
 
         if ($request->hasFile('bukti_transfer')) {
             $file = $request->file('bukti_transfer');
-            $fileName = time() . '_' . $request->nama . '.' . $file->getClientOriginalExtension();
+            $fileName = 'bukti_transfer/' . time() . '_' . $request->nama . '.' . $file->getClientOriginalExtension();
 
             UserDonatur::create([
                 'nama' => $request->nama,
