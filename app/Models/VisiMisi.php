@@ -17,7 +17,7 @@ class VisiMisi extends Model
     public $fillable = [
         'id_visi_misi',
         'visi',
-    'misi',
+        'misi',
         'gambar_url',
         'id_admin',
     ];
