@@ -55,15 +55,12 @@ class UserDonaturResource extends Resource
                     ->tel()
                     ->required()
                     ->maxLength(255),
-
                 Select::make('id_jenis_donasi')
                     ->label('Jenis Donasi')
                     ->relationship('jenisDonasis', 'jenis')
                     ->searchable()
                     ->preload()
                     ->native(false),
-                
-
                 TextInput::make('bank_name')
                     ->required()
                     ->maxLength(255),
@@ -71,7 +68,6 @@ class UserDonaturResource extends Resource
                     ->label('Pilih Donasi')
                     ->maxLength(255)
                     ->required(),
-
                 FileUpload::make('bukti_transfer')
                     ->label('Bukti Transfer (JPG, PNG, PDF)')
                     ->image()
@@ -80,8 +76,15 @@ class UserDonaturResource extends Resource
                     ->visibility('public')
                     ->columnSpanFull()
                     ->required(),
-                Hidden::make('status_verifikasi')
-                    ->default('pending'),
+                Select::make('status_verifikasi')
+                    ->label('Status Verifikasi')
+                    ->options([
+                        'pending' => 'Pending',
+                        'verified' => 'Verified',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->default('pending')
+                    ->required(),
             ]);
     }
 

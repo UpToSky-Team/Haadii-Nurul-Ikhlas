@@ -30,10 +30,10 @@ class UserDonaturPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
-            return true;
-        }
-        return false;
+        // if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        //     return true;
+        // }
+        return true;
     }
 
     /**

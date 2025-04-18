@@ -36,11 +36,11 @@ Route::get('/detail-artikel/{id}', function ($id_artikel) {
     return view('pages.menu.detail-artikel', ['id_artikel' => $id_artikel]);
 })->name('artikel.detail');
 
-Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'create'])->name('donasi.send');
-
 Route::get('/layanan-donasi', function () {
     return view('pages.menu.layanan-donasi');
 });
 Route::get('/hubungi-kami', function () {
     return view('pages.menu.hubungi-kami');
 });
+
+Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'store'])->name('donasi.send');

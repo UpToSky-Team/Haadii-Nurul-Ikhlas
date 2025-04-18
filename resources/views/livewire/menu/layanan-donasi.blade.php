@@ -19,27 +19,50 @@
       <!-- Kolom 2: Form Donasi -->
       <div class="bg-white p-6 rounded-xl shadow">
         <h2 class="text-xl font-semibold mb-4">Konfirmasi Donasi</h2>
-        <form class="space-y-4" action="{{ route('donasi.send') }}" method="post">
+        @if (session('success'))
+          <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Berhasil!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+            </span>
+          </div>
+        @endif
+        <form class="space-y-4" action="{{ route('donasi.send') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label class="block text-sm font-medium text-gray-700">Donasi Atas Nama <span class="text-red-500">*</span></label>
             <input type="text" name="nama" placeholder="Nama Anda" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+            @error('nama')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Email</label>
             <input type="email" name="email" placeholder="Email" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+            @error('email')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Nomor Telepon <span class="text-red-500">*</span></label>
             <input type="tel" name="telepon" placeholder="Nomor Telepon" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+            @error('telepon')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Jumlah Donasi <span class="text-red-500">*</span></label>
             <input type="number" name="jumlah_donasi" placeholder="Jumlah Donasi" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+            @error('jumlah_donasi')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Jenis Donasi <span class="text-red-500">*</span></label>
             <select name="jenis_donasi" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
               <option disabled selected>---</option>
               @foreach ($jenis as $data)
-                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+              <option value="{{ $data->id_jenis_donasi }}">{{ $data->jenis }}</option>
               @endforeach
             </select>
+            @error('jenis_donasi')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Nama Bank <span class="text-red-500">*</span></label>
             <select name="nama_bank" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
@@ -51,12 +74,21 @@
               <option value="Mandiri">Mandiri</option>
               <option value="BCA">BCA</option>
             </select>
+            @error('nama_bank')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Tanggal Transfer <span class="text-red-500">*</span></label>
             <input type="date" name="tanggal_transfer" placeholder="Tanggal Transfer" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+            @error('tanggal_transfer')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
 
             <label class="block text-sm font-medium text-gray-700">Bukti Transfer <span class="text-red-500">*</span></label>
             <input type="file" name="bukti_transfer" class="w-full text-sm text-gray-600"/>
+            @error('bukti_transfer')
+              <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
           <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition">Konfirmasi Donasi</button>
         </form>
       </div>
