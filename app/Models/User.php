@@ -105,7 +105,7 @@ class User extends Authenticatable
 
     // Relationships UserDonatur
     public function userdonaturs() : HasMany
-    {
+    { 
         return $this->hasMany(UserDonatur::class);
     }
 

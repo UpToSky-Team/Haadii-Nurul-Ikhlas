@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\JenisDonasi;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class JenisDonasiPolicy
 {
@@ -13,7 +14,7 @@ class JenisDonasiPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class JenisDonasiPolicy
      */
     public function view(User $user, JenisDonasi $jenisDonasi): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class JenisDonasiPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class JenisDonasiPolicy
      */
     public function update(User $user, JenisDonasi $jenisDonasi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class JenisDonasiPolicy
      */
     public function delete(User $user, JenisDonasi $jenisDonasi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
