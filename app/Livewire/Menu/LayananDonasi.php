@@ -2,12 +2,17 @@
 
 namespace App\Livewire\Menu;
 
+use App\Models\JenisDonasi;
 use Livewire\Component;
 
 class LayananDonasi extends Component
 {
     public function render()
     {
-        return view('livewire.menu.layanan-donasi');
+
+        $jenis = JenisDonasi::orderBy('created_at', 'asc')->get();
+        return view('livewire.menu.layanan-donasi', [
+            'jenis' => $jenis,
+        ]);
     }
 }

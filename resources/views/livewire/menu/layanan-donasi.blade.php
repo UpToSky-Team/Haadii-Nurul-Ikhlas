@@ -19,21 +19,44 @@
       <!-- Kolom 2: Form Donasi -->
       <div class="bg-white p-6 rounded-xl shadow">
         <h2 class="text-xl font-semibold mb-4">Konfirmasi Donasi</h2>
-        <form class="space-y-4">
-          <input type="text" placeholder="Program Donasi Yang Diikuti" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
-          <input type="text" placeholder="Nama Anda" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
-          <select class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-            <option disabled selected>Nama Bank :</option>
-            <option>BRI</option>
-            <option>BSI</option>
-            <option>BJB Syariah</option>
-            <option>BNI</option>
-            <option>Mandiri</option>
-            <option>BCA</option>
-          </select>
-          <input type="date" placeholder="Tanggal Transfer" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
-          <input type="file" class="w-full text-sm text-gray-600"/>
-          <input type="text" placeholder="Donasi Atas Nama" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+        <form class="space-y-4" action="{{ route('donasi.send') }}" method="post">
+            @csrf
+            <label class="block text-sm font-medium text-gray-700">Donasi Atas Nama <span class="text-red-500">*</span></label>
+            <input type="text" name="nama" placeholder="Nama Anda" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" placeholder="Email" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+
+            <label class="block text-sm font-medium text-gray-700">Nomor Telepon <span class="text-red-500">*</span></label>
+            <input type="tel" name="telepon" placeholder="Nomor Telepon" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+
+            <label class="block text-sm font-medium text-gray-700">Jumlah Donasi <span class="text-red-500">*</span></label>
+            <input type="number" name="jumlah_donasi" placeholder="Jumlah Donasi" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+
+            <label class="block text-sm font-medium text-gray-700">Jenis Donasi <span class="text-red-500">*</span></label>
+            <select name="jenis_donasi" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              <option disabled selected>---</option>
+              @foreach ($jenis as $data)
+                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+              @endforeach
+            </select>
+
+            <label class="block text-sm font-medium text-gray-700">Nama Bank <span class="text-red-500">*</span></label>
+            <select name="nama_bank" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              <option disabled selected>Nama Bank :</option>
+              <option value="BRI">BRI</option>
+              <option value="BSI">BSI</option>
+              <option value="BJB Syariah">BJB Syariah</option>
+              <option value="BNI">BNI</option>
+              <option value="Mandiri">Mandiri</option>
+              <option value="BCA">BCA</option>
+            </select>
+
+            <label class="block text-sm font-medium text-gray-700">Tanggal Transfer <span class="text-red-500">*</span></label>
+            <input type="date" name="tanggal_transfer" placeholder="Tanggal Transfer" class="w-full border border-emerald-500 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"/>
+
+            <label class="block text-sm font-medium text-gray-700">Bukti Transfer <span class="text-red-500">*</span></label>
+            <input type="file" name="bukti_transfer" class="w-full text-sm text-gray-600"/>
           <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition">Konfirmasi Donasi</button>
         </form>
       </div>

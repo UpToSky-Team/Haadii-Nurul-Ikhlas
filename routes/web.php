@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserDonaturController;
 use App\Livewire\Home;
 use App\Livewire\Menu\DetailBerita;
 use App\Livewire\Pages\DetailBerita as PagesDetailBerita;
@@ -34,6 +35,8 @@ Route::get('/detail-berita/{id}', function ($id_berita) {
 Route::get('/detail-artikel/{id}', function ($id_artikel) {
     return view('pages.menu.detail-artikel', ['id_artikel' => $id_artikel]);
 })->name('artikel.detail');
+
+Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'create'])->name('donasi.send');
 
 Route::get('/layanan-donasi', function () {
     return view('pages.menu.layanan-donasi');
