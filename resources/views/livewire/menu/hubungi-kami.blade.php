@@ -58,15 +58,7 @@
             <div class="bg-white p-6 rounded-xl shadow h-[500px]">
               <h2 class="text-xl font-semibold mb-4">Lokasi Yayasan</h2>
               <div class="h-full w-full rounded-lg overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19456.85546076145!2d110.24969991199238!3d-7.775094115388911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7af7f9d225b59f%3A0xfbe9d22c89738c50!2sPerumahan%20Griya%20Moyudan%20Asri!5e1!3m2!1sid!2sid!4v1744458606974!5m2!1sid!2sid"
-                  width="100%"
-                  height="100%"
-                  style="border:0;"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></https:>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15643.745547520497!2d110.38445068335832!3d-7.803406138682316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57705a7ab28f%3A0x138287e6b0fe41ef!2sBakpia%20Kurnia%20Sari!5e1!3m2!1sid!2sid!4v1744981162903!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>
