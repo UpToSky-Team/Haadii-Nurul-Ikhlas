@@ -42,7 +42,6 @@ Route::get('/layanan-donasi', function () {
 Route::get('/hubungi-kami', function () {
     return view('pages.menu.hubungi-kami');
 });
-
 Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'store'])->name('donasi.send');
 Route::get('/penerimaan-murid-baru', function () {
     return view('pages.menu.program.penerimaan-murid-baru');
