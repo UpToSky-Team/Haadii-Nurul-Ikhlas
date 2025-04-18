@@ -34,7 +34,7 @@ class UserDonaturResource extends Resource
     protected static ?string $pluralLabel = 'Donatur';
     protected static ?string $navigationLabel = 'Donatur';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-currency-dollar';
     protected static ?string $navigationGroup = 'Donasi';
     public static function form(Form $form): Form
     {
