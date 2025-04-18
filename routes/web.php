@@ -44,3 +44,12 @@ Route::get('/hubungi-kami', function () {
 });
 
 Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'store'])->name('donasi.send');
+Route::get('/penerimaan-murid-baru', function () {
+    return view('pages.menu.program.penerimaan-murid-baru');
+});
+Route::get('/penerimaan-murid-baru-next', function () {
+    return view('pages.menu.program.penerimaan-murid-baru-next');
+});
+Route::get('/konfirmasi-pendaftaran', function () {
+    return view('pages.menu.program.konfirmasi-pendaftaran');
+});
