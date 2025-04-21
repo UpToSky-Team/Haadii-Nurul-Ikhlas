@@ -109,4 +109,34 @@ class User extends Authenticatable
     {
         return $this->hasMany(JenisDonasi::class);
     }
+
+    // Relationships Banner
+    public function banners() : HasMany
+    {
+        return $this->hasMany(Banner::class);
+    }
+
+    // Relationships UserRegistration
+    public function userregistrations() : HasMany
+    {
+        return $this->hasMany(UserRegistration::class);
+    }
+
+    // Relationship Kegiatan
+    public function kegiatans() : HasMany
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
+
+    // Relationship StatusRegistration
+    public function statusregistrations() : HasMany
+    {
+        return $this->hasMany(StatusRegistration::class);
+    }
+
+    // Relationship StatusDonasi
+    public function statusdonasis() : HasMany
+    {
+        return $this->hasMany(StatusDonasi::class); 
+    }
 }

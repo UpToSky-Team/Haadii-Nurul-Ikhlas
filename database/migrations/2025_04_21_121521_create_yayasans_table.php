@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('yayasans', function (Blueprint $table) {
             $table->uuid('id_yayasan');
-            $table->string('nama');
-            $table->string('alamat');
-            $table->string('email');
-            $table->text('deskripsi');
-            $table->string('logo');
-            $table->string('no_telepon');
-            $table->string('instagram');
-            $table->string('twitter');
-            $table->string('youtube');
-            $table->string('facebook');
-            $table->string('tiktok');
-            $table->string('maps');
+            $table->string('nama')->nullable();
+            $table->string('alamat')->nullable();;
+            $table->string('email')->nullable();;
+            $table->text('deskripsi')->nullable();;
+            $table->string('logo')->nullable();;
+            $table->string('no_telepon')->nullable();;
+            $table->string('instagram')->nullable();;
+            $table->string('twitter')->nullable();;
+            $table->string('youtube')->nullable();;
+            $table->string('facebook')->nullable();;
+            $table->string('tiktok')->nullable();;
+            $table->string('maps')->nullable();;
             $table->timestamps();
         });
     }
