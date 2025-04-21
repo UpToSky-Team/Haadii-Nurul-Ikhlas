@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Kegiatan;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class KegiatanPolicy
 {
@@ -13,7 +14,7 @@ class KegiatanPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class KegiatanPolicy
      */
     public function view(User $user, Kegiatan $kegiatan): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class KegiatanPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class KegiatanPolicy
      */
     public function update(User $user, Kegiatan $kegiatan): bool
     {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class KegiatanPolicy
      */
     public function delete(User $user, Kegiatan $kegiatan): bool
     {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
+            return true;
+        }
         return false;
     }
 
