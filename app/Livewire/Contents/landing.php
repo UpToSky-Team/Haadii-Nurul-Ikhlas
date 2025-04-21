@@ -21,7 +21,8 @@ class Landing extends Component
     public function render()
     {
         $dataBerita = Berita::latest()->take(3)->get();
-        $dataKegiatan = Kegiatan::latest()->take(6)->get();
+        $kegiatanUnggulan = Kegiatan::where('status', 'unggulan')->latest()->take(6)->get();
+        $kegiatan = Kegiatan::where('status', 'biasa')->latest()->take(6)->get();
         $dataVideo = Galeri::where('jenis', '=', 'video')->latest()->take(2)->get();
         $dataFoto = Galeri::where('jenis', '=', 'gambar')->latest()->take(6)->get();
 
@@ -29,7 +30,8 @@ class Landing extends Component
             'berita' => $dataBerita,
             'foto' => $dataFoto,
             'video' => $dataVideo,
-            'kegiatan' => $dataKegiatan,
+            'kegiatanUnggulan' => $kegiatanUnggulan,
+            'kegiatan' => $kegiatan,
         ]);
     }
 }

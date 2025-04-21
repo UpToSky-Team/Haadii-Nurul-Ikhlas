@@ -102,13 +102,13 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
             <!-- Judul -->
             <div class="text-center ">
                 <h2 class="text-2xl font-bold lg:text-3xl">
-                    PROGRAM ATAU KEGIATAN <span class="text-green-600">YAYASAN HAADII NURUL IKHLAS</span>
+                    PROGRAM UNGGULAN <span class="text-green-600">YAYASAN HAADII NURUL IKHLAS</span>
                 </h2>
             </div>
 
             <!-- Grid Program -->
             <div class="flex flex-wrap justify-center gap-8 md:gap-8 lg:gap-12 mt-10">
-                @foreach ($kegiatan as $data)    
+                @foreach ($kegiatanUnggulan as $data)    
                     <div class="w-full max-w-[250px] lg:max-w-[280px] bg-orange-500 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                         <!-- Gambar -->
                         <div class="mb-4">
@@ -130,23 +130,6 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
                         </a>
                     </div>
                 @endforeach
-                <!-- Card 1 -->
-
-                {{-- <!-- Card 2 -->
-                <div class="w-full max-w-[250px] lg:max-w-[280px] min-h-72 bg-orange-500 p-6 rounded-lg shadow-md
-                            rounded-tl-none rounded-tr-[28px] rounded-bl-[28px] rounded-br-none
-                            transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <h3 class="text-xl font-semibold text-white mb-3">Program 2</h3>
-                    <p class="text-white">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="w-full max-w-[250px] lg:max-w-[280px] min-h-72 bg-orange-500 p-6 rounded-lg shadow-md
-                            rounded-tl-[28px] rounded-tr-none rounded-bl-none rounded-br-[28px]
-                            transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <h3 class="text-xl font-semibold text-white mb-3">Program 3</h3>
-                    <p class="text-white">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                </div> --}}
             </div>
         </section>
     {{-- Section Berita --}}
@@ -185,39 +168,39 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
             </div>
         </section>
     <!-- Section Donasi -->
-        <section class="relative mx-auto pt-10 min-h-[300px] sm:min-h-[500px] md:min-h-[500px] lg:min-h-[500px]">
+        <section class="relative mx-auto pt-10 min-h-[300px] sm:min-h-[500px] md:min-h-[500px] lg:min-h-[500px] mb-10">
                 <!-- Judul -->
                 <div class="text-center ">
                     <h2 class="text-2xl font-bold lg:text-3xl">
-                        PROGRAM DONASI <span class="text-green-600">YAYASAN HAADII NURUL IKHLAS</span>
+                        KEGIATAN <span class="text-green-600">YAYASAN HAADII NURUL IKHLAS</span>
                     </h2>
                 </div>
 
                 <!-- Grid Program -->
                 <div class="flex flex-wrap justify-center gap-8 md:gap-8 lg:gap-12 mt-10">
                     <!-- Card 1 -->
-                    <div class="w-full max-w-[250px] lg:max-w-[280px] min-h-72 bg-orange-500 p-6 rounded-lg shadow-md
-                                rounded-tl-none rounded-tr-[28px] rounded-bl-[28px] rounded-br-none
-                                transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">DONASI UANG</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    @foreach ($kegiatan as $data)    
+                    <div class="w-full max-w-[250px] lg:max-w-[280px] bg-orange-500 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                        <!-- Gambar -->
+                        <div class="mb-4">
+                            <img src="{{ Storage::url($data->gambar) }}" alt="{{ $data->judul_kegiatan }}" 
+                                 class="w-full h-40 object-cover rounded-lg">
+                        </div>
+                        <!-- Judul -->
+                        <h3 class="text-lg font-bold text-white mb-2">
+                            {{ $data->judul_kegiatan }}
+                        </h3>
+                        <!-- Deskripsi -->
+                        <div class="text-sm text-white line-clamp-3">
+                            {!! Str::words($data->deskripsi, 10, '...') !!}
+                        </div>
+                        <!-- Tombol Selengkapnya -->
+                        <a href="" 
+                           class="inline-block mt-4 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+                            Selengkapnya
+                        </a>
                     </div>
-
-                    <!-- Card 2 -->
-                    <div class="w-full max-w-[250px] lg:max-w-[280px] min-h-72 bg-orange-500 p-6 rounded-lg shadow-md
-                                rounded-tl-none rounded-tr-[28px] rounded-bl-[28px] rounded-br-none
-                                transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">DONASI PAKAIAN</h3>
-                        <p class="text-white">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="w-full max-w-[250px] lg:max-w-[280px] min-h-72 bg-orange-500 p-6 rounded-lg shadow-md
-                                rounded-tl-[28px] rounded-tr-none rounded-bl-none rounded-br-[28px]
-                                transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                        <h3 class="text-xl font-semibold text-white mb-3">DONASI BARANG</h3>
-                        <p class="text-white">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                    </div>
+                    @endforeach
                 </div>
         </section>
     <!-- Section Dokumentasi -->

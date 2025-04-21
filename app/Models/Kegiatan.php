@@ -20,6 +20,7 @@ class Kegiatan extends Model
         'deskripsi',
         'tanggal',
         'gambar',
+        'status',
         'id_admin'
     ];
 

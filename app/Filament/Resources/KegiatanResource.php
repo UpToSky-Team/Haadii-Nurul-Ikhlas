@@ -44,6 +44,15 @@ class KegiatanResource extends Resource
                     ->required()
                     ->label('Nama Kegiatan')
                     ->maxLength(255),
+                Forms\Components\Select::make('status')
+                    ->required()
+                    ->label('Status')
+                    ->options([
+                        'unggulan' => 'Unggulan',
+                        'biasa' => 'Biasa',
+                    ])
+                    ->default('biasa')
+                    ->native(false),
                 RichEditor::make('deskripsi')
                     ->label('Konten Berita')
                     ->toolbarButtons([
