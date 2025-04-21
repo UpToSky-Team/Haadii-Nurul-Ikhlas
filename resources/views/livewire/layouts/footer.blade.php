@@ -1,4 +1,4 @@
-<footer class="bg-green-600 text-white pt-12 pb-6 relative rounded-tr-[80px] rounded-br-none rounded-lt-none rounded-bt-none" style="background-image: url('/img/section-bg.svg'); background-size: cover; background-position: center;">
+<footer class="bg-green-600 text-white pt-12 pb-6 relative rounded-tr-none rounded-br-none rounded-lt-none rounded-bt-none" style="background-image: url('/img/section-bg.svg'); background-size: cover; background-position: center;">
     <div class="container mx-auto px-6 lg:px-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Kolom Logo & Deskripsi -->

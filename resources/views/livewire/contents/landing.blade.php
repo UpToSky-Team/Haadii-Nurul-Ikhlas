@@ -1,94 +1,97 @@
-<main class="">
+<main class="font-display">
 <!-- Section Selamat Datang -->
 <section class="relative p-6 sm:p-10 text-white w-full min-h-[500px] sm:min-h-[600px] lg:min-h-[700px]
-rounded-bl-none flex flex-col sm:flex-row items-center justify-center gap-16 sm:gap-20 lg:gap-64 overflow-hidden pt-[80px] sm:pt-[100px] "
-style="background-image: url('/img/section-bg.svg'); background-size: cover; background-position: center;">
+rounded-bl-none flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-20 lg:gap-64 overflow-hidden pt-[80px] sm:pt-[100px]"
+style="background-image: url('/img/bg-jumbotron.jpg'); background-size: cover; background-position: center;">
 
-<div class="bg-white/10 backdrop-blur-md h-[280px] w-full sm:w-[80%] mx-auto rounded-tl-[20px] rounded-br-[20px] flex items-center justify-between px-6 sm:px-12 border border-white/30 shadow-lg">
+  <div class="bg-white/10 backdrop-blur-md w-full max-w-screen-lg mx-auto rounded-tl-[20px] rounded-br-[20px] flex flex-col sm:flex-row items-center justify-between gap-8 sm:gap-12 px-6 sm:px-12 py-8 sm:pt-20 border border-white/30 shadow-lg">
+
     <!-- Teks -->
-    <div class="relative z-10 max-w-xl text-center sm:text-left">
-        <p class="text-[36px] font-bold mb-2 leading-tight text-black text-shadow">
-            SELAMAT DATANG DI YAYASAN
-        </p>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-black">
-            HAADII NURUL IKHLAS
-        </h3>
-        <p class="text-black mb-6 leading-relaxed text-sm sm:text-base">
-            Yayasan Haadii Nurul Ikhlas Merupakan Yayasan Panti Asuhan Muhammadiyah
-        </p>
+    <div class="relative z-10 text-center sm:text-left flex-1">
+      <p class="text-2xl sm:text-3xl font-bold mb-2 leading-tight text-black text-shadow">
+        SELAMAT DATANG DI YAYASAN
+      </p>
+      <h3 class="text-xl sm:text-2xl font-bold mb-4 text-black">
+        HAADII NURUL IKHLAS
+      </h3>
+      <p class="text-black mb-6 leading-relaxed text-sm sm:text-base">
+        Yayasan Haadii Nurul Ikhlas Merupakan Yayasan Panti Asuhan Muhammadiyah
+      </p>
 
-        <!-- Sosial Media & CTA -->
-        <div class="flex items-center gap-4 justify-center sm:justify-start flex-wrap">
-            <a href="https://www.instagram.com/yayasanhaadiinurulikhlas/" class="bg-pink-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
-                <img src="/img/icon/instagram.png" alt="Instagram" class="w-6 h-6">
-            </a>
-            <a href="#" class="bg-black p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
-                <img src="/img/icon/tiktok.png" alt="TikTok" class="w-6 h-6">
-            </a>
-            <a href="https://www.youtube.com/@YayasanHaadiiNurulIkhlas" class="bg-red-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
-                <img src="/img/icon/youtube.png" alt="YouTube" class="w-6 h-6">
-            </a>
-            <a href="https://x.com/YayasanHNI" class="bg-white p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
-                <img src="/img/icon/twitter.png" alt="twitter" class="w-6 h-6">
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61572579006943" class="bg-blue-600 p-2 rounded-full transition-transform duration-300 hover:scale-110 shadow-md">
-                <img src="/img/icon/facebook.png" alt="facebook" class="w-6 h-6">
-            </a>
-            <a href="#" class="bg-white text-black py-2 px-5 sm:px-6 rounded-lg font-semibold transition-transform duration-300 hover:scale-105 shadow-md hover:bg-gray-200">
-                Hubungi Kami
-            </a>
-        </div>
+      <!-- Sosial Media & CTA -->
+      <div class="flex items-center justify-center sm:justify-start flex-wrap gap-3 sm:gap-4">
+        <a href="https://www.instagram.com/yayasanhaadiinurulikhlas/" class="bg-pink-600 p-2 rounded-full hover:scale-110 transition-transform shadow-md">
+          <img src="/img/icon/instagram.png" alt="Instagram" class="w-6 h-6">
+        </a>
+        <a href="#" class="bg-black p-2 rounded-full hover:scale-110 transition-transform shadow-md">
+          <img src="/img/icon/tiktok.png" alt="TikTok" class="w-6 h-6">
+        </a>
+        <a href="https://www.youtube.com/@YayasanHaadiiNurulIkhlas" class="bg-red-600 p-2 rounded-full hover:scale-110 transition-transform shadow-md">
+          <img src="/img/icon/youtube.png" alt="YouTube" class="w-6 h-6">
+        </a>
+        <a href="https://x.com/YayasanHNI" class="bg-white p-2 rounded-full hover:scale-110 transition-transform shadow-md">
+          <img src="/img/icon/twitter.png" alt="twitter" class="w-6 h-6">
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61572579006943" class="bg-blue-600 p-2 rounded-full hover:scale-110 transition-transform shadow-md">
+          <img src="/img/icon/facebook.png" alt="facebook" class="w-6 h-6">
+        </a>
+        <a href="#" class="bg-white text-black py-2 px-4 sm:px-6 rounded-lg font-semibold hover:scale-105 transition-transform shadow-md hover:bg-gray-200">
+          Hubungi Kami
+        </a>
+      </div>
     </div>
 
-    <!-- Logo Yayasan (Hilang di Mobile) -->
-    <div class="hidden sm:flex">
-        <div class="relative z-10 flex w-44 h-44 sm:w-60 sm:h-60 items-center justify-center transition-transform duration-300 hover:scale-105">
-            <div class="absolute w-full h-full bg-white rounded-full shadow-md"></div>
-            <img src="/img/logoyayasan.png" alt="Logo Yayasan" class="relative w-[85%] h-[85%] object-contain">
-        </div>
+    <!-- Logo Yayasan -->
+    <div class="flex justify-center sm:justify-end flex-1">
+      <div class="relative z-10 w-32 h-32 sm:w-44 sm:h-44 lg:w-60 lg:h-60 flex items-center justify-center hover:scale-105 transition-transform">
+        <div class="absolute w-full h-full bg-white rounded-full shadow-md"></div>
+        <img src="/img/logoyayasan.png" alt="Logo Yayasan" class="relative w-[85%] h-[85%] object-contain">
+      </div>
     </div>
-</div>
-
+  </div>
 
 </section>
+
 
 
 <!-- Carousel wrapper -->
 <section>
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden  md:h-96">
+        <div class="relative aspect-[16/6] md:aspect-[16/5] sm:aspect-[16/8] overflow-hidden">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/img/fotopertama.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src="/img/banner-welcome.png" class="block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/img/fotokedua.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src="/img/fotokedua.png" class="block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/img/fotoketiga.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src="/img/fotoketiga.png" class="block w-full h-full object-cover" alt="...">
             </div>
         </div>
+
         <!-- Slider indicators -->
         <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
             <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
             <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
             <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         </div>
+
         <!-- Slider controls -->
         <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                <svg class="w-4 h-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
                 </svg>
                 <span class="sr-only">Previous</span>
             </span>
         </button>
         <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                <svg class="w-4 h-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
                 <span class="sr-only">Next</span>
@@ -96,6 +99,7 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
         </button>
     </div>
 </section>
+
 
     <!-- Section Program -->
         <section class="relative mx-auto pt-10 min-h-[300px] sm:min-h-[500px] md:min-h-[500px] lg:min-h-[500px]">
@@ -134,7 +138,7 @@ style="background-image: url('/img/section-bg.svg'); background-size: cover; bac
             </div>
         </section>
     {{-- Section Berita --}}
-        <section class="relative bg-green-600 text-white min-h-[300px] sm:min-h-[500px] md:min-h-[800px] lg:min-h-[800px] rounded-bt-none rounded-bl-none rounded-tr-[200px] rounded-br-none">
+        <section class="relative bg-green-600 text-white min-h-[300px] sm:min-h-[500px] md:min-h-[800px] lg:min-h-[800px] rounded-bt-none rounded-bl-none rounded-tr-none rounded-br-none ">
 
             {{-- Judul --}}
             <div class="text-center mb-10 mt-10 px-6 py-12">

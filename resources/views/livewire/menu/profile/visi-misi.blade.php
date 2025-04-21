@@ -1,4 +1,4 @@
-<body class="bg-gray-100 text-gray-800 mt-20 pt-20">
+<body class="bg-gray-100 text-gray-800 mt-20 pt-20 ">
     <div class="container mx-auto px-6 py-12 max-w-4xl pt-40">
         <nav class="flex px-5 py-3 border border-black/30 rounded-lg bg-white text-black" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -43,7 +43,7 @@
 
 
 
-          <div class="container mx-auto max-w-4xl ">
+          <div class="container mx-auto max-w-4xl font-poppins">
             <div class="bg-white p-8 rounded-lg shadow-lg">
                 <!-- Judul -->
                 <h1 class="text-3xl font-bold text-center text-orange-600 mb-6">Visi & Misi Yayasan Haadi Nurul Ikhlas</h1>

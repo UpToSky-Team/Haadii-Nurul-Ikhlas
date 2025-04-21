@@ -5,40 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yayasan Haadii Nurul Ikhlas</title>
     <link rel="icon" type="image/png" href="/img/logoyayasan.png">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Flowbite -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        .richeditor-content ol{
-            list-style-type: decimal; /* Pastikan daftar bernomor */
+        .richeditor-content ol {
+            list-style-type: decimal;
             margin-left: 20px;
         }
-    
+
         .richeditor-content ul {
-            list-style-type: disc; /* Pastikan bullet muncul */
+            list-style-type: disc;
             margin-left: 20px;
         }
 
         .value-db h1 {
             font-size: 32px;
         }
+
         .value-db h2 {
             font-size: 24px;
         }
+
         .value-db h3 {
             font-size: 18px;
         }
     </style>
 </head>
-<body class="bg-whitefont-poppins">
-        @livewire('layouts.navigationbar')
-        <div>
-            @yield('content')
-        </div>
+<body class="bg-white font-poppins">
+    @livewire('layouts.navigationbar')
+
+    <div>
+        @yield('content')
+    </div>
+
+    <footer>
+        @livewire('layouts.footer')
+    </footer>
 </body>
-<footer>
-    @livewire('layouts.footer')
-</footer>
 </html>

@@ -1,4 +1,4 @@
-<body class="bg-gray-100 text-gray-800 pt-10 font-poppins">
+<body class="bg-gray-100 text-gray-800 pt-10 font-">
 
     <div class="container mx-auto px-6 py-12 max-w-4xl pt-40">
         <nav class="flex px-5 py-3 border border-black/30 rounded-lg bg-white text-black" aria-label="Breadcrumb">

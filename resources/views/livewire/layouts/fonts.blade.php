@@ -6,9 +6,3 @@
 
     <!-- Other head contents -->
 </head>
-
-@extends('livewire.layouts.main')
-
-@section('content')
-    @livewire('contents.landing')
-@endsection
