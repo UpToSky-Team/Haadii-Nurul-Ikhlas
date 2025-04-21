@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->date('tanggal');
             $table->string('gambar');
+            $table->enum('status', ['unggulan', 'biasa'])->default('biasa');
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
