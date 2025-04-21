@@ -58,7 +58,7 @@ class UserDonaturController extends Controller
                 'bukti_transfer' => $fileName,
             ]);
 
-            Storage::disk('public')->putFileAs('bukti_transfer', $file, $fileName);
+            Storage::disk('public')->putFileAs('', $file, $fileName);
 
             // return response()->json(['message' => 'Berhasil'], 200);
             return redirect()->back()->with('success', 'Berhasil mengupload bukti transfer');
