@@ -16,4 +16,10 @@ class UserDonatur extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Relationship StatusDonasi
+    public function statusDonasi() : BelongsTo
+    {
+        return $this->belongsTo(StatusDonasi::class);
+    }
 }

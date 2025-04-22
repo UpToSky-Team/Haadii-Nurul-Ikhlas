@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('status_donasis', function (Blueprint $table) {
             $table->uuid('id_status_donasi')->primary();
+            $table->uuid('id_user_donatur');
+            $table->foreign('id_user_donatur')->references('id_user_donatur')->on('userdonaturs')->cascadeOnDelete();
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->enum('status', ['aprove', 'pending', 'rejected'])->default('pending');
