@@ -46,3 +46,6 @@ Route::get('/penerimaan-murid-baru-next', function () {
 Route::get('/konfirmasi-pendaftaran', function () {
     return view('pages.menu.program.konfirmasi-pendaftaran');
 });
+Route::get('/rincian-kegiatan', function () {
+    return view('pages.menu.program.rincian-kegiatan');
+});
