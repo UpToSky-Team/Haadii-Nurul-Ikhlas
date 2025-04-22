@@ -31,9 +31,9 @@ class JenisDonasiResource extends Resource
     protected static ?string $pluralLabel = 'Jenis Donasi';
     protected static ?string $navigationLabel = 'Jenis Donasi';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
     protected static ?string $navigationGroup = 'Donasi';
-
+    
     public static function form(Form $form): Form
     {
         return $form

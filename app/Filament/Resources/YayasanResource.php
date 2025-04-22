@@ -13,6 +13,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -23,6 +28,9 @@ use Illuminate\Support\Facades\Auth;
 class YayasanResource extends Resource
 {
     protected static ?string $model = Yayasan::class;
+
+    protected static ?string $pluralLabel = 'Yayasan';
+    protected static ?string $navigationLabel = 'Yayasan';
 
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
 
@@ -35,40 +43,53 @@ class YayasanResource extends Resource
                     ->maxLength(255)
                     ->default(null),
                 Textarea::make('alamat')
+                    ->label('Alamat Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('email')
+                    ->label('E-mail Yayasan')
                     ->email()
                     ->maxLength(255)
                     ->default(null),
                 Textarea::make('deskripsi')
-                    ->columnSpanFull(),
+                    ->label('Deskripsi Yayasan')
+                    ->required()
+                    ->maxLength(255)
+                    ->default(null),
                 FileUpload::make('logo')
                     ->label('Logo Yayasan')
                     ->image()
                     ->imageEditor()
                     ->disk('public')
-                    ->directory('yayasan'),
+                    ->directory('yayasan')
+                    ->default(null),
                 TextInput::make('no_telepon')
+                    ->label('Nomer Telepon Yayasan')
                     ->tel()
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('instagram')
+                    ->label('Instagram Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('twitter')
+                    ->label('Twitter Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('youtube')
+                    ->label('YouTube Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('facebook')
+                    ->label('Facebook Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('tiktok')
+                    ->label('TikTok Yayasan')
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('maps')
+                    ->label('Maps Yayasan')
                     ->maxLength(255)
                     ->default(null),
             ]);
@@ -79,26 +100,41 @@ class YayasanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama')
-                    ->searchable(),
-                TextColumn::make('alamat')
-                    ->searchable(),
-                TextColumn::make('email')
+                    ->label('Nama Yayasan')
                     ->searchable(),
                 ImageColumn::make('logo')
-                    ->label('Logo Yayasan'),
+                    ->label('Logo Yayasan')
+                    ->size(150)
+                    ->rounded(),
+                TextColumn::make('alamat')
+                    ->label('Alamat Yayasan')
+                    ->searchable(),
+                TextColumn::make('deskripsi')
+                    ->label('Deskripsi Yayasan')
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->label('E-mail Yayasan')
+                    ->searchable(),
                 TextColumn::make('no_telepon')
+                    ->label('Nomer Telepon Yayasan')
                     ->searchable(),
                 TextColumn::make('instagram')
+                    ->label('Instagram Yayasan')
                     ->searchable(),
                 TextColumn::make('twitter')
+                    ->label('Twitter Yayasan') 
                     ->searchable(),
                 TextColumn::make('youtube')
+                    ->label('YouTube Yayasan')
                     ->searchable(),
                 TextColumn::make('facebook')
+                    ->label('Facebook Yayasan')
                     ->searchable(),
                 TextColumn::make('tiktok')
+                    ->label('TikTok Yayasan')
                     ->searchable(),
                 TextColumn::make('maps')
+                    ->label('Masp Yayasan')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -113,12 +149,16 @@ class YayasanResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ViewAction::make()
+                    ->label('Lihat'),
+                EditAction::make()
+                    ->label('Edit'),
+                DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
