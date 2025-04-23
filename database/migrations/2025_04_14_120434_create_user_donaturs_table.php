@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('bank_name');
             $table->string('jumlah_donasi');
             $table->string('bukti_transfer');
-            $table->enum('status_verifikasi', ['aprove', 'pending', 'rejected'])->default('pending');
             $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
