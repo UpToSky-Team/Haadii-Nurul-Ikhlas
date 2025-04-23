@@ -7,10 +7,15 @@ use App\Filament\Resources\StatusDonasiResource\RelationManagers;
 use App\Models\StatusDonasi;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,14 +32,21 @@ class StatusDonasiResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-check-circle';
     protected static ?string $navigationGroup = 'Donasi';
 
+    
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Hidden::make('id_admin')
-                    ->default(Auth::user()->id_admin),
-                TextInput::make('status')
-                    ->required(),
+                    ->default(Auth::user()->id_admin)
+                    ->dehydrated(true),
+                Select::make('status')
+                    ->options([
+                        'aprove' => 'Aprove',
+                        'pending' => 'Pending',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->native(false)
             ]);
     }
 
@@ -42,33 +54,39 @@ class StatusDonasiResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id_status_donasi')
+                TextColumn::make('userDonaturs.nama')
+                    ->label('Nama Donatur')
                     ->searchable(),
-                TextColumn::make('id_admin')
+
+                TextColumn::make('status')
+                    ->sortable(),
+
+                TextColumn::make('users.name')  // Menampilkan nama admin
+                    ->label('Diverifikasi Oleh')
                     ->searchable(),
-                TextColumn::make('status'),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ViewAction::make()
+                    ->label('Lihat'),
+                EditAction::make()
+                    ->label('Edit'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
+
+    public static function getEloquentQuery(): Builder
+{
+    return parent::getEloquentQuery()->with(['users', 'userDonaturs']);
+}
+
 
     public static function getRelations(): array
     {
