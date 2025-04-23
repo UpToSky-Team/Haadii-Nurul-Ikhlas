@@ -35,9 +35,17 @@
             <!-- Info Kontak -->
             <div class="bg-white p-6 rounded-xl shadow-lg">
               <h2 class="text-xl font-semibold mb-4 text-gray-800">Informasi Yayasan</h2>
-              <p><strong>Alamat:</strong> Jl. Contoh Alamat No. 123, Citeureup, Bogor</p>
-              <p><strong>Email:</strong> yayasan@contoh.org</p>
-              <p><strong>Telepon:</strong> 0812-3456-7890</p>
+              @if($yayasan->isNotEmpty())
+                <p><strong>Nama Yayasan:</strong> {{ $yayasan->first()->nama }}</p>
+                <p><strong>Alamat:</strong> {{ $yayasan->first()->alamat }}</p>
+                <p><strong>Email:</strong> {{ $yayasan->first()->email }}</p>
+                <p><strong>Telepon:</strong> {{ $yayasan->first()->telepon }}</p>
+              @else
+                <p><strong>Nama Yayasan:</strong> Yayasan Haadii Nurul Ikhlas</p>
+                <p><strong>Alamat:</strong> Jl. Contoh Alamat No. 123, Citeureup, Bogor</p>
+                <p><strong>Email:</strong> yayasan@contoh.org</p>
+                <p><strong>Telepon:</strong> 0812-3456-7890</p>
+              @endif
             </div>
 
             <!-- Form Kontak -->
@@ -58,7 +66,7 @@
                 <div class="w-full h-[600px] rounded-lg overflow-hidden">
                 <iframe
                     class="w-full h-full rounded-lg"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15643.745547520497!2d110.38445068335832!3d-7.803406138682316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57705a7ab28f%3A0x138287e6b0fe41ef!2sBakpia%20Kurnia%20Sari!5e1!3m2!1sid!2sid!4v1744981162903!5m2!1sid!2sid"
+                    src="{{ $yayasan->isNotEmpty() && $yayasan->first()->maps ? $yayasan->first()->maps : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.1234567890123!2d106.12345678901234!3d-6.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e12345678901234%3A0x1234567890123456!2sYayasan%20Haadii%20Nurul%20Ikhlas!5e0!3m2!1sen!2sid!4v1234567890123'}}"
                     style="border:0;"
                     allowfullscreen=""
                     loading="lazy"

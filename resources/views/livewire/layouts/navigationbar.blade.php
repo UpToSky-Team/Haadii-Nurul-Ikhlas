@@ -52,9 +52,11 @@
         <div class="lex items-center space-x-3">
             <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                    <img src="/img/logoyayasan.png" alt="Logo" class="h-10">
+                    <img src="{{ $yayasan->isNotEmpty() && $yayasan->first()->logo ? Storage::url($yayasan->first()->logo) : '/img/logoyayasan.png' }}" alt="Logo" class="h-10">
                 </div>
-                <a href="/" class="hidden sm:inline-block text-xl font-bold text-primary">Yayasan Haadii Nurul Ikhlas</a>
+                <a href="/" class="hidden sm:inline-block text-xl font-bold text-primary">
+                    {{ $yayasan->isNotEmpty() && $yayasan->first()->nama ? $yayasan->first()->nama : 'Yayasan Haadii Nurul Ikhlas' }}
+                </a>
             </div>
         </div>
 
