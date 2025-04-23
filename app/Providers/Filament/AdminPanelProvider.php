@@ -32,9 +32,10 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#3B9B3C',
             ])
-            // ->favicon(asset('/img/logoyayasan.png'))
+            ->databaseNotifications()
+            ->favicon(asset('/img/logoyayasan.png'))
             ->brandLogo('/img/logoyayasan.png')
-            // ->brandName('Yayasan Haadii Nurul Ikhlas - Admin')
+            ->brandName('Yayasan Haadii Nurul Ikhlas - Admin')
             ->spa()
             ->sidebarFullyCollapsibleOnDesktop()
             ->sidebarWidth('15  rem')

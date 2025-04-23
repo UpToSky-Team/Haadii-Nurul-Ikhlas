@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\UserDonaturExporter;
 use App\Filament\Resources\UserDonaturResource\Pages;
 use App\Filament\Resources\UserDonaturResource\RelationManagers;
 use App\Models\UserDonatur;
@@ -18,6 +19,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -104,7 +106,7 @@ class UserDonaturResource extends Resource
                     ->searchable(),
                 TextColumn::make('jumlah_donasi')
                     ->searchable()
-                    ->formatStateUsing(fn ($state) => number_format($state, 0, ',', '.')),
+                    ->formatStateUsing(fn($state) => number_format($state, 0, ',', '.')),
                 ImageColumn::make('bukti_transfer')
                     ->label('Bukti Transfer')
                     ->searchable(),
@@ -131,6 +133,14 @@ class UserDonaturResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(UserDonaturExporter::class)
+                    ->label('Ekspor')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->iconPosition('before')
+                    ->modalHeading('Ekspor Data Donatur'),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
