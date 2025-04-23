@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\StatusDonasi;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class StatusDonasiPolicy
 {
@@ -13,7 +14,7 @@ class StatusDonasiPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class StatusDonasiPolicy
      */
     public function view(User $user, StatusDonasi $statusDonasi): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class StatusDonasiPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class StatusDonasiPolicy
      */
     public function update(User $user, StatusDonasi $statusDonasi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class StatusDonasiPolicy
      */
     public function delete(User $user, StatusDonasi $statusDonasi): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

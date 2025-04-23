@@ -37,4 +37,10 @@ class UserDonatur extends Model
     {
         return $this->belongsTo(JenisDonasi::class, 'id_jenis_donasi', 'id_jenis_donasi');
     }
+
+    // Relationship StatusDonasi
+    public function statusDonasi() : BelongsTo
+    {
+        return $this->belongsTo(StatusDonasi::class, 'id_user_donatur', 'id_user_donatur');
+    }
 }
