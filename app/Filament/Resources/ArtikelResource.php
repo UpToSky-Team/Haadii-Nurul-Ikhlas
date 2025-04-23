@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\ArtikelExporter;
 use App\Filament\Resources\ArtikelResource\Pages;
 use App\Filament\Resources\ArtikelResource\RelationManagers;
 use App\Models\Artikel;
@@ -20,6 +21,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -134,6 +136,14 @@ class ArtikelResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(ArtikelExporter::class)
+                    ->label('Ekspor')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->iconPosition('before')
+                    ->modalHeading('Ekspor Data Donatur'),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
