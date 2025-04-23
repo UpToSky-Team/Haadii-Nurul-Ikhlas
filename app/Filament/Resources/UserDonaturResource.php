@@ -42,6 +42,8 @@ class UserDonaturResource extends Resource
             ->schema([
                 Hidden::make('id_admin')
                     ->default(Auth::user()->id_admin),
+                Hidden::make('statusDonasi.id_admin')
+                    ->default(Auth::user()->id_admin),
                 TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
@@ -108,8 +110,8 @@ class UserDonaturResource extends Resource
                 ImageColumn::make('bukti_transfer')
                     ->label('Bukti Transfer')
                     ->searchable(),
-                TextColumn::make('status_verifikasi'),
-                TextColumn::make('users.name')
+                TextColumn::make('statusDonasi.status'),
+                TextColumn::make('statusDonasi.users.name')
                     ->label('Di Verifikasi Oleh')
                     ->searchable(),
                 TextColumn::make('created_at')
