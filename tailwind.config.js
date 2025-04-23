@@ -1,8 +1,21 @@
-export default {
+// tailwind.config.js
+module.exports = {
+    content: [
+        "./resources/view/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+    ],
     theme: {
         extend: {
             fontFamily: {
-                poppins: ["Poppins", "sans-serif"],
+                sans: [
+                    "Poppins",
+                    "Inter",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "sans-serif",
+                ],
+                display: ["Inter"], // Jika ingin font untuk font-display
             },
         },
     },
