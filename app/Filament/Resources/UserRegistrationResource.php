@@ -8,6 +8,7 @@ use App\Models\UserRegistration;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -40,6 +41,8 @@ class UserRegistrationResource extends Resource
                 Hidden::make('id_admin')
                     ->default(Auth::user()->id_admin)
                     ->required(),
+                Hidden::make('statusRegistration.id_admin')
+                    ->default(Auth::user()->id_admin),
                 TextInput::make('nama_anak')
                     ->label('Nama Anak')
                     ->required()
