@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('akta_lahir'); //PDF
             $table->string('kartu_keluarga'); //PDF
             $table->string('ijazah'); //PDF
-            $table->string('transkrip_nilai'); //PDF
+            $table->string('dokumen_tulis'); //PDF
             $table->timestamps();
         });
     }
