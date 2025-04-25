@@ -1,10 +1,15 @@
 <body class="bg-gray-100 font-sans text-gray-800">
     <div class="flex-grow pb-20 px-6 md:px-20 lg:px-32 pt-32">
+    <div class="flex-grow pb-20 px-6 md:px-20 lg:px-32 pt-32">
 
       <!-- Breadcrumb -->
       <nav class="flex px-5 py-3 rounded-lg bg-white shadow-md text-black mb-8" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-2 text-sm">
+      <nav class="flex px-5 py-3 rounded-lg bg-white shadow-md text-black mb-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-2 text-sm">
           <li class="inline-flex items-center">
+            <a href="/" class="group inline-flex items-center text-black hover:text-emerald-500 transition-all">
+              <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <a href="/" class="group inline-flex items-center text-black hover:text-emerald-500 transition-all">
               <svg class="w-4 h-4 mr-2 text-gray-600 group-hover:text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
@@ -15,16 +20,23 @@
           <li class="text-gray-600">/</li>
           <li>
             <a href="/layanan-donasi" class="text-black hover:text-emerald-500 transition-all">Layanan Donasi</a>
+          <li class="text-gray-600">/</li>
+          <li>
+            <a href="/layanan-donasi" class="text-black hover:text-emerald-500 transition-all">Layanan Donasi</a>
           </li>
         </ol>
       </nav>
 
       <!-- Main Content -->
       <div class="">
+      <!-- Main Content -->
+      <div class="">
         <h1 class="text-3xl sm:text-4xl font-bold mb-8 text-start">Layanan Donasi</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
+          <!-- Column 1: Donation Account -->
+          <div class="bg-white p-6 rounded-xl shadow-md">
           <!-- Column 1: Donation Account -->
           <div class="bg-white p-6 rounded-xl shadow-md">
             <h2 class="text-xl font-semibold mb-4">Rekening Donasi</h2>
@@ -117,6 +129,8 @@
 
           <!-- Column 3: QR Code -->
           <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
+          <!-- Column 3: QR Code -->
+          <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center">
             <h2 class="text-xl font-semibold mb-4">Scan QR Code</h2>
             <img src="/img/qrcode.png" alt="QR Code Donasi" class="w-64 h-64 object-contain"/>
             <p class="mt-2 text-sm text-gray-600 text-center">Silakan scan untuk donasi via e-wallet</p>
@@ -124,6 +138,7 @@
 
         </div>
       </div>
+
 
     </div>
   </body>

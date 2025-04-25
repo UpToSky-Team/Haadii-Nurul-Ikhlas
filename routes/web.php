@@ -62,3 +62,6 @@ Route::get('/konfirmasi-pendaftaran', function () {
 Route::get('/rincian-kegiatan', function () {
     return view('pages.menu.program.rincian-kegiatan');
 });
+Route::get('/rincian-kegiatan', function () {
+    return view('pages.menu.program.rincian-kegiatan');
+});
