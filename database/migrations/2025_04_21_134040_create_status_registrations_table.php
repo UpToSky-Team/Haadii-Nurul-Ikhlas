@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('status_registrations', function (Blueprint $table) {
             $table->uuid('id_status_reg')->primary();
             $table->uuid('id_registration');
-            $table->foreign('id_registration')->references('id_registration')->on('user_registrations');
+            $table->foreign('id_registration')->references('id_registration')->on('user_registrations')->cascadeOnDelete();
             $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->enum('status', ['aprove', 'pending', 'rejected'])->default('pending');
