@@ -37,19 +37,30 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         <!-- Card kegiatan -->
         @foreach ($kegiatan as $data)
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl animate-fade-up">
+        @php $desc = str_replace("'", '', $data->deskripsi) ; @endphp
+        <div onclick="bukaModal('{{$data->judul_kegiatan}}', '{{$data->created_at}}', '{!! $desc !!}')"
+            class="cursor-pointer bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl animate-fade-up">
           <img src="{{Storage::url($data->gambar)}}" alt="Gambar Kegiatan" class="w-full h-48 object-cover">
           <div class="p-6">
-            <h2 class="text-xl font-semibold mb-2">{{$data->judul}}</h2>
+            <h2 class="text-xl font-semibold mb-2">{{$data->judul_kegiatan}}</h2>
             <p class="text-sm text-gray-500 mb-2">Tanggal: {{ $data->created_at->format('d F Y') }}</p>
             <p class="text-gray-700 text-sm mb-4">
-              {!! Str::words($data->deskripsi, 25, '...') !!}
+              {!! Str::words(str_replace("'", '', $data->deskripsi), 25, '...') !!}
             </p>
-            <p class="text-sm text-gray-500">Dibuat oleh: <span class="font-medium">{{ $data->users->name }}</span></p>
           </div>
         </div>
         @endforeach
         <!-- End card -->
+        <div id="modal-kegiatan" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+          <div class="bg-white rounded-2xl shadow-lg w-11/12 max-w-lg p-6">
+            <h2 id="modal-judul" class="text-2xl font-bold mb-2">Judul Kegiatan</h2>
+            <p id="modal-tanggal" class="text-sm text-gray-500 mb-2">Tanggal Kegiatan</p>
+            <p id="modal-deskripsi" class="text-gray-700 text-sm mb-4">Deskripsi kegiatan lebih lengkap akan muncul di sini.</p>
+            <div class="text-right">
+              <button onclick="tutupModal()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Tutup</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     <!-- Tambahkan style animasi -->
@@ -82,5 +93,20 @@
         animation: fade-in 0.6s ease-in;
       }
     </style>
+
+    <script>
+    function bukaModal(judul, tanggal, deskripsi) {
+      document.getElementById('modal-judul').textContent = judul;
+      document.getElementById('modal-tanggal').textContent = 'Tanggal Mulai: ' + new Date(tanggal).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
+      document.getElementById('modal-deskripsi').innerHTML = deskripsi;
+      document.getElementById('modal-kegiatan').classList.remove('hidden');
+      document.getElementById('modal-kegiatan').classList.add('flex');
+    }
+
+    function tutupModal() {
+      document.getElementById('modal-kegiatan').classList.add('hidden');
+      document.getElementById('modal-kegiatan').classList.remove('flex');
+    }
+  </script>
     </div>
 </body>
