@@ -55,7 +55,7 @@
           <div class="bg-white rounded-2xl shadow-lg w-11/12 max-w-lg p-6">
             <h2 id="modal-judul" class="text-2xl font-bold mb-2">Judul Kegiatan</h2>
             <p id="modal-tanggal" class="text-sm text-gray-500 mb-2">Tanggal Kegiatan</p>
-            <p id="modal-deskripsi" class="text-gray-700 text-sm mb-4">Deskripsi kegiatan lebih lengkap akan muncul di sini.</p>
+            <div id="modal-deskripsi" class="text-gray-700 text-sm mb-4">Deskripsi kegiatan lebih lengkap akan muncul di sini.</div>
             <div class="text-right">
               <button onclick="tutupModal()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Tutup</button>
             </div>
