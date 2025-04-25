@@ -36,43 +36,19 @@
       <!-- Daftar kegiatan -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
         <!-- Card kegiatan -->
+        @foreach ($kegiatan as $data)
         <div class="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl animate-fade-up">
-          <img src="/img/fotokedua.png" alt="Gambar Kegiatan" class="w-full h-48 object-cover">
+          <img src="{{Storage::url($data->gambar)}}" alt="Gambar Kegiatan" class="w-full h-48 object-cover">
           <div class="p-6">
-            <h2 class="text-xl font-semibold mb-2">Judul Kegiatan</h2>
-            <p class="text-sm text-gray-500 mb-2">Tanggal: 21 April 2025</p>
+            <h2 class="text-xl font-semibold mb-2">{{$data->judul}}</h2>
+            <p class="text-sm text-gray-500 mb-2">Tanggal: {{ $data->created_at->format('d F Y') }}</p>
             <p class="text-gray-700 text-sm mb-4">
-              Deskripsi singkat dari kegiatan yayasan. Bisa berupa pengantar atau ringkasan kegiatan yang dilakukan.
+              {!! Str::words($data->deskripsi, 25, '...') !!}
             </p>
-            <p class="text-sm text-gray-500">Dibuat oleh: <span class="font-medium">Admin Yayasan</span></p>
+            <p class="text-sm text-gray-500">Dibuat oleh: <span class="font-medium">{{ $data->users->name }}</span></p>
           </div>
         </div>
-        <!-- End card -->
-        <!-- Card kegiatan -->
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl animate-fade-up">
-          <img src="/img/fotokedua.png" alt="Gambar Kegiatan" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h2 class="text-xl font-semibold mb-2">Judul Kegiatan</h2>
-            <p class="text-sm text-gray-500 mb-2">Tanggal: 21 April 2025</p>
-            <p class="text-gray-700 text-sm mb-4">
-              Deskripsi singkat dari kegiatan yayasan. Bisa berupa pengantar atau ringkasan kegiatan yang dilakukan.
-            </p>
-            <p class="text-sm text-gray-500">Dibuat oleh: <span class="font-medium">Admin Yayasan</span></p>
-          </div>
-        </div>
-        <!-- End card -->
-        <!-- Card kegiatan -->
-        <div class="bg-white rounded-2xl shadow-md overflow-hidden transform transition duration-300 hover:shadow-xl animate-fade-up">
-          <img src="/img/fotokedua.png" alt="Gambar Kegiatan" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h2 class="text-xl font-semibold mb-2">Judul Kegiatan</h2>
-            <p class="text-sm text-gray-500 mb-2">Tanggal: 21 April 2025</p>
-            <p class="text-gray-700 text-sm mb-4">
-              Deskripsi singkat dari kegiatan yayasan. Bisa berupa pengantar atau ringkasan kegiatan yang dilakukan.
-            </p>
-            <p class="text-sm text-gray-500">Dibuat oleh: <span class="font-medium">Admin Yayasan</span></p>
-          </div>
-        </div>
+        @endforeach
         <!-- End card -->
       </div>
 

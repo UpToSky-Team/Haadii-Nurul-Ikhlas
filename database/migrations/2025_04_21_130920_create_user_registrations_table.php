@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('user_registrations', function (Blueprint $table) {
             $table->uuid('id_registration')->primary();
             $table->string('nama_anak');
-            $table->string('no_hp');
+            $table->string('no_hp')->nullable();
             $table->string('nama_wali');
             $table->string('no_hp_wali');
-            $table->string('email_anak');
+            $table->string('email_anak')->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('NIK', 16);
             $table->string('nama_sekolah_asal')->nullable();
             $table->string('NPSN_sekolah_asal')->nullable();
-            $table->uuid('id_admin');
+            $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });

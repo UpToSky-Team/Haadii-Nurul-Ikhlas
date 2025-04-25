@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StatusDonasi;
 use App\Models\UserDonatur;
 use App\Http\Requests\StoreUserDonaturRequest;
 use App\Http\Requests\UpdateUserDonaturRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserDonaturController extends Controller
 {
@@ -47,7 +49,9 @@ class UserDonaturController extends Controller
             $file = $request->file('bukti_transfer');
             $fileName = 'bukti_transfer/' . time() . '_' . $request->nama . '.' . $file->getClientOriginalExtension();
 
+            $fileUuid = Str::uuid()->toString();
             UserDonatur::create([
+                'id_user_donatur' => $fileUuid,
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'phone' => $request->telepon,
@@ -58,9 +62,12 @@ class UserDonaturController extends Controller
                 'bukti_transfer' => $fileName,
             ]);
 
+            StatusDonasi::create([
+                'id_user_donatur' => $fileUuid,
+            ]);
+
             Storage::disk('public')->putFileAs('', $file, $fileName);
 
-            // return response()->json(['message' => 'Berhasil'], 200);
             return redirect()->back()->with('success', 'Berhasil mengupload bukti transfer');
         }
     }

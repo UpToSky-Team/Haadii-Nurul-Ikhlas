@@ -16,4 +16,14 @@ class Berkas extends Model
     {
         return $this->belongsTo(UserRegistration::class);
     }
+
+    public function isComplete() {
+        $fillable = $this->getFillable();
+        foreach($fillable as $key) {
+            if(empty($this->$key)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
