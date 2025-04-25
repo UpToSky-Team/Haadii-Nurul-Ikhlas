@@ -4,6 +4,7 @@ namespace App\Livewire\Contents;
 
 use App\Models\Berita;
 use App\Models\Galeri;
+use App\Models\JenisDonasi;
 use App\Models\Kegiatan;
 use Livewire\Component;
 
@@ -22,7 +23,7 @@ class Landing extends Component
     {
         $dataBerita = Berita::latest()->take(3)->get();
         $kegiatanUnggulan = Kegiatan::where('status', 'unggulan')->latest()->take(6)->get();
-        $kegiatan = Kegiatan::where('status', 'biasa')->latest()->take(6)->get();
+        $jenisDonasi = JenisDonasi::latest()->take(6)->get();
         $dataVideo = Galeri::where('jenis', '=', 'video')->latest()->take(2)->get();
         $dataFoto = Galeri::where('jenis', '=', 'gambar')->latest()->take(6)->get();
 
@@ -31,7 +32,7 @@ class Landing extends Component
             'foto' => $dataFoto,
             'video' => $dataVideo,
             'kegiatanUnggulan' => $kegiatanUnggulan,
-            'kegiatan' => $kegiatan,
+            'jenisDonasi' => $jenisDonasi,
         ]);
     }
 }

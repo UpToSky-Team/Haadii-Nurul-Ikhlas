@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\UserDonaturController;
 use App\Http\Controllers\UserRegistration;
 use App\Http\Controllers\UserRegistrationController;
@@ -46,6 +47,9 @@ Route::get('/hubungi-kami', function () {
 });
 Route::post('/layanan-donasi/donasi-send', [UserDonaturController::class, 'store'])->name('donasi.send');
 Route::post('/penerimaan-murid-baru/daftar', [UserRegistrationController::class, 'store'])->name('pmb.daftar');
+Route::post('/penerimaan-murid-baru-next/kirim', [BerkasController::class, 'store'])->name('pmb.next.submit');
+Route::patch('/penerimaan-murid-baru-next/{id}/update', [BerkasController::class, 'update'])->name('pmb.next.update');
+
 Route::get('/penerimaan-murid-baru', function () {
     return view('pages.menu.program.penerimaan-murid-baru');
 });
@@ -54,7 +58,7 @@ Route::get('/penerimaan-murid-baru-next', function () {
 })->name('pmb.next');
 Route::get('/konfirmasi-pendaftaran', function () {
     return view('pages.menu.program.konfirmasi-pendaftaran');
-});
+})->name('pmb.konfirmasi');
 Route::get('/rincian-kegiatan', function () {
     return view('pages.menu.program.rincian-kegiatan');
 });

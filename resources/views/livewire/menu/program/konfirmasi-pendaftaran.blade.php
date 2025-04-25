@@ -18,12 +18,12 @@
       </div>
 
       <!-- Modal -->
-      <div id="confirmationModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+      <div id="confirmationModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 text-center animate-fade-in-up">
           <h2 class="text-xl sm:text-2xl font-semibold mb-3">Kamu berhasil terdaftar!</h2>
           <p class="text-gray-600 mb-6 text-sm sm:text-base">Silakan cek email atau hubungi admin jika butuh bantuan lebih lanjut.</p>
           <button onclick="closeModal()"
-            class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition duration-200">Selesai</button>
+        class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition duration-200">Selesai</button>
         </div>
       </div>
     </div>

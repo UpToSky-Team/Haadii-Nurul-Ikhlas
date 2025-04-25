@@ -52,7 +52,7 @@ class UserRegistrationController extends Controller
                 ->first();
 
             if ($existingUser) {
-                return redirect()->route('pmb.next')->with(['success' => 'Data sudah terdaftar! Silakan lanjutkan mengisi berkas.', 'id_registration' => $existingUser->id_registration]);
+                return redirect()->route('pmb.next')->with(['success' => 'Data sudah terdaftar! Silakan lanjutkan mengisi berkas.']);
             }
 
             UserRegistration::create([
@@ -69,7 +69,7 @@ class UserRegistrationController extends Controller
                 'NPSN_sekolah_asal' => $request->npsn_sekolah_asal,
             ]);
 
-            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.', 'id_registration' => $fillId]);
+            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.',]);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

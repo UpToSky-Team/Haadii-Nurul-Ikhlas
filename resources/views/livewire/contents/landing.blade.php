@@ -120,7 +120,9 @@
     {{-- Section Program Unggulan --}}
     <section class="bg-white py-16">
         <div class="mx-auto max-w-6xl px-4 text-center">
-            <h2 class="mb-10 text-3xl font-bold text-[#3B9B3C] sm:text-4xl">Kegiatan Unggulan Kami</h2>
+            <h2 class="mb-10 text-3xl font-bold text-[#3B9B3C] sm:text-4xl">
+                KEGIATAN <span class="text-[#FDC261]">YAYASAN HAADII NURUL IKHLAS</span>
+            </h2>
 
             <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
                 @php $count = 1; @endphp
@@ -182,7 +184,7 @@
     <section class="bg-white py-16">
         <div class="mx-auto max-w-6xl px-4 text-center">
             <h2 class="mb-10 text-3xl font-bold text-[#3B9B3C] sm:text-4xl">
-                KEGIATAN <span class="text-[#FDC261]">YAYASAN HAADII NURUL IKHLAS</span>
+                DONASI <span class="text-[#FDC261]">YAYASAN HAADII NURUL IKHLAS</span>
             </h2>
 
             <!-- Grid Program -->
@@ -190,25 +192,22 @@
 
                 <!-- Card 1 -->
                 <div class="mx-auto max-w-6xl px-4 text-center">
-
-                    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-                        @php $count = 1; @endphp
-                        @foreach ($kegiatan as $data)
-                            <!-- Card -->
+                    @php $count = 1; @endphp
+                    @foreach ($jenisDonasi as $data)
+                        <!-- Card -->
+                        <div
+                            class="transform rounded-2xl border border-[#FDC261] bg-[#FDC261]/20 p-6 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
                             <div
-                                class="transform rounded-2xl border border-[#FDC261] bg-[#FDC261]/20 p-6 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-                                <div
-                                    class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FDC261] text-2xl font-bold text-white shadow-md">
-                                    {{ $count }}
-                                </div>
-                                <h3 class="mb-2 text-xl font-semibold text-[#3B9B3C]">{{ $data->judul_kegiatan }}</h3>
-                                <div class="text-sm text-gray-600">
-                                    {{ Str::words(strip_tags($data->deskripsi), 20) }}
-                                </div>
+                                class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FDC261] text-2xl font-bold text-white shadow-md">
+                                {{ $count }}
                             </div>
-                            @php $count++; @endphp
-                        @endforeach
-                    </div>
+                            <h3 class="mb-2 text-xl font-semibold text-[#3B9B3C]">{{ $data->jenis }}</h3>
+                            <div class="text-sm text-gray-600">
+                                {{ Str::words(strip_tags($data->description), 20) }}
+                            </div>
+                        </div>
+                        @php $count++; @endphp
+                    @endforeach
                 </div>
             </div>
     </section>
@@ -250,7 +249,7 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
-                        </div>  
+                        </div>
                     @endforeach
                 </div>
             </div>

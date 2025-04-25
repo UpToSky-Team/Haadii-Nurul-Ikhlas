@@ -13,7 +13,7 @@ class BerkasPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class BerkasPolicy
      */
     public function view(User $user, Berkas $berkas): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class BerkasPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class BerkasPolicy
      */
     public function update(User $user, Berkas $berkas): bool
     {
-        return false;
+        return true;
     }
 
     /**
