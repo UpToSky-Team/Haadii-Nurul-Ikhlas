@@ -8,6 +8,7 @@ use App\Models\Yayasan;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -51,22 +52,35 @@ class YayasanResource extends Resource
                     ->email()
                     ->maxLength(255)
                     ->default(null),
-                Textarea::make('deskripsi')
-                    ->label('Deskripsi Yayasan')
-                    ->required()
+                TextInput::make('no_telepon')
+                    ->label('Nomer Telepon Yayasan')
+                    ->tel()
                     ->maxLength(255)
                     ->default(null),
+                RichEditor::make('deskripsi')
+                    ->label('Deskripsi Yayasan')
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->required(),
                 FileUpload::make('logo')
                     ->label('Logo Yayasan')
                     ->image()
                     ->imageEditor()
                     ->disk('public')
                     ->directory('yayasan')
-                    ->default(null),
-                TextInput::make('no_telepon')
-                    ->label('Nomer Telepon Yayasan')
-                    ->tel()
-                    ->maxLength(255)
                     ->default(null),
                 TextInput::make('instagram')
                     ->label('Instagram Yayasan')
@@ -102,15 +116,26 @@ class YayasanResource extends Resource
                 TextColumn::make('nama')
                     ->label('Nama Yayasan')
                     ->searchable(),
+                // ImageColumn::make('logo')
+                //     ->label('Logo Yayasan')
+                //     ->size(150)
+                //     ->rounded(),
                 ImageColumn::make('logo')
                     ->label('Logo Yayasan')
+                    ->url(fn ($record) => asset('storage/' . $record->logo)) // gambar jadi link
+                    ->openUrlInNewTab()
+                    ->searchable()
                     ->size(150)
-                    ->rounded(),
+                    ->rounded()
+                    ->sortable(),
                 TextColumn::make('alamat')
                     ->label('Alamat Yayasan')
                     ->searchable(),
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi Yayasan')
+                    ->formatStateUsing(fn ($state) => strip_tags($state))
+                    ->wrap()
+                    ->limit(100)
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('E-mail Yayasan')

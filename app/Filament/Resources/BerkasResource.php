@@ -56,28 +56,28 @@ class BerkasResource extends Resource
                 FileUpload::make('akta_lahir')
                     ->label('Akta Kelahiran')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(10000)
+                    ->maxSize(5000)
                     ->directory('berkas/akta_lahir')
                     ->visibility('public')
                     ->default(null),
                 FileUpload::make('kartu_keluarga')
                     ->label('Kartu Keluarga')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(10000)
+                    ->maxSize(5000)
                     ->directory('berkas/kartu_keluarga')
                     ->visibility('public')
                     ->default(null),
                 FileUpload::make('ijazah')
                     ->label('Ijazah')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(10000)
+                    ->maxSize(5000)
                     ->directory('berkas/ijazah')
                     ->visibility('public')
                     ->default(null),
                 FileUpload::make('dokumen_tulis')
                     ->label('Dokumen Tulis')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(10000)
+                    ->maxSize(5000)
                     ->directory('berkas/dukumen_tulis')
                     ->visibility('public')
                     ->default(null),
@@ -91,21 +91,59 @@ class BerkasResource extends Resource
                 TextColumn::make('userRegistration.nama_anak')
                     ->label('Nama Anak')
                     ->searchable(),
+                // ImageColumn::make('foto_siswa')
+                //     ->label('Foto Siswa')
+                //     ->searchable(),
                 ImageColumn::make('foto_siswa')
-                    ->label('Foto Siswa')
-                    ->searchable(),
+                    ->label('Foto Anak')
+                    ->url(fn ($record) => asset('storage/' . $record->foto_siswa)) // gambar jadi link
+                    ->openUrlInNewTab()
+                    ->searchable()
+                    ->sortable(),
+                // TextColumn::make('akta_lahir')
+                //     ->label('Akta Kelahiran')
+                //     ->searchable(),
                 TextColumn::make('akta_lahir')
                     ->label('Akta Kelahiran')
-                    ->searchable(),
+                    ->url(fn ($record) => asset('storage/' . $record->akta_lahir))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->color('primary') // -> warna teksnya
+                    ->searchable()
+                    ->sortable(),
+                // TextColumn::make('kartu_keluarga')
+                //     ->label('Kartu Keluarga')
+                //     ->searchable(),
                 TextColumn::make('kartu_keluarga')
                     ->label('Kartu Keluarga')
-                    ->searchable(),
+                    ->url(fn ($record) => asset('storage/' . $record->kartu_keluarga))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->color('primary') // -> warna teksnya
+                    ->searchable()
+                    ->sortable(),
+                // TextColumn::make('ijazah')
+                //     ->label('Ijazah')
+                //     ->searchable(),
                 TextColumn::make('ijazah')
                     ->label('Ijazah')
-                    ->searchable(),
-                TextColumn::make('dukumen_tulis')
-                    ->label('Dokumen Tulis')
-                    ->searchable(),
+                    ->url(fn ($record) => asset('storage/' . $record->ijazah))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->color('primary') // -> warna teksnya
+                    ->searchable()
+                    ->sortable(),
+                // TextColumn::make('dukumen_tulis')
+                //     ->label('Dokumen Tulis')
+                //     ->searchable(),
+                TextColumn::make('dokumen_tulis')
+                    ->label('Dokumen Tertelis')
+                    ->url(fn ($record) => asset('storage/' . $record->dokumen_tulis))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->color('primary') // -> warna teksnya
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

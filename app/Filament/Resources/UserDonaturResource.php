@@ -109,9 +109,14 @@ class UserDonaturResource extends Resource
                 TextColumn::make('jumlah_donasi')
                     ->searchable()
                     ->formatStateUsing(fn($state) => number_format($state, 0, ',', '.')),
-                ImageColumn::make('bukti_transfer')
+                TextColumn::make('bukti_transfer')
                     ->label('Bukti Transfer')
-                    ->searchable(),
+                    ->url(fn ($record) => asset('storage/' . $record->bukti_transfer))
+                    ->openUrlInNewTab()
+                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->color('primary') // -> warna teksnya
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('statusDonasi.status'),
                 TextColumn::make('statusDonasi.users.name')
                     ->label('Di Verifikasi Oleh')
