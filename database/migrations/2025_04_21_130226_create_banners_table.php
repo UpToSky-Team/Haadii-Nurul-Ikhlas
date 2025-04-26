@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('banner');
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

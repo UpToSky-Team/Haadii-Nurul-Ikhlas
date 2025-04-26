@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('NPSN_sekolah_asal')->nullable();
             $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

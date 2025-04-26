@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('status', ['unggulan', 'biasa'])->default('biasa');
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

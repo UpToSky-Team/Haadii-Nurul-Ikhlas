@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('caption');
             $table->uuid('id_berita');
             $table->foreign('id_berita')->references('id_berita')->on('beritas')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

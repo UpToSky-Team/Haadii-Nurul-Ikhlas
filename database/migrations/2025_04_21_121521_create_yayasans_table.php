@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();;
             $table->string('tiktok')->nullable();;
             $table->string('maps')->nullable();;
+            $table->softDeletes();
             $table->timestamps();
         });
     }

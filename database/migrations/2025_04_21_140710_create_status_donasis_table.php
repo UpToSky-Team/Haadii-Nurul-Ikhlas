@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->enum('status', ['aprove', 'pending', 'rejected'])->default('pending');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

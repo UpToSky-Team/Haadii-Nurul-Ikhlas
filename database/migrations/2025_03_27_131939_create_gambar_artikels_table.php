@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('caption');
             $table->uuid('id_artikel');
             $table->foreign('id_artikel')->references('id_artikel')->on('artikels')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

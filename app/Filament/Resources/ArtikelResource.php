@@ -22,9 +22,12 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -52,7 +55,7 @@ class ArtikelResource extends Resource
                     ->label('Judul Artikel')
                     ->required()
                     ->maxLength(255),
-                
+
                 RichEditor::make('content')
                     ->label('Konten Artikel')
                     ->toolbarButtons([
@@ -73,29 +76,29 @@ class ArtikelResource extends Resource
                     ->required()
                     ->columnSpanFull(),
 
-                    FileUpload::make('slug')
+                FileUpload::make('slug')
                     ->label('Thumbnail Gambar Artikel (Slug)')
                     ->image()
                     ->imageEditor()
                     ->directory('artikel')
                     ->visibility('public')
                     ->columnSpanFull(),
-                    
-                    Repeater::make('gambarartikels')
+
+                Repeater::make('gambarartikels')
                     ->relationship('gambarartikels')
                     ->schema([
                         FileUpload::make('gambar_url')
-                        ->label('Gambar Artikel')
-                        ->image()
-                        ->imageEditor()
-                        ->directory('artikel')
-                        ->visibility('public'),
+                            ->label('Gambar Artikel')
+                            ->image()
+                            ->imageEditor()
+                            ->directory('artikel')
+                            ->visibility('public'),
 
                         Textarea::make('caption')
-                        ->label('Keterangan')
-                        ->required()
-                        ->maxLength(255),
-                    ]), 
+                            ->label('Keterangan')
+                            ->required()
+                            ->maxLength(255),
+                    ]),
             ]);
     }
 
@@ -104,7 +107,7 @@ class ArtikelResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('judul')
-                    ->label('Judul Artikel')  
+                    ->label('Judul Artikel')
                     ->searchable(),
                 ImageColumn::make('slug')
                     ->label('Thumbnail Artikel')
@@ -124,10 +127,10 @@ class ArtikelResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
@@ -136,6 +139,8 @@ class ArtikelResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->headerActions([
                 ExportAction::make()->exporter(ArtikelExporter::class)
@@ -148,6 +153,8 @@ class ArtikelResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -167,5 +174,13 @@ class ArtikelResource extends Resource
             'view' => Pages\ViewArtikel::route('/{record}'),
             'edit' => Pages\EditArtikel::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
