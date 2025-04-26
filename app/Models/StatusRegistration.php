@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class StatusRegistration extends Model
 {
     /** @use HasFactory<\Database\Factories\StatusRegistrationFactory> */
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $primaryKey = 'id_status_reg';
     public $fillable = [
@@ -20,7 +20,6 @@ class StatusRegistration extends Model
         'id_admin',
         'status',
     ];
-    use HasFactory, HasUuids, SoftDeletes;
 
     // Relationship User
     public function users() : BelongsTo

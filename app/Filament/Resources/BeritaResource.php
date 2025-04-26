@@ -21,9 +21,12 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -46,31 +49,31 @@ class BeritaResource extends Resource
         return $form
             ->schema([
                 Hidden::make('id_admin')
-                ->default(Auth::user()->id_admin),
+                    ->default(Auth::user()->id_admin),
                 Textarea::make('judul')
-                ->label('Judul Berita')
-                ->required()
-                ->maxLength(255),
-            
+                    ->label('Judul Berita')
+                    ->required()
+                    ->maxLength(255),
+
                 RichEditor::make('content')
-                ->label('Konten Berita')
-                ->toolbarButtons([
-                    'blockquote',
-                    'bold',
-                    'bulletList',
-                    'h1',
-                    'h2',
-                    'h3',
-                    'italic',
-                    'link',
-                    'orderedList',
-                    'redo',
-                    'strike',
-                    'underline',
-                    'undo',
-                ])
-                ->required()
-                ->columnSpanFull(),
+                    ->label('Konten Berita')
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->required()
+                    ->columnSpanFull(),
 
                 FileUpload::make('slug')
                     ->label('Thumbnail Gambar Berita (Slug)')
@@ -84,18 +87,18 @@ class BeritaResource extends Resource
                     ->label('Gambar Berita')
                     ->relationship('gambarberitas')
                     ->schema([
-                    FileUpload::make('gambar_url')
-                        ->label('Gambar Berita')
-                        ->image()
-                        ->imageEditor()
-                        ->directory('berita')
-                        ->visibility('public'),
+                        FileUpload::make('gambar_url')
+                            ->label('Gambar Berita')
+                            ->image()
+                            ->imageEditor()
+                            ->directory('berita')
+                            ->visibility('public'),
 
-                    Textarea::make('caption')
-                        ->label('Keterangan')
-                        ->required()
-                        ->maxLength(255),
-                    ]), 
+                        Textarea::make('caption')
+                            ->label('Keterangan')
+                            ->required()
+                            ->maxLength(255),
+                    ]),
             ]);
     }
 
@@ -104,7 +107,7 @@ class BeritaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('judul')
-                    ->label('Judul Artikel')  
+                    ->label('Judul Artikel')
                     ->searchable(),
                 ImageColumn::make('slug')
                     ->label('Thumbnail Artikel')
@@ -126,7 +129,7 @@ class BeritaResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
@@ -135,6 +138,8 @@ class BeritaResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->headerActions([
                 ExportAction::make()->exporter(BeritaExporter::class)
@@ -147,6 +152,8 @@ class BeritaResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -166,5 +173,13 @@ class BeritaResource extends Resource
             'view' => Pages\ViewBerita::route('/{record}'),
             'edit' => Pages\EditBerita::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

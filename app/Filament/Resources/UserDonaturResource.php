@@ -20,10 +20,13 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -111,9 +114,9 @@ class UserDonaturResource extends Resource
                     ->formatStateUsing(fn($state) => number_format($state, 0, ',', '.')),
                 TextColumn::make('bukti_transfer')
                     ->label('Bukti Transfer')
-                    ->url(fn ($record) => asset('storage/' . $record->bukti_transfer))
+                    ->url(fn($record) => asset('storage/' . $record->bukti_transfer))
                     ->openUrlInNewTab()
-                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->formatStateUsing(fn(string $state) => 'Lihat')
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
@@ -131,7 +134,7 @@ class UserDonaturResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
@@ -140,6 +143,8 @@ class UserDonaturResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->headerActions([
                 ExportAction::make()->exporter(UserDonaturExporter::class)
@@ -152,6 +157,8 @@ class UserDonaturResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -171,5 +178,13 @@ class UserDonaturResource extends Resource
             'view' => Pages\ViewUserDonatur::route('/{record}'),
             'edit' => Pages\EditUserDonatur::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

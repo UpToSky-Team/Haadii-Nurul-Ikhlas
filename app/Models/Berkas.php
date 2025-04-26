@@ -40,14 +40,4 @@ class Berkas extends Model
         }
         return true;
     }
-
-    public function isComplete() {
-        $fillable = $this->getFillable();
-        foreach($fillable as $key) {
-            if(empty($this->$key)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

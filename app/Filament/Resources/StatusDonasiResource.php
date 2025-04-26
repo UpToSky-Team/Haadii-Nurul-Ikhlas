@@ -15,8 +15,11 @@ use Filament\Tables;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -32,7 +35,7 @@ class StatusDonasiResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-check-circle';
     protected static ?string $navigationGroup = 'Donasi';
 
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -67,25 +70,33 @@ class StatusDonasiResource extends Resource
 
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
                     ->label('Lihat'),
                 EditAction::make()
                     ->label('Edit'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
 
     public static function getEloquentQuery(): Builder
-{
-    return parent::getEloquentQuery()->with(['users', 'userDonaturs']);
-}
+    {
+        return parent::getEloquentQuery()
+            ->with(['users', 'userDonaturs'])
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
+    }
 
 
     public static function getRelations(): array

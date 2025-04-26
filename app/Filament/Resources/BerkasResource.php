@@ -16,9 +16,12 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -96,7 +99,7 @@ class BerkasResource extends Resource
                 //     ->searchable(),
                 ImageColumn::make('foto_siswa')
                     ->label('Foto Anak')
-                    ->url(fn ($record) => asset('storage/' . $record->foto_siswa)) // gambar jadi link
+                    ->url(fn($record) => asset('storage/' . $record->foto_siswa)) // gambar jadi link
                     ->openUrlInNewTab()
                     ->searchable()
                     ->sortable(),
@@ -105,9 +108,9 @@ class BerkasResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('akta_lahir')
                     ->label('Akta Kelahiran')
-                    ->url(fn ($record) => asset('storage/' . $record->akta_lahir))
+                    ->url(fn($record) => asset('storage/' . $record->akta_lahir))
                     ->openUrlInNewTab()
-                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->formatStateUsing(fn(string $state) => 'Lihat')
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
@@ -116,9 +119,9 @@ class BerkasResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('kartu_keluarga')
                     ->label('Kartu Keluarga')
-                    ->url(fn ($record) => asset('storage/' . $record->kartu_keluarga))
+                    ->url(fn($record) => asset('storage/' . $record->kartu_keluarga))
                     ->openUrlInNewTab()
-                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->formatStateUsing(fn(string $state) => 'Lihat')
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
@@ -127,9 +130,9 @@ class BerkasResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('ijazah')
                     ->label('Ijazah')
-                    ->url(fn ($record) => asset('storage/' . $record->ijazah))
+                    ->url(fn($record) => asset('storage/' . $record->ijazah))
                     ->openUrlInNewTab()
-                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->formatStateUsing(fn(string $state) => 'Lihat')
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
@@ -138,9 +141,9 @@ class BerkasResource extends Resource
                 //     ->searchable(),
                 TextColumn::make('dokumen_tulis')
                     ->label('Dokumen Tertelis')
-                    ->url(fn ($record) => asset('storage/' . $record->dokumen_tulis))
+                    ->url(fn($record) => asset('storage/' . $record->dokumen_tulis))
                     ->openUrlInNewTab()
-                    ->formatStateUsing(fn (string $state) => 'Lihat')
+                    ->formatStateUsing(fn(string $state) => 'Lihat')
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
@@ -154,7 +157,7 @@ class BerkasResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
@@ -163,10 +166,14 @@ class BerkasResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -186,5 +193,13 @@ class BerkasResource extends Resource
             'view' => Pages\ViewBerkas::route('/{record}'),
             'edit' => Pages\EditBerkas::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

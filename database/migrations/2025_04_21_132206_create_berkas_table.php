@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('kartu_keluarga')->nullable(); //PDF
             $table->string('ijazah')->nullable(); //PDF
             $table->string('dokumen_tulis')->nullable(); //PDF
+            $table->softDeletes();
             $table->timestamps();
         });
     }

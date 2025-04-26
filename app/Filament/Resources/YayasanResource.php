@@ -18,9 +18,12 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -122,7 +125,7 @@ class YayasanResource extends Resource
                 //     ->rounded(),
                 ImageColumn::make('logo')
                     ->label('Logo Yayasan')
-                    ->url(fn ($record) => asset('storage/' . $record->logo)) // gambar jadi link
+                    ->url(fn($record) => asset('storage/' . $record->logo)) // gambar jadi link
                     ->openUrlInNewTab()
                     ->searchable()
                     ->size(150)
@@ -133,7 +136,7 @@ class YayasanResource extends Resource
                     ->searchable(),
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi Yayasan')
-                    ->formatStateUsing(fn ($state) => strip_tags($state))
+                    ->formatStateUsing(fn($state) => strip_tags($state))
                     ->wrap()
                     ->limit(100)
                     ->searchable(),
@@ -147,7 +150,7 @@ class YayasanResource extends Resource
                     ->label('Instagram Yayasan')
                     ->searchable(),
                 TextColumn::make('twitter')
-                    ->label('Twitter Yayasan') 
+                    ->label('Twitter Yayasan')
                     ->searchable(),
                 TextColumn::make('youtube')
                     ->label('YouTube Yayasan')
@@ -171,7 +174,7 @@ class YayasanResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                TrashedFilter::make(),
             ])
             ->actions([
                 ViewAction::make()
@@ -180,10 +183,14 @@ class YayasanResource extends Resource
                     ->label('Edit'),
                 DeleteAction::make()
                     ->label('Hapus'),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -203,5 +210,13 @@ class YayasanResource extends Resource
             'view' => Pages\ViewYayasan::route('/{record}'),
             'edit' => Pages\EditYayasan::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }
