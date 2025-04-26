@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Contents;
 
+use App\Models\Banner;
 use App\Models\Berita;
 use App\Models\Galeri;
 use App\Models\JenisDonasi;
@@ -26,6 +27,7 @@ class Landing extends Component
         $jenisDonasi = JenisDonasi::latest()->take(6)->get();
         $dataVideo = Galeri::where('jenis', '=', 'video')->latest()->take(2)->get();
         $dataFoto = Galeri::where('jenis', '=', 'gambar')->latest()->take(6)->get();
+        $banner = Banner::latest()->take(3)->get();
 
         return view('livewire.contents.landing', [
             'berita' => $dataBerita,
@@ -33,6 +35,7 @@ class Landing extends Component
             'video' => $dataVideo,
             'kegiatanUnggulan' => $kegiatanUnggulan,
             'jenisDonasi' => $jenisDonasi,
+            'banner' => $banner,
         ]);
     }
 }

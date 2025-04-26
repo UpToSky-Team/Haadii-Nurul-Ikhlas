@@ -58,17 +58,11 @@
             <!-- Carousel wrapper -->
             <div class="relative aspect-[16/6] sm:aspect-[16/9] md:aspect-[16/6] lg:aspect-[16/5] overflow-hidden">
                 <!-- Item 1 -->
+                @foreach ($banner as $data)
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="/img/banner-welcome.png" class="block w-full h-full object-cover" alt="...">
+                    <img src="{{Storage::url($data->banner)}}" class="block w-full h-full object-cover" alt="...">
                 </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="/img/fotokedua.png" class="block w-full h-full object-cover" alt="...">
-                </div>
-                <!-- Item 3 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="/img/fotoketiga.png" class="block w-full h-full object-cover" alt="...">
-                </div>
+                @endforeach
             </div>
 
             <!-- Slider indicators -->
