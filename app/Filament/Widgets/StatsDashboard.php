@@ -7,6 +7,7 @@ use App\Models\Berita;
 use App\Models\Galeri;
 use App\Models\User;
 use App\Models\UserDonatur;
+use App\Models\UserRegistration;
 use Filament\Support\Enums\IconPosition;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -44,7 +45,7 @@ class StatsDashboard extends BaseWidget
                 ->descriptionIcon('heroicon-m-currency-dollar', IconPosition::Before)
                 ->color('primary'),
 
-            Stat::make('Jumlah Pendaftar', '20')
+            Stat::make('Jumlah Pendaftar', UserRegistration::count())
                 ->description('Jumlah total pendaftar')
                 ->descriptionIcon('heroicon-m-user-plus', IconPosition::Before)
                 ->color('primary'),

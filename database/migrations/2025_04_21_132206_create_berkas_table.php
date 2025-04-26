@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('berkas', function (Blueprint $table) {
-            $table->uuid('id_berkas')->primary();
+            $table->uuid('id_berkas')->primary()->nullable();
             $table->uuid('id_registration')->nullable();
+            $table->foreign('id_registration')->references('id_registration')->on('user_registrations')->cascadeOnDelete();
             $table->string('foto_siswa')->nullable(); //JPG PNG
             $table->string('akta_lahir')->nullable(); //PDF
             $table->string('kartu_keluarga')->nullable(); //PDF
             $table->string('ijazah')->nullable(); //PDF
-            $table->string('dokumen_tulis')->nullable(); //PDF  
-            $table->softDeletes();
+            $table->string('dokumen_tulis')->nullable(); //PDF
             $table->timestamps();
         });
     }

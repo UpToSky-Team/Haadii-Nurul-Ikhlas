@@ -28,7 +28,17 @@ class Berkas extends Model
     //Relationship UserRegistration
     public function userRegistration() : BelongsTo
     {
-        return $this->belongsTo(UserRegistration::class);
+        return $this->belongsTo(UserRegistration::class, 'id_registration', 'id_registration');
+    }
+
+    public function isComplete() {
+        $fillable = $this->getFillable();
+        foreach($fillable as $key) {
+            if(empty($this->$key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function isComplete() {

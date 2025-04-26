@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Berkas;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BerkasPolicy
 {
@@ -13,6 +14,7 @@ class BerkasPolicy
      */
     public function viewAny(User $user): bool
     {
+        return true;
         return true;
     }
 
@@ -45,6 +47,9 @@ class BerkasPolicy
      */
     public function delete(User $user, Berkas $berkas): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

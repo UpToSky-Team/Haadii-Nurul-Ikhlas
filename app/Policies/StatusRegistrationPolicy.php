@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\StatusRegistration;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class StatusRegistrationPolicy
 {
@@ -13,7 +14,7 @@ class StatusRegistrationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +22,7 @@ class StatusRegistrationPolicy
      */
     public function view(User $user, StatusRegistration $statusRegistration): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +30,9 @@ class StatusRegistrationPolicy
      */
     public function create(User $user): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +41,9 @@ class StatusRegistrationPolicy
      */
     public function update(User $user, StatusRegistration $statusRegistration): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +52,9 @@ class StatusRegistrationPolicy
      */
     public function delete(User $user, StatusRegistration $statusRegistration): bool
     {
+        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+            return true;
+        }
         return false;
     }
 

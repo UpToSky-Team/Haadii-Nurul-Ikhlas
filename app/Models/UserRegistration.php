@@ -35,7 +35,7 @@ class UserRegistration extends Model
     //Relationship User
     public function users() : BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_admin', 'id_admin');
     }
 
     //Relationship Berkas
