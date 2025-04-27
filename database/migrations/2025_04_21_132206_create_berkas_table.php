@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('berkas', function (Blueprint $table) {
-            $table->uuid('id_berkas')->primary();
-            $table->uuid('id_registration');
-            $table->string('foto_siswa'); //JPG PNG
-            $table->string('akta_lahir'); //PDF
-            $table->string('kartu_keluarga'); //PDF
-            $table->string('ijazah'); //PDF
-            $table->string('dokumen_tulis'); //PDF
+            $table->uuid('id_berkas')->primary()->nullable();
+            $table->uuid('id_registration')->nullable();
+            $table->string('foto_siswa')->nullable(); //JPG PNG
+            $table->string('akta_lahir')->nullable(); //PDF
+            $table->string('kartu_keluarga')->nullable(); //PDF
+            $table->string('ijazah')->nullable(); //PDF
+            $table->string('dokumen_tulis')->nullable(); //PDF
             $table->timestamps();
         });
+
     }
 
     /**
