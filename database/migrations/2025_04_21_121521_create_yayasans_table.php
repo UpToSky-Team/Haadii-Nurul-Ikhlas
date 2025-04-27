@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('alamat')->nullable();;
             $table->string('email')->nullable();;
-            $table->text('deskripsi')->nullable();;
+            $table->longText('deskripsi')->nullable();;
             $table->string('logo')->nullable();;
             $table->string('no_telepon')->nullable();;
             $table->string('instagram')->nullable();;
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();;
             $table->string('facebook')->nullable();;
             $table->string('tiktok')->nullable();;
-            $table->string('maps')->nullable();;
+            $table->longText('maps')->nullable();;
             $table->softDeletes();
             $table->timestamps();
         });

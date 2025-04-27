@@ -105,9 +105,8 @@ class YayasanResource extends Resource
                     ->label('TikTok Yayasan')
                     ->maxLength(255)
                     ->default(null),
-                TextInput::make('maps')
+                Textarea::make('maps')
                     ->label('Maps Yayasan')
-                    ->maxLength(255)
                     ->default(null),
             ]);
     }
