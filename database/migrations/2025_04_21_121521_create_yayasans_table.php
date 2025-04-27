@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('yayasans', function (Blueprint $table) {
             $table->uuid('id_yayasan');
             $table->string('nama')->nullable();
-            $table->string('alamat')->nullable();;
-            $table->string('email')->nullable();;
-            $table->text('deskripsi')->nullable();;
-            $table->string('logo')->nullable();;
-            $table->string('no_telepon')->nullable();;
-            $table->string('instagram')->nullable();;
-            $table->string('twitter')->nullable();;
-            $table->string('youtube')->nullable();;
-            $table->string('facebook')->nullable();;
-            $table->string('tiktok')->nullable();;
-            $table->string('maps')->nullable();;
+            $table->string('alamat')->nullable();
+            $table->string('email')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('no_telepon')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('tiktok')->nullable();
+            $table->string('maps')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
