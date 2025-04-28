@@ -44,6 +44,13 @@
     <!-- Konten -->
     <div class="pt-6">
       <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up">
+        <div class="flex flex-col items-center">
+          @if (!empty($visiMisi->gambar_url))
+          <figure class="w-full max-w-3xl mx-auto mb-6">
+            <img class="rounded-lg w-full shadow-sm" src="{{ Storage::url($visiMisi->gambar_url) }}" alt="image description">
+          </figure>
+          @endif
+        </div>
 
         <!-- Judul -->
         <h1 class="text-3xl font-bold text-center text-orange-600 mb-6 text-start animate-fade-in-up delay-100">

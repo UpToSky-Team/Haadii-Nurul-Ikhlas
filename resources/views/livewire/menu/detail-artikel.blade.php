@@ -65,7 +65,7 @@
             <!-- Isi Artikel -->
             <div
                 class="prose prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-xl max-w-none">
-                <div class="text-justify">
+                <div class="text-justify richeditor-content">
                     {!! $artikel->content !!}
                 </div>
             </div>

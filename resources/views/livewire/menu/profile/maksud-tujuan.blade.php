@@ -44,6 +44,13 @@
 
         <!-- Konten Utama -->
         <div class="bg-white pt-16 px-6 md:px-12 lg:px-20 rounded-xl shadow-lg ">
+          <div class="flex flex-col items-center">
+            @if (!empty($maksudTujuan->gambar_url))
+            <figure class="w-full max-w-3xl mx-auto mb-6">
+              <img class="rounded-lg w-full shadow-sm" src="{{ Storage::url($maksudTujuan->gambar_url) }}" alt="image description">
+            </figure>
+            @endif
+          </div>
 
             <!-- Judul -->
             <h1 class="text-3xl font-bold text-[#3B9B3C] mb-10">

@@ -93,35 +93,32 @@
             <!-- Tab Dokumentasi -->
             <div id="dokumentasi" class="tab-content hidden">
                 <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Galeri Dokumentasi</h2>
+            
                 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
                     @if (!empty($foto))
                         @foreach ($foto as $data)
                             <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
                                 <img src="{{ Storage::url($data->galeri_url) }}" alt="{{ $data->galeri_url }}"
-                                    class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
+                                    class="w-full rounded-lg shadow transition-transform duration-300 hover:scale-105 object-cover aspect-square">
                             </a>
                         @endforeach
                     @endif
-                </div>
-                <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            
                     @if (!empty($video))
                         @foreach ($video as $data)
-                            <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
-                                <div class="relative aspect-video w-full overflow-hidden rounded-lg shadow-md">
-                                    <iframe class="h-full w-full" src="{{ Storage::url($data->galeri_url) }}"
-                                        title="Video Kegiatan Yayasan" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50">
-                                    </div>
-                                </div>
-                            </a>
+                            <div class="relative w-full overflow-hidden rounded-lg shadow aspect-video">
+                                <iframe class="absolute top-0 left-0 w-full h-full" 
+                                    src="{{ Storage::url($data->galeri_url) }}" 
+                                    title="Video Kegiatan Yayasan" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
                         @endforeach
                     @endif
                 </div>
             </div>
+            
         </div>
 
         <!-- Script Tabs -->
