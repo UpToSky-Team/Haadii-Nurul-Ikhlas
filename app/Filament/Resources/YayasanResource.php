@@ -59,7 +59,9 @@ class YayasanResource extends Resource
                     ->label('Nomer Telepon Yayasan')
                     ->tel()
                     ->maxLength(255)
+                    ->prefix('+62')
                     ->default(null),
+                
                 RichEditor::make('deskripsi')
                     ->label('Deskripsi Yayasan')
                     ->toolbarButtons([
@@ -118,10 +120,6 @@ class YayasanResource extends Resource
                 TextColumn::make('nama')
                     ->label('Nama Yayasan')
                     ->searchable(),
-                // ImageColumn::make('logo')
-                //     ->label('Logo Yayasan')
-                //     ->size(150)
-                //     ->rounded(),
                 ImageColumn::make('logo')
                     ->label('Logo Yayasan')
                     ->url(fn($record) => asset('storage/' . $record->logo)) // gambar jadi link
@@ -132,7 +130,8 @@ class YayasanResource extends Resource
                     ->sortable(),
                 TextColumn::make('alamat')
                     ->label('Alamat Yayasan')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(100),
                 TextColumn::make('deskripsi')
                     ->label('Deskripsi Yayasan')
                     ->formatStateUsing(fn($state) => strip_tags($state))
@@ -144,7 +143,26 @@ class YayasanResource extends Resource
                     ->searchable(),
                 TextColumn::make('no_telepon')
                     ->label('Nomer Telepon Yayasan')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) {
+                            return '-';
+                        }
+                
+                        // Kalau sudah +62, tampilkan langsung
+                        if (str_starts_with($state, '+62')) {
+                            return $state;
+                        }
+                
+                        // Kalau mulai 0, ganti 0 dengan +62
+                        if (str_starts_with($state, '0')) {
+                            return '+62' . substr($state, 1);
+                        }
+                
+                        // Kalau nomor lain, langsung +62 di depan
+                        return '+62' . $state;
+                    }),
+                 
                 TextColumn::make('instagram')
                     ->label('Instagram Yayasan')
                     ->searchable(),
@@ -162,7 +180,8 @@ class YayasanResource extends Resource
                     ->searchable(),
                 TextColumn::make('maps')
                     ->label('Masp Yayasan')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(100),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

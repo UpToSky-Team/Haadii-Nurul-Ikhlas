@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->uuid('id_bank')->primary();
-            $table->uuid('nama_bank');
-            $table->uuid('rekening_bank');
-            $table->uuid('nama_pemilik');
+            $table->string('nama_bank');
+            $table->string('rekening_bank');
+            $table->string('nama_pemilik');
             $table->softDeletes();
             $table->timestamps();
         });
