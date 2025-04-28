@@ -68,9 +68,12 @@ class UserDonaturResource extends Resource
                     ->searchable()
                     ->preload()
                     ->native(false),
-                TextInput::make('bank_name')
-                    ->required()
-                    ->maxLength(255),
+                Select::make('id_bank')
+                    ->label('Nama Bank')
+                    ->relationship('banks', 'nama_bank')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 TextInput::make('jumlah_donasi')
                     ->label('Pilih Donasi')
                     ->maxLength(255)
@@ -82,15 +85,6 @@ class UserDonaturResource extends Resource
                     ->directory('bukti_transfer')
                     ->visibility('public')
                     ->columnSpanFull()
-                    ->required(),
-                Select::make('status_verifikasi')
-                    ->label('Status Verifikasi')
-                    ->options([
-                        'pending' => 'Pending',
-                        'verified' => 'Verified',
-                        'rejected' => 'Rejected',
-                    ])
-                    ->default('pending')
                     ->required(),
             ]);
     }
@@ -106,7 +100,7 @@ class UserDonaturResource extends Resource
                 TextColumn::make('phone')
                     ->label('Nomer Telepon')
                     ->searchable(),
-                TextColumn::make('bank_name')
+                TextColumn::make('banks.nama_bank')
                     ->label('Nama Bank')
                     ->searchable(),
                 TextColumn::make('jumlah_donasi')

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Bank extends Model
@@ -19,4 +21,10 @@ class Bank extends Model
         'rekening_bank',
         'nama_pemilik',
     ];
+
+    //Relationship UserDonatur
+    public function userDonaturs() : HasMany
+    {
+        return $this->hasMany(UserDonatur::class, 'id_user_donatur', 'id_user_donatur');
+    }
 }

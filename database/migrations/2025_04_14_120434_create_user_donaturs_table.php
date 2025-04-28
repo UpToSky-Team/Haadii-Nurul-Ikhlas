@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->uuid('id_jenis_donasi');
             $table->foreign('id_jenis_donasi')->references('id_jenis_donasi')->on('jenis_donasis')->cascadeOnDelete();
-            $table->string('bank_name');
+            $table->uuid('id_bank');
+            $table->foreign('id_bank')->references('id_bank')->on('banks')->cascadeOnDelete();
             $table->string('jumlah_donasi');
             $table->string('bukti_transfer');
             $table->uuid('id_admin')->nullable();

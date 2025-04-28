@@ -20,7 +20,7 @@ class UserDonatur extends Model
         'email',
         'phone',
         'id_jenis_donasi',
-        'bank_name',
+        'id_bank',
         'jumlah_donasi',
         'bukti_transfer',
         'id_admin',
@@ -42,5 +42,11 @@ class UserDonatur extends Model
     public function statusDonasi()
     {
         return $this->hasOne(StatusDonasi::class, 'id_user_donatur', 'id_user_donatur');
+    }
+
+    // Relationship Bank
+    public function banks() : BelongsTo
+    {
+        return $this->belongsTo(Bank::class, 'id_bank', 'id_bank');
     }
 }

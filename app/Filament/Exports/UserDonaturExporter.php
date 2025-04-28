@@ -18,9 +18,16 @@ class UserDonaturExporter extends Exporter
             ExportColumn::make('email'),
             ExportColumn::make('phone'),
             ExportColumn::make('jenisDonasis.jenis')->label('Jenis Donasi'),
-            ExportColumn::make('bank_name')->label('Nama Bank'),
+            ExportColumn::make('bukti_transfer')
+                ->label('Bukti Transfer')
+                ->formatStateUsing(fn($state) => $state ? asset('storage/' . $state) : null),
+            ExportColumn::make('nama_bank')
+                ->label('Nama Bank')
+                ->formatStateUsing(fn ($record) => $record->banks?->nama_bank),
             ExportColumn::make('jumlah_donasi')->label('Jumlah Donasi'),
-            ExportColumn::make('status_verifikasi')->label('Status Verifikasi'),
+            ExportColumn::make('status_donasi')
+                ->label('Status Donasi')
+                ->formatStateUsing(fn ($record) => $record->statusDonasi?->status),
             ExportColumn::make('users.name')->label('Admin Name')->label('Admin'),
             ExportColumn::make('created_at'),
             ExportColumn::make('updated_at'),
