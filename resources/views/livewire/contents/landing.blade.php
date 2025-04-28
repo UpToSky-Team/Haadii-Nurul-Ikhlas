@@ -21,29 +21,42 @@
 
                 <!-- Sosial Media & CTA -->
                 <div class="flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-4">
-                    <a href="https://www.instagram.com/yayasanhaadiinurulikhlas/"
-                        class="rounded-full bg-pink-600 p-2 shadow-md transition-transform hover:scale-110">
-                        <img src="/img/icon/instagram.png" alt="Instagram" class="h-6 w-6">
-                    </a>
-                    <a href="#" class="rounded-full bg-black p-2 shadow-md transition-transform hover:scale-110">
-                        <img src="/img/icon/tiktok.png" alt="TikTok" class="h-6 w-6">
-                    </a>
-                    <a href="https://www.youtube.com/@YayasanHaadiiNurulIkhlas"
-                        class="rounded-full bg-red-600 p-2 shadow-md transition-transform hover:scale-110">
-                        <img src="/img/icon/youtube.png" alt="YouTube" class="h-6 w-6">
-                    </a>
-                    <a href="https://x.com/YayasanHNI"
-                        class="rounded-full bg-white p-2 shadow-md transition-transform hover:scale-110">
-                        <img src="/img/icon/twitter.png" alt="twitter" class="h-6 w-6">
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61572579006943"
-                        class="rounded-full bg-blue-600 p-2 shadow-md transition-transform hover:scale-110">
-                        <img src="/img/icon/facebook.png" alt="facebook" class="h-6 w-6">
-                    </a>
-                    <a href="#"
-                        class="rounded-lg bg-white px-4 py-2 font-semibold text-black shadow-md transition-transform hover:scale-105 hover:bg-gray-200 sm:px-6">
-                        Hubungi Kami
-                    </a>
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->instagram)
+                        <a href="{{ $yayasan->first()->instagram }}"
+                            class="rounded-full bg-pink-600 p-2 shadow-md transition-transform hover:scale-110">
+                            <img src="/img/icon/instagram.png" alt="Instagram" class="h-6 w-6">
+                        </a>
+                    @endif
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->tiktok)
+                        <a href="{{ $yayasan->first()->tiktok }}"
+                            class="rounded-full bg-black p-2 shadow-md transition-transform hover:scale-110">
+                            <img src="/img/icon/tiktok.png" alt="TikTok" class="h-6 w-6">
+                        </a>
+                    @endif
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->youtube)
+                        <a href="{{ $yayasan->first()->youtube }}"
+                            class="rounded-full bg-red-600 p-2 shadow-md transition-transform hover:scale-110">
+                            <img src="/img/icon/youtube.png" alt="YouTube" class="h-6 w-6">
+                        </a>
+                    @endif
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->twitter)
+                        <a href="{{ $yayasan->first()->twitter }}"
+                            class="rounded-full bg-white p-2 shadow-md transition-transform hover:scale-110">
+                            <img src="/img/icon/twitter.png" alt="twitter" class="h-6 w-6">
+                        </a>
+                    @endif
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->facebook)
+                        <a href="{{ $yayasan->first()->facebook }}"
+                            class="rounded-full bg-blue-600 p-2 shadow-md transition-transform hover:scale-110">
+                            <img src="/img/icon/facebook.png" alt="facebook" class="h-6 w-6">
+                        </a>
+                    @endif
+                    @if ($yayasan->isNotEmpty() && $yayasan->first()->no_telepon)
+                        <a href="https://wa.me/{{ $yayasan->first()->no_telepon }}"
+                            class="rounded-lg bg-white px-4 py-2 font-semibold text-black shadow-md transition-transform hover:scale-105 hover:bg-gray-200 sm:px-6">
+                            Hubungi Kami
+                        </a>
+                    @endif
                 </div>
             </div>
 
@@ -242,7 +255,7 @@
                                     src="{{ Storage::url($data->galeri_url) }}" title="Video Kegiatan Yayasan"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
+                                    allowfullscreen autoplay="false">
                                 </iframe>
                             @endif
                         @endforeach
