@@ -108,11 +108,10 @@
                         @foreach ($video as $data)
                             <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
                                 <div class="relative aspect-video w-full overflow-hidden rounded-lg shadow-md">
-                                    <iframe class="h-full w-full" src="{{ Storage::url($data->galeri_url) }}"
-                                        title="Video Kegiatan Yayasan" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen>
-                                    </iframe>
+                                    <video controls class="h-full w-full" title="Video Kegiatan Yayasan">
+                                        <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
+                                        Browser Anda tidak mendukung tag video.
+                                    </video>
                                     <div
                                         class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50">
                                     </div>

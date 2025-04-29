@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\UserRegistrationExporter;
 use App\Filament\Resources\UserRegistrationResource\Pages;
 use App\Filament\Resources\UserRegistrationResource\RelationManagers;
 use App\Models\UserRegistration;
@@ -17,6 +18,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\ViewAction;
@@ -124,6 +126,14 @@ class UserRegistrationResource extends Resource
                 TextColumn::make('NPSN_sekolah_asal')
                     ->label('NPSN Sekolah Asal (Boleh Kosong)')
                     ->searchable(),
+                TextColumn::make('status_berkas')
+                    ->label('Status Berkas')
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'Complete' => 'Lengkap',
+                        'notComplete' => 'Belum Lengkap',
+                        default => 'Tidak Diketahui',
+                    })
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Tanggal Dibuat')
                     ->dateTime()
@@ -136,6 +146,15 @@ class UserRegistrationResource extends Resource
             ])
             ->filters([
                 TrashedFilter::make(),
+
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(UserRegistrationExporter::class)
+                    ->label('Ekspor')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->iconPosition('before')
+                    ->modalHeading('Ekspor Data Donatur'),
             ])
             ->actions([
                 ViewAction::make()

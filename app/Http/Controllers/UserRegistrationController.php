@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserRegistration;
 use App\Http\Requests\StoreUserRegistrationRequest;
 use App\Http\Requests\UpdateUserRegistrationRequest;
+use App\Models\StatusRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -39,7 +40,7 @@ class UserRegistrationController extends Controller
             'email_anak' => 'nullable|email|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
-            'nik' => 'required|string|max:16',
+            'nik' => 'required|string|max:16|min:16',
             'sekolah_asal' => 'nullable|string|max:255',
             'npsn_sekolah_asal' => 'nullable|string|max:10',
         ]);
@@ -52,7 +53,7 @@ class UserRegistrationController extends Controller
                 ->first();
 
             if ($existingUser) {
-                return redirect()->route('pmb.next')->with(['success' => 'Data sudah terdaftar! Silakan lanjutkan mengisi berkas.']);
+                return redirect()->route('pmb.next')->with(['success' => 'Data sudah terdaftar! Silakan lanjutkan mengisi berkas.']);  
             }
 
             UserRegistration::create([
@@ -69,7 +70,11 @@ class UserRegistrationController extends Controller
                 'NPSN_sekolah_asal' => $request->npsn_sekolah_asal,
             ]);
 
-            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.',]);
+            StatusRegistration::create([
+                'id_registration' => $fillId,
+            ]);
+
+            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.', 'id_registration' => $fillId]);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }

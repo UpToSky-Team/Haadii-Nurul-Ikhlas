@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('NIK', 16);
             $table->string('nama_sekolah_asal')->nullable();
             $table->string('NPSN_sekolah_asal')->nullable();
+            $table->enum('status_berkas', ['Complete', 'notComplete'])->default('notComplete');
             $table->uuid('id_admin')->nullable();
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();
             $table->softDeletes();

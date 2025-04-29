@@ -130,7 +130,7 @@
                             class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
                             <option disabled selected>Nama Bank :</option>
                             @foreach ($bank as $data)
-                                <option value="{{ $data->nama_bank }}">{{ $data->nama_bank }}</option>
+                                <option value="{{ $data->id_bank }}">{{ $data->nama_bank }}</option>
                             @endforeach
                             <option value="Lainnya">Lainnya</option>
                         </select>
@@ -161,8 +161,12 @@
                 <!-- Kolom 3: QR Code -->
                 <div class="flex flex-col items-center justify-center rounded-xl bg-white p-6 shadow">
                     <h2 class="mb-4 text-xl font-semibold">Scan QR Code</h2>
-                    <img src="{{ Storage::url($qris->first()->gambar_qris) }}" alt="QR Code Donasi"
-                        class="h-full w-full object-contain" />
+                    @if ($qris->isNotEmpty())
+                        <img src="{{ Storage::url($qris->first()->gambar_qris) }}" alt="QR Code Donasi"
+                            class="h-full w-full object-contain" />
+                    @else
+                        <p class="text-center text-sm text-gray-600">QR Code tidak tersedia saat ini.</p>
+                    @endif
                     <p class="mt-2 text-center text-sm text-gray-600">Silakan scan untuk donasi via e-wallet</p>
                 </div>
 

@@ -20,24 +20,41 @@ class Berkas extends Model
         'id_registration',
         'foto_siswa',
         'akta_lahir',
-        'kartu_keluarga',   
+        'kartu_keluarga',
         'ijazah',
         'dokumen_tulis'
     ];
 
     //Relationship UserRegistration
-    public function userRegistration() : BelongsTo
+    public function userRegistration(): BelongsTo
     {
         return $this->belongsTo(UserRegistration::class, 'id_registration', 'id_registration');
     }
 
-    public function isComplete() {
+    public function isComplete()
+    {
         $fillable = $this->getFillable();
-        foreach($fillable as $key) {
-            if(empty($this->$key)) {
+        foreach ($fillable as $key) {
+            if (empty($this->$key)) {
                 return false;
             }
         }
+        return true;
+    }
+
+    public function getIsCompleteAttribute()
+    {
+        $fillable = $this->getFillable();
+
+        foreach ($fillable as $key) {
+            // Kecualikan ID dan foreign key (jika tidak wajib)
+            if (in_array($key, ['id_berkas', 'id_registration'])) continue;
+
+            if (empty($this->$key)) {
+                return false;
+            }
+        }
+
         return true;
     }
 }

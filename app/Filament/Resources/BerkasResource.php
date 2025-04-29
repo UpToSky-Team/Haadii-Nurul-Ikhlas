@@ -94,18 +94,12 @@ class BerkasResource extends Resource
                 TextColumn::make('userRegistration.nama_anak')
                     ->label('Nama Anak')
                     ->searchable(),
-                // ImageColumn::make('foto_siswa')
-                //     ->label('Foto Siswa')
-                //     ->searchable(),
                 ImageColumn::make('foto_siswa')
                     ->label('Foto Anak')
                     ->url(fn($record) => asset('storage/' . $record->foto_siswa)) // gambar jadi link
                     ->openUrlInNewTab()
                     ->searchable()
                     ->sortable(),
-                // TextColumn::make('akta_lahir')
-                //     ->label('Akta Kelahiran')
-                //     ->searchable(),
                 TextColumn::make('akta_lahir')
                     ->label('Akta Kelahiran')
                     ->url(fn($record) => asset('storage/' . $record->akta_lahir))
@@ -114,9 +108,6 @@ class BerkasResource extends Resource
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
-                // TextColumn::make('kartu_keluarga')
-                //     ->label('Kartu Keluarga')
-                //     ->searchable(),
                 TextColumn::make('kartu_keluarga')
                     ->label('Kartu Keluarga')
                     ->url(fn($record) => asset('storage/' . $record->kartu_keluarga))
@@ -125,9 +116,6 @@ class BerkasResource extends Resource
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
-                // TextColumn::make('ijazah')
-                //     ->label('Ijazah')
-                //     ->searchable(),
                 TextColumn::make('ijazah')
                     ->label('Ijazah')
                     ->url(fn($record) => asset('storage/' . $record->ijazah))
@@ -136,9 +124,6 @@ class BerkasResource extends Resource
                     ->color('primary') // -> warna teksnya
                     ->searchable()
                     ->sortable(),
-                // TextColumn::make('dukumen_tulis')
-                //     ->label('Dokumen Tulis')
-                //     ->searchable(),
                 TextColumn::make('dokumen_tulis')
                     ->label('Dokumen Tertelis')
                     ->url(fn($record) => asset('storage/' . $record->dokumen_tulis))

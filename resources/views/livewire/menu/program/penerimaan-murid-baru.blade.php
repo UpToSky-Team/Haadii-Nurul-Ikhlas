@@ -104,7 +104,7 @@
                     <label class="mb-1 block text-sm font-medium">NIK <span class="text-red-500">*</span></label>
                     <input type="text" name="nik"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan NIK">
+                        placeholder="Masukkan NIK" maxlength="16">
                     @error('nik')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror

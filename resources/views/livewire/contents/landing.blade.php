@@ -251,12 +251,10 @@
                     @if (!empty($video))
                         @foreach ($video as $data)
                             @if ($data->jenis == 'video')
-                                <iframe class="h-64 w-full rounded-lg shadow-md md:h-96 md:w-2/3"
-                                    src="{{ Storage::url($data->galeri_url) }}" title="Video Kegiatan Yayasan"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen autoplay="false">
-                                </iframe>
+                            <video controls class="h-64 w-full rounded-lg shadow-md md:h-96 md:w-2/3" title="Video Kegiatan Yayasan">
+                                <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
+                                Browser Anda tidak mendukung tag video.
+                            </video>
                             @endif
                         @endforeach
                     @endif

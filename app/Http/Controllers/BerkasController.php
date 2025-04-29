@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berkas;
 use App\Http\Requests\StoreBerkasRequest;
 use App\Http\Requests\UpdateBerkasRequest;
+use App\Models\UserRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,11 +34,11 @@ class BerkasController extends Controller
     {
         $request->validate([
             'id_registration' => 'required',
-            'foto_siswa' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'akta_lahir' => 'nullable|file|mimes:pdf|max:2048',
-            'kartu_keluarga' => 'nullable|file|mimes:pdf|max:2048',
-            'ijazah' => 'nullable|file|mimes:pdf|max:2048',
-            'dokumen_tulis' => 'nullable|file|mimes:pdf|max:2048',
+            'foto_siswa' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10048',
+            'akta_lahir' => 'nullable|file|mimes:pdf|max:10048',
+            'kartu_keluarga' => 'nullable|file|mimes:pdf|max:10048',
+            'ijazah' => 'nullable|file|mimes:pdf|max:10048',
+            'dokumen_tulis' => 'nullable|file|mimes:pdf|max:10048',
         ]);
 
         if ($request->hasFile('foto_siswa')) {
@@ -69,20 +70,23 @@ class BerkasController extends Controller
             $dokumenTulisName = 'berkas/dokumen_tulis/' . time() . '_dokumen_tulis_' . $request->id_registration . '.' . $dokumenTulis->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('', $dokumenTulis, $dokumenTulisName);
         }
+
         $fillId = $request->id_registration;
 
-        Berkas::create([
-            'id_registration' => $request->id_registration,
-            'foto_siswa' => $fotoSiswaName ?? null,
-            'akta_lahir' => $aktaLahirName ?? null,
-            'kartu_keluarga' => $kartuKeluargaName ?? null,
-            'ijazah' => $ijazahName ?? null,
-            'dokumen_tulis' => $dokumenTulisName ?? null,
-        ]);
-        
+        try {
+            Berkas::create([
+                'id_registration' => $request->id_registration,
+                'foto_siswa' => $fotoSiswaName ?? null,
+                'akta_lahir' => $aktaLahirName ?? null,
+                'kartu_keluarga' => $kartuKeluargaName ?? null,
+                'ijazah' => $ijazahName ?? null,
+                'dokumen_tulis' => $dokumenTulisName ?? null,
+            ]);
 
-        return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.']);
-        
+            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.', 'id_registration' => $request->id_registration]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Terjadi kesalahan saat mengunggah berkas. Silakan coba lagi.', 'id_registration' => $request->id_registration]);
+        }
     }
 
     /**
@@ -145,19 +149,34 @@ class BerkasController extends Controller
             Storage::disk('public')->putFileAs('', $dokumenTulis, $dokumenTulisName);
         }
 
-        $berkas = Berkas::where('id_registration', $id)->first();
-        if ($berkas) {
-            $berkas->update([
-                'id_registration' => $request->id_registration,
-                'foto_siswa' => $fotoSiswaName ?? $berkas->foto_siswa,
-                'akta_lahir' => $aktaLahirName ?? $berkas->akta_lahir,
-                'kartu_keluarga' => $kartuKeluargaName ?? $berkas->kartu_keluarga,
-                'ijazah' => $ijazahName ?? $berkas->ijazah,
-                'dokumen_tulis' => $dokumenTulisName ?? $berkas->dokumen_tulis,
-            ]);
-        }
+        try {
+            $berkas = Berkas::where('id_registration', $id)->first();
+            if ($berkas) {
+                $berkas->update([
+                    'id_registration' => $request->id_registration,
+                    'foto_siswa' => $fotoSiswaName ?? $berkas->foto_siswa,
+                    'akta_lahir' => $aktaLahirName ?? $berkas->akta_lahir,
+                    'kartu_keluarga' => $kartuKeluargaName ?? $berkas->kartu_keluarga,
+                    'ijazah' => $ijazahName ?? $berkas->ijazah,
+                    'dokumen_tulis' => $dokumenTulisName ?? $berkas->dokumen_tulis,
+                ]);
+            }
 
-        return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.']);
+            $berkas->refresh();
+
+            $register = UserRegistration::where('id_registration', operator: $id)->first();
+            if ($register) {
+                if ($berkas->isComplete()) {
+                    $register->update([
+                        'status_berkas' => 'Complete',
+                    ]);
+                } 
+            }
+            
+            return redirect()->route('pmb.next')->with(['success' => 'Pendaftaran berhasil! Silakan lanjutkan ke langkah berikutnya.', 'id_registration' => $request->id_registration]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Terjadi kesalahan saat mengunggah berkas. Silakan coba lagi.', 'id_registration' => $request->id_registration]);
+        }
     }
 
     /**

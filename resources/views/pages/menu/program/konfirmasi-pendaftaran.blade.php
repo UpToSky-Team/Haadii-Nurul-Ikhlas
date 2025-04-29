@@ -2,6 +2,6 @@
 @extends('livewire.layouts.main')
 @section('content')
     <div>
-        @livewire('menu.program.konfirmasi-pendaftaran')
+        @livewire('menu.program.konfirmasi-pendaftaran', ['id' => $id_registration])
     </div>
 @endsection

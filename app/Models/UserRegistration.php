@@ -41,7 +41,7 @@ class UserRegistration extends Model
     //Relationship Berkas
     public function berkas() : BelongsTo
     {
-        return $this->belongsTo(Berkas::class);
+        return $this->belongsTo(Berkas::class, 'id_registration', 'id_registration');
     }
 
     //Relationship StatusRegistration

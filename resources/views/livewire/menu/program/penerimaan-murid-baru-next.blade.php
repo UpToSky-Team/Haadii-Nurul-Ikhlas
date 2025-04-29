@@ -36,7 +36,6 @@
                     </div>
                 @endif
             @endforeach
-
             @if (!empty(session('id_registration') || !empty($id_registration)))
                 <form class="space-y-6" method="POST"
                     action="{{ $statusUpdate ? route('pmb.next.update', $id_registration) : route('pmb.next.submit') }}"
@@ -90,7 +89,11 @@
                         </div>
                         <div>
                             <label for="dokumen_tulis" class="mb-2 block text-sm font-medium text-gray-700">Unggah
-                                Dokumen Tulis</label>
+                                Dokumen Tulis 
+                                @if ($dokumen && $dokumen->isNotEmpty())
+                                    <a href="{{ Storage::url($dokumen->first()->dokumen) }}" target="_blank" class="text-blue-600 hover:underline">Download Dokumen</a>
+                                @endif
+                            </label>
                             <input id="dokumen_tulis" name="dokumen_tulis" type="file"
                                 accept="image/*,application/pdf"
                                 class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-md transition hover:shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
@@ -106,7 +109,7 @@
                                 Lengkapi Berkas
                             </button>
                             @if ($statusComplete)
-                                <a href="{{ route('pmb.konfirmasi') }}"
+                                <a href="{{ route('pmb.konfirmasi', $id_registration) }}"
                                     class="mt-4 block w-full rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 py-3 text-center font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-blue-800">
                                     Konfirmasi
                                 </a>

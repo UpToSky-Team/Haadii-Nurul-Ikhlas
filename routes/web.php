@@ -56,8 +56,8 @@ Route::get('/penerimaan-murid-baru', function () {
 Route::get('/penerimaan-murid-baru-next', function () {
     return view('pages.menu.program.penerimaan-murid-baru-next');
 })->name('pmb.next');
-Route::get('/konfirmasi-pendaftaran', function () {
-    return view('pages.menu.program.konfirmasi-pendaftaran');
+Route::get('/konfirmasi-pendaftaran/{id}', function ($id_registration) {
+    return view('pages.menu.program.konfirmasi-pendaftaran', ['id_registration' => $id_registration]);
 })->name('pmb.konfirmasi');
 Route::get('/rincian-kegiatan', function () {
     return view('pages.menu.program.rincian-kegiatan');

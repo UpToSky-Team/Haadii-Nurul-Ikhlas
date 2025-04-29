@@ -3,6 +3,7 @@
 namespace App\Livewire\Menu\Program;
 
 use App\Models\Berkas;
+use App\Models\DokumenRegis;
 use App\Models\UserRegistration;
 use Livewire\Component;
 
@@ -35,12 +36,16 @@ class PenerimaanMuridBaruNext extends Component
             $this->id_registration = $user->id_registration;
 
             $berkas = Berkas::where('id_registration', $this->id_registration)->first();
-            
-            
+
+
             if ($berkas) {
                 if ($berkas->isComplete()) {
                     $this->statusComplete = true;
+
+                    UserRegistration::where('id_registration', $this->id_registration)->update([
+                    'status_berkas' => 'Complete',]);
                 }
+
                 $this->foto_siswa = $berkas->foto_siswa;
                 $this->akta_lahir = $berkas->akta_lahir;
                 $this->kartu_keluarga = $berkas->kartu_keluarga;
@@ -51,9 +56,8 @@ class PenerimaanMuridBaruNext extends Component
             if (!empty($this->foto_siswa) || !empty($this->akta_lahir) | !empty($this->kartu_keluarga) | !empty($this->ijazah) | !empty($this->dokumen_tulis)) {
                 $this->statusUpdate = true;
             }
-            
-            session()->flash('success', 'Data ditemukan! Silakan lanjutkan mengisi berkas.');
 
+            session()->flash('success', 'Data ditemukan! Silakan lanjutkan mengisi berkas.');
         } else {
             session()->flash('error', 'Data tidak ditemukan! Silakan periksa kembali NIK dan nama lengkap.');
         }
@@ -61,6 +65,34 @@ class PenerimaanMuridBaruNext extends Component
 
     public function render()
     {
-        return view('livewire.menu.program.penerimaan-murid-baru-next');
+        $this->id_registration = session('id_registration', $this->id_registration);
+
+
+        $berkas = Berkas::where('id_registration', $this->id_registration)->first();
+
+
+        if ($berkas) {
+            if ($berkas->isComplete()) {
+                $this->statusComplete = true;
+                
+                UserRegistration::where('id_registration', $this->id_registration)->update([
+                    'status_berkas' => 'Complete',]);
+            }
+            $this->foto_siswa = $berkas->foto_siswa;
+            $this->akta_lahir = $berkas->akta_lahir;
+            $this->kartu_keluarga = $berkas->kartu_keluarga;
+            $this->ijazah = $berkas->ijazah;
+            $this->dokumen_tulis = $berkas->dokumen_tulis;
+        }
+
+        if (!empty($this->foto_siswa) || !empty($this->akta_lahir) | !empty($this->kartu_keluarga) | !empty($this->ijazah) | !empty($this->dokumen_tulis)) {
+            $this->statusUpdate = true;
+        }
+
+        $dokumen = DokumenRegis::get();
+
+        return view('livewire.menu.program.penerimaan-murid-baru-next', [
+            'dokumen' => $dokumen,
+        ]);
     }
 }

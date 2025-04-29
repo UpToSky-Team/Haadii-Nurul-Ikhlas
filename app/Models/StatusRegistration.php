@@ -18,6 +18,7 @@ class StatusRegistration extends Model
         'id_status_reg',
         'id_registration',
         'id_admin',
+        'keterangan',
         'status',
     ];
 

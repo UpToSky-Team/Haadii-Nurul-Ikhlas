@@ -7,6 +7,7 @@ use App\Filament\Resources\StatusRegistrationResource\RelationManagers;
 use App\Models\StatusRegistration;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -49,7 +50,25 @@ class StatusRegistrationResource extends Resource
                         'pending' => 'Pending',
                         'rejected' => 'Rejected',
                     ])
-                    ->native(false)
+                    ->native(false),
+                RichEditor::make('keterangan')
+                    ->label('Keterangan')
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h1',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -64,6 +83,9 @@ class StatusRegistrationResource extends Resource
                     ->sortable(),
                 TextColumn::make('users.name')  // Menampilkan nama admin
                     ->label('Diverifikasi Oleh')
+                    ->searchable(),
+                TextColumn::make('keterangan')  // Menampilkan nama admin
+                    ->label('Keterangan')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
