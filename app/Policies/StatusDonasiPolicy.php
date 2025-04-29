@@ -14,7 +14,10 @@ class StatusDonasiPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -30,9 +33,6 @@ class StatusDonasiPolicy
      */
     public function create(User $user): bool
     {
-        // if ( Auth::check() && Auth::user()->role == 'admin' ) {
-        //     return true;
-        // }
         return true;
     }
 
@@ -41,7 +41,7 @@ class StatusDonasiPolicy
      */
     public function update(User $user, StatusDonasi $statusDonasi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class StatusDonasiPolicy
      */
     public function delete(User $user, StatusDonasi $statusDonasi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;

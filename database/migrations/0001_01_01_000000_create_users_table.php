@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('ussername')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'humas', 'bendahara'])->default('humas');
+            $table->enum('role', ['admin', 'humas', 'bendahara', 'regis'])->default('humas');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

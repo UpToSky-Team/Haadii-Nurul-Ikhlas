@@ -22,7 +22,10 @@ class JenisDonasiPolicy
      */
     public function view(User $user, JenisDonasi $jenisDonasi): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -30,7 +33,7 @@ class JenisDonasiPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
@@ -41,7 +44,7 @@ class JenisDonasiPolicy
      */
     public function update(User $user, JenisDonasi $jenisDonasi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
@@ -52,7 +55,7 @@ class JenisDonasiPolicy
      */
     public function delete(User $user, JenisDonasi $jenisDonasi): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;

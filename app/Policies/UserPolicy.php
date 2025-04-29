@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'bendahara' ) {
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ class UserPolicy
      */
     public function update(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'bendahara' ) {
             return true;
         }
         return false;

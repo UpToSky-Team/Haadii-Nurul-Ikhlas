@@ -30,7 +30,7 @@ class UserRegistrationPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'regis' ) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ class UserRegistrationPolicy
      */
     public function update(User $user, UserRegistration $userRegistration): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'regis' ) {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class UserRegistrationPolicy
      */
     public function delete(User $user, UserRegistration $userRegistration): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'regis' ) {
             return true;
         }
         return false;

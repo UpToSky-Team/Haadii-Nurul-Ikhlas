@@ -30,7 +30,7 @@ class BannerPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ class BannerPolicy
      */
     public function update(User $user, Banner $banner): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class BannerPolicy
      */
     public function delete(User $user, Banner $banner): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'humas') {
             return true;
         }
         return false;

@@ -30,7 +30,7 @@ class QrisPolicy
      */
     public function create(User $user): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ class QrisPolicy
      */
     public function update(User $user, Qris $qris): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class QrisPolicy
      */
     public function delete(User $user, Qris $qris): bool
     {
-        if ( Auth::check() && Auth::user()->role == 'admin' ) {
+        if ( Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'bendahara') {
             return true;
         }
         return false;
