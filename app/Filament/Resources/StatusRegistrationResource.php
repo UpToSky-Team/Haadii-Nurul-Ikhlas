@@ -35,7 +35,7 @@ class StatusRegistrationResource extends Resource
     protected static ?string $navigationLabel = 'Status Registrasi';
 
     protected static ?string $navigationIcon = 'heroicon-o-check-circle';
-    protected static ?string $navigationGroup = 'Program';
+    protected static ?string $navigationGroup = 'Penerimaan Peserta Didik';
 
     public static function form(Form $form): Form
     {
@@ -86,6 +86,7 @@ class StatusRegistrationResource extends Resource
                     ->searchable(),
                 TextColumn::make('keterangan')  // Menampilkan nama admin
                     ->label('Keterangan')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

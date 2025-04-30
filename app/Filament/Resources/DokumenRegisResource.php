@@ -27,7 +27,7 @@ class DokumenRegisResource extends Resource
     protected static ?string $navigationLabel = 'Tamplate Dokumen Tulis';
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
-    protected static ?string $navigationGroup = 'Program';
+    protected static ?string $navigationGroup = 'Penerimaan Peserta Didik';
 
     public static function form(Form $form): Form
     {

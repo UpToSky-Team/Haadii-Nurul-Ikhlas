@@ -35,7 +35,7 @@ class BerkasResource extends Resource
     protected static ?string $navigationLabel = 'Berkas';
 
     protected static ?string $navigationIcon = 'heroicon-o-folder';
-    protected static ?string $navigationGroup = 'Program';
+    protected static ?string $navigationGroup = 'Penerimaan Peserta Didik';
 
     public static function form(Form $form): Form
     {

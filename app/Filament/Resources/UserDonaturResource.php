@@ -76,7 +76,7 @@ class UserDonaturResource extends Resource
                     ->required()
                     ->native(false),
                 TextInput::make('jumlah_donasi')
-                    ->label('Pilih Donasi')
+                    ->label('Jumah Donasi')
                     ->maxLength(255)
                     ->required(),
                 FileUpload::make('bukti_transfer')

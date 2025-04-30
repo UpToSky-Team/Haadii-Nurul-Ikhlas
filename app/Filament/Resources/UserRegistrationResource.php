@@ -37,7 +37,7 @@ class UserRegistrationResource extends Resource
     protected static ?string $navigationLabel = 'Data Pendaftaran';
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
-    protected static ?string $navigationGroup = 'Program';
+    protected static ?string $navigationGroup = 'Penerimaan Peserta Didik';
 
     public static function form(Form $form): Form
     {
