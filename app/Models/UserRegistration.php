@@ -32,31 +32,45 @@ class UserRegistration extends Model
         'id_admin',
     ];
 
-    //Relationship User
+    // Relationship User
     public function users() : BelongsTo
     {
         return $this->belongsTo(User::class, 'id_admin', 'id_admin');
     }
 
-    //Relationship Berkas
+    // Relationship Berkas
     public function berkas() : BelongsTo
     {
         return $this->belongsTo(Berkas::class, 'id_registration', 'id_registration');
     }
 
-    //Relationship StatusRegistration
+    // Relationship StatusRegistration
     public function statusRegistrations() : BelongsTo
     {
-        return $this->belongsTo(StatusRegistration::class);
+        return $this->belongsTo(StatusRegistration::class, 'id_registration', 'id_registration');
     }
 
-    public function isComplete() {
-        $fillable = $this->getFillable();
-        foreach($fillable as $key) {
-            if(empty($this->$key)) {
-                return false;
+    // Soft delete relasi secara otomatis
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Ketika model UserRegistration di-soft delete, semua relasi yang juga menggunakan SoftDeletes akan ikut di-soft delete
+        static::deleting(function ($userRegistration) {
+            if (!$userRegistration->isForceDeleting()) {
+                // Soft delete relasi terkait
+                $userRegistration->berkas()->delete(); // Hapus relasi berkas
+                $userRegistration->statusRegistrations()->delete(); // Hapus relasi statusRegistrations
             }
-        }
-        return true;
+        });
+
+        // Mengembalikan relasi terkait saat restore
+        static::restored(function ($userRegistration) {
+            // Cek dan restore relasi yang di-soft delete sebelumnya
+            $userRegistration->berkas()->restore(); // Kembalikan relasi berkas
+            $userRegistration->statusRegistrations()->restore(); // Kembalikan relasi statusRegistrations
+        });
     }
 }
+
+

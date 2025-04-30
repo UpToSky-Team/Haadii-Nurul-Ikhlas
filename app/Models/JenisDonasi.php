@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class JenisDonasi extends Model
 {
     /** @use HasFactory<\Database\Factories\JenisDonasiFactory> */
-    use HasFactory, HasUuids, SoftDeletes
-    ;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $primaryKey = 'id_jenis_donasi';
     protected $fillable = [

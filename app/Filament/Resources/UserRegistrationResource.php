@@ -77,9 +77,13 @@ class UserRegistrationResource extends Resource
                     ->label('Tanggal Lahir')
                     ->required(),
                 TextInput::make('NIK')
-                    ->label('Nomer Induk Keluarga (NIK)')
+                    ->label('Nomor Induk Kependudukan (NIK)')
                     ->required()
-                    ->maxLength(16),
+                    ->maxLength(16)
+                    ->minLength(16)
+                    ->rule('digits:16')
+                    ->numeric(), // Optional, jika hanya ingin menerima angka
+                
                 TextInput::make('nama_sekolah_asal')
                     ->label('Nama Sekolah Asal (Boleh Kosong)')
                     ->maxLength(255)

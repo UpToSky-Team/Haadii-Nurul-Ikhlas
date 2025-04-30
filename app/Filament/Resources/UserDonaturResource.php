@@ -70,9 +70,10 @@ class UserDonaturResource extends Resource
                     ->native(false),
                 Select::make('id_bank')
                     ->label('Nama Bank')
-                    ->relationship('banks', 'nama_bank')
+                    ->relationship('bank', 'nama_bank') // ✅ ganti jadi 'bank'
                     ->searchable()
                     ->preload()
+                    ->required()
                     ->native(false),
                 TextInput::make('jumlah_donasi')
                     ->label('Pilih Donasi')
@@ -100,7 +101,7 @@ class UserDonaturResource extends Resource
                 TextColumn::make('phone')
                     ->label('Nomer Telepon')
                     ->searchable(),
-                TextColumn::make('banks.nama_bank')
+                TextColumn::make('bank.nama_bank')
                     ->label('Nama Bank')
                     ->searchable(),
                 TextColumn::make('jumlah_donasi')

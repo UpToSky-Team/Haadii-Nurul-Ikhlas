@@ -21,10 +21,4 @@ class Bank extends Model
         'rekening_bank',
         'nama_pemilik',
     ];
-
-    //Relationship UserDonatur
-    public function userDonaturs() : HasMany
-    {
-        return $this->hasMany(UserDonatur::class, 'id_user_donatur', 'id_user_donatur');
-    }
 }

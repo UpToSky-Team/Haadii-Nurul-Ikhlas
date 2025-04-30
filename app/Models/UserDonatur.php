@@ -26,13 +26,13 @@ class UserDonatur extends Model
         'id_admin',
     ];
 
-    //Relationships User
+    // Relationships User
     public function users() : BelongsTo
     {
         return $this->belongsTo(User::class, 'id_admin', 'id_admin');
     }
 
-    //Relationships JenisDonasi
+    // Relationships JenisDonasi
     public function jenisDonasis() : BelongsTo
     {
         return $this->belongsTo(JenisDonasi::class, 'id_jenis_donasi', 'id_jenis_donasi');
@@ -45,8 +45,31 @@ class UserDonatur extends Model
     }
 
     // Relationship Bank
-    public function banks() : BelongsTo
+    public function bank() : BelongsTo
     {
         return $this->belongsTo(Bank::class, 'id_bank', 'id_bank');
     }
+
+    // Soft delete relasi secara otomatis
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Ketika model UserDonatur di-soft delete, semua relasi yang juga menggunakan SoftDeletes akan ikut di-soft delete
+        static::deleting(function ($userDonatur) {
+            if (!$userDonatur->isForceDeleting()) {
+                // Soft delete relasi terkait
+                $userDonatur->statusDonasi()->delete(); // Hapus relasi statusDonasi
+                // Jika ada relasi lain, tambahkan dengan cara yang sama
+            }
+        });
+
+        // Mengembalikan relasi terkait saat restore
+        static::restored(function ($userDonatur) {
+            // Cek dan restore relasi yang di-soft delete sebelumnya
+            $userDonatur->statusDonasi()->restore(); // Kembalikan relasi statusDonasi
+            // Tambahkan relasi lain yang perlu di-restore jika ada
+        });
+    }
 }
+

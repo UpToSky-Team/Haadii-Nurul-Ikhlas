@@ -57,7 +57,7 @@ class UserDonaturController extends Controller
                 'phone' => $request->telepon,
                 'jumlah_donasi' => $request->jumlah_donasi,
                 'id_jenis_donasi' => $request->jenis_donasi,
-                'bank_name' => $request->nama_bank,
+                'id_bank' => $request->nama_bank,
                 'tanggal_transfer' => $request->tanggal_transfer,
                 'bukti_transfer' => $fileName,
             ]);
