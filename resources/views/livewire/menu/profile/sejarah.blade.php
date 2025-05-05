@@ -49,13 +49,12 @@
           @if (!empty($sejarah->gambar_url))
           <figure class="w-full max-w-3xl mx-auto mb-6">
             <img class="rounded-lg w-full shadow-sm" src="{{ Storage::url($sejarah->gambar_url) }}" alt="image description">
-            <figcaption class="mt-2 text-sm text-center text-gray-500">Bangunan Yayasan Haadii Nurul Ikhlas</figcaption>
           </figure>
           @endif
         </div>
 
         <h1 class="text-3xl font-semibold text-left text-orange-500 mb-6">
-          Sejarah Berdirinya Yayasan Haadi Nurul Ikhlas
+          Sejarah Berdirinya Yayasan Haadii Nurul Ikhlas
         </h1>
 
         <div class="text-gray-700 leading-relaxed richeditor-content value-db">

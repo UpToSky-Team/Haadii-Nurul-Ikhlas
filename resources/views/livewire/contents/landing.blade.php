@@ -192,7 +192,7 @@
     <section class="bg-white py-16">
         <div class="mx-auto max-w-6xl px-4 text-center">
             <h2 class="mb-10 text-3xl font-bold text-[#3B9B3C] sm:text-4xl">
-                DONASI <span class="text-[#FDC261]">YAYASAN HAADII NURUL IKHLAS</span>
+                MENERIMA DONASI <span class="text-[#FDC261]">YAYASAN HAADII NURUL IKHLAS</span>
             </h2>
 
             <!-- Grid Program -->
