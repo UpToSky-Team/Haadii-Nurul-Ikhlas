@@ -9,7 +9,7 @@ class StrukturYayasan extends Component
 {
     public function render()
     {
-        $data = Struktur::orderBy('created_at', 'desc')->get();
+        $data = Struktur::orderBy('level', 'asc')->orderBy('created_at', 'asc')->get();
         return view('livewire.menu.profile.struktur-yayasan', [
             'struktur' => $data, 
         ]);

@@ -20,6 +20,7 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Validation\Rules\Unique;
 
 class UserResource extends Resource
 {
@@ -38,7 +39,8 @@ class UserResource extends Resource
                     ->maxLength(255),
                 TextInput::make('ussername')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->unique('users', 'ussername', ignoreRecord: true),
                 TextInput::make('password')
                     ->password()
                     ->required()

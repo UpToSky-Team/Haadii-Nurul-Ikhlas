@@ -32,7 +32,7 @@ class LoginCustom extends Login
     protected function getEmailFormComponent(): Component
     {
         return TextInput::make('ussername')
-            ->label(__('ussername'))
+            ->label(__('username'))
             ->required()
             ->autocomplete()
             ->autofocus()
@@ -46,6 +46,7 @@ class LoginCustom extends Login
             'password' => $data['password'],
         ];
     }
+    
 
     protected function throwFailureValidationException(): never
     {

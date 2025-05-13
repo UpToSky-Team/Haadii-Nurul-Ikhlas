@@ -21,6 +21,7 @@ class StrukturFactory extends Factory
         return [
             'id_struktur' => Str::uuid(),
             'nama' => 'jhone',
+            'level' => 1,
             'jabatan' => 'Kepala Yayasan',
             'id_admin' => User::factory(),
         ];

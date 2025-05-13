@@ -40,15 +40,28 @@ class StrukturResource extends Resource
             ->schema([
                 TextInput::make('nama')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->rule('regex:/^[a-zA-Z\s\p{P}]+$/u'),
                 TextInput::make('jabatan')
                     ->required()
                     ->maxLength(255),
+                TextInput::make('level')
+                    ->required()
+                    ->numeric()
+                    ->minValue(0)
+                    ->maxValue(10)
+                    ->default(0)
+                    ->label('Level (0-10)'),
                 FileUpload::make('gambar_url')
                     ->label('Foto')
                     ->image()
                     ->disk('public')
                     ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        '6:6'
+                    ])
+                    ->imageEditorViewportWidth('600')
+                    ->imageEditorViewportHeight('600')
                     ->directory('Struktur'),
                 Hidden::make('id_admin')
                     ->default(Auth::user()->id_admin),

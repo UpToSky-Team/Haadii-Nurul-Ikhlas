@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id_struktur')->primary();
             $table->string('nama');
             $table->string('jabatan');
+            $table->integer(column: 'level');
             $table->string('gambar_url')->nullable(); //tambah nullable()
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references('id_admin')->on('users')->cascadeOnDelete();

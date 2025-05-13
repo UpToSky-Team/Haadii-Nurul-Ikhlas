@@ -17,6 +17,7 @@ class Struktur extends Model
     public $fillable = [
         'id_struktur',
         'nama',
+        'level',
         'gambar_url',
         'jabatan',
         'id_admin',
