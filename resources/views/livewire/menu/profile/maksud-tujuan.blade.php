@@ -79,9 +79,7 @@
 
             <!-- Ajakan -->
             <div class="pb-10">
-                <p class="text-lg font-semibold text-gray-800">
-                    Mari bersama-sama membangun masa depan yang lebih baik dengan berbagi dan peduli kepada sesama!
-                </p>
+               
             </div>
 
         </div>
