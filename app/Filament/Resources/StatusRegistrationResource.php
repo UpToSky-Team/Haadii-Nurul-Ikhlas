@@ -18,7 +18,9 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreAction;
+use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -81,10 +83,10 @@ class StatusRegistrationResource extends Resource
                     ->searchable(),
                 TextColumn::make('status')
                     ->sortable(),
-                TextColumn::make('users.name')  // Menampilkan nama admin
+                TextColumn::make('users.name')
                     ->label('Diverifikasi Oleh')
                     ->searchable(),
-                TextColumn::make('keterangan')  // Menampilkan nama admin
+                TextColumn::make('keterangan')
                     ->label('Keterangan')
                     ->formatStateUsing(fn($state) => strip_tags($state))
                     ->searchable(),
@@ -113,8 +115,8 @@ class StatusRegistrationResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -139,7 +141,6 @@ class StatusRegistrationResource extends Resource
     {
         return [
             'index' => Pages\ListStatusRegistrations::route('/'),
-            'create' => Pages\CreateStatusRegistration::route('/create'),
             'view' => Pages\ViewStatusRegistration::route('/{record}'),
             'edit' => Pages\EditStatusRegistration::route('/{record}/edit'),
         ];

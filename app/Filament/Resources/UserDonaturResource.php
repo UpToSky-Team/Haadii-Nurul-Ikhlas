@@ -36,8 +36,8 @@ class UserDonaturResource extends Resource
 {
     protected static ?string $model = UserDonatur::class;
 
-    protected static ?string $pluralLabel = 'Donatur';
-    protected static ?string $navigationLabel = 'Donatur';
+    protected static ?string $pluralLabel = 'Data Donasi';
+    protected static ?string $navigationLabel = 'Data Donasi';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-currency-dollar';
     protected static ?string $navigationGroup = 'Donasi';
@@ -58,10 +58,11 @@ class UserDonaturResource extends Resource
                     ->maxLength(255)
                     ->default(null),
                 TextInput::make('phone')
-                    ->label('Nomor Telepon')
+                    ->label('Nomer Telepon')
                     ->tel()
-                    ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->prefix('+62')
+                    ->required(),
                 Select::make('id_jenis_donasi')
                     ->label('Jenis Donasi')
                     ->relationship('jenisDonasis', 'jenis')
@@ -70,7 +71,7 @@ class UserDonaturResource extends Resource
                     ->native(false),
                 Select::make('id_bank')
                     ->label('Nama Bank')
-                    ->relationship('bank', 'nama_bank') // ✅ ganti jadi 'bank'
+                    ->relationship('bank', 'nama_bank')
                     ->searchable()
                     ->preload()
                     ->required()
@@ -100,7 +101,25 @@ class UserDonaturResource extends Resource
                     ->searchable(),
                 TextColumn::make('phone')
                     ->label('Nomer Telepon')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) {
+                            return '-';
+                        }
+                
+                        // Kalau sudah +62, tampilkan langsung
+                        if (str_starts_with($state, '+62')) {
+                            return $state;
+                        }
+                
+                        // Kalau mulai 0, ganti 0 dengan +62
+                        if (str_starts_with($state, '0')) {
+                            return '+62' . substr($state, 1);
+                        }
+                
+                        // Kalau nomor lain, langsung +62 di depan
+                        return '+62' . $state;
+                    }),
                 TextColumn::make('bank.nama_bank')
                     ->label('Nama Bank')
                     ->searchable(),

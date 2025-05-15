@@ -54,16 +54,20 @@ class UserRegistrationResource extends Resource
                     ->maxLength(255),
                 TextInput::make('no_hp')
                     ->label('Nomer Telepon')
-                    ->required()
-                    ->maxLength(255),
+                    ->tel()
+                    ->maxLength(255)
+                    ->prefix('+62')
+                    ->required(),
                 TextInput::make('nama_wali')
                     ->label('Nama Wali')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('no_hp_wali')
                     ->label('Nomer Telepon Wali')
-                    ->required()
-                    ->maxLength(255),
+                    ->tel()
+                    ->maxLength(255)
+                    ->prefix('+62')
+                    ->required(),
                 TextInput::make('email_anak')
                     ->label('Email Anak')
                     ->email()
@@ -104,13 +108,49 @@ class UserRegistrationResource extends Resource
                     ->searchable(),
                 TextColumn::make('no_hp')
                     ->label('Nomer Telepon')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) {
+                            return '-';
+                        }
+                
+                        // Kalau sudah +62, tampilkan langsung
+                        if (str_starts_with($state, '+62')) {
+                            return $state;
+                        }
+                
+                        // Kalau mulai 0, ganti 0 dengan +62
+                        if (str_starts_with($state, '0')) {
+                            return '+62' . substr($state, 1);
+                        }
+                
+                        // Kalau nomor lain, langsung +62 di depan
+                        return '+62' . $state;
+                    }),
                 TextColumn::make('nama_wali')
                     ->label('Nama Wali')
                     ->searchable(),
                 TextColumn::make('no_hp_wali')
                     ->label('Nomer Telepon Wali')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(function ($state) {
+                        if (!$state) {
+                            return '-';
+                        }
+                
+                        // Kalau sudah +62, tampilkan langsung
+                        if (str_starts_with($state, '+62')) {
+                            return $state;
+                        }
+                
+                        // Kalau mulai 0, ganti 0 dengan +62
+                        if (str_starts_with($state, '0')) {
+                            return '+62' . substr($state, 1);
+                        }
+                
+                        // Kalau nomor lain, langsung +62 di depan
+                        return '+62' . $state;
+                    }),
                 TextColumn::make('email_anak')
                     ->label('Email Anak')
                     ->searchable(),

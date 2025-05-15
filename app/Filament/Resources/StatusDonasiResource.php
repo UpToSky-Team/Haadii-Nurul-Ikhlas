@@ -16,7 +16,9 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreAction;
+use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
@@ -83,8 +85,8 @@ class StatusDonasiResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -110,7 +112,6 @@ class StatusDonasiResource extends Resource
     {
         return [
             'index' => Pages\ListStatusDonasis::route('/'),
-            'create' => Pages\CreateStatusDonasi::route('/create'),
             'view' => Pages\ViewStatusDonasi::route('/{record}'),
             'edit' => Pages\EditStatusDonasi::route('/{record}/edit'),
         ];

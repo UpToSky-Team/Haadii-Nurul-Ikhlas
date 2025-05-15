@@ -45,7 +45,8 @@ class JenisDonasiResource extends Resource
                     ->default(Auth::user()->id_admin),
                 TextInput::make('jenis')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(100)
+                    ->unique(ignoreRecord: true, column: 'jenis'),
                 RichEditor::make('description')
                     ->label('Diskripsi')
                     ->toolbarButtons([

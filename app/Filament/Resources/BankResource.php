@@ -41,7 +41,11 @@ class BankResource extends Resource
                     ->required(),
                 TextInput::make('rekening_bank')
                     ->label('Rekening Bank')
-                    ->required(),
+                    ->required()
+                    ->inputMode('numeric') // tampilkan keyboard angka
+                    ->mask(fn () => '999999999999999999999999999999') // hanya angka
+                    ->maxLength(30)
+                    ->rule('regex:/^[0-9]+$/'),
                 TextInput::make('nama_pemilik')
                     ->label('Nama Pemilik')
                     ->required(),

@@ -44,7 +44,8 @@ class QrisResource extends Resource
                     ->imageEditor()
                     ->directory('qris')
                     ->visibility('public')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->required(),
             ]);
     }
 

@@ -78,7 +78,8 @@ class KegiatanResource extends Resource
                     ->label('Deskripsi Kegiatan'),
                 FileUpload::make('gambar')
                     ->required()
-                    ->label('Gambar Kegiatan'),
+                    ->label('Gambar Kegiatan')
+                    ->image(),
                 DatePicker::make('tanggal')
                     ->required()
                     ->label('Tanggal Mulai'),

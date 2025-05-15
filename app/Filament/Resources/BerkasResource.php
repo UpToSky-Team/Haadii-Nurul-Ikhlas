@@ -47,7 +47,8 @@ class BerkasResource extends Resource
                     ->searchable()
                     ->preload()
                     ->native(false)
-                    ->default(null),
+                    ->default(null)
+                    ->required(),
                 FileUpload::make('foto_siswa')
                     ->label('Foto Siswa')
                     ->image()
