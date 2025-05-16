@@ -42,7 +42,7 @@
                             class="text-red-500">*</span></label>
                     <input type="text" name="nama_lengkap"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan nama lengkap">
+                        placeholder="Masukkan nama lengkap" value="{{ old('nama_lengkap') }}">
                     @error('nama_lengkap')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -52,7 +52,7 @@
                     <label class="mb-1 block text-sm font-medium">No HP</label>
                     <input type="tel" name="no_hp"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="08xxxxxxxxxx">
+                        placeholder="08xxxxxxxxxx" value="{{ old('no_hp') }}">
                     @error('no_hp')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -63,7 +63,7 @@
                             class="text-red-500">*</span></label>
                     <input type="text" name="nama_wali"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan nama wali">
+                        placeholder="Masukkan nama wali" value="{{ old('nama_wali') }}">
                     @error('nama_wali')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -73,7 +73,7 @@
                     <label class="mb-1 block text-sm font-medium">No HP Wali <span class="text-red-500">*</span></label>
                     <input type="tel" name="no_hp_wali"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="08xxxxxxxxxx">
+                        placeholder="08xxxxxxxxxx" value="{{ old('no_hp_wali') }}">
                     @error('no_hp_wali')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -84,7 +84,7 @@
                             class="text-red-500">*</span></label>
                     <input type="text" name="tempat_lahir"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan tempat lahir">
+                        placeholder="Masukkan tempat lahir" value="{{ old('tempat_lahir') }}">
                     @error('tempat_lahir')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -94,7 +94,8 @@
                     <label class="mb-1 block text-sm font-medium">Tanggal Lahir <span
                             class="text-red-500">*</span></label>
                     <input type="date" name="tanggal_lahir"
-                        class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500">
+                        class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                        value="{{ old('tanggal_lahir') }}">
                     @error('tanggal_lahir')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -104,7 +105,7 @@
                     <label class="mb-1 block text-sm font-medium">NIK <span class="text-red-500">*</span></label>
                     <input type="text" name="nik"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan NIK" maxlength="16">
+                        placeholder="Masukkan NIK" maxlength="16" value="{{ old('nik') }}">
                     @error('nik')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -114,7 +115,7 @@
                     <label class="mb-1 block text-sm font-medium">Nama Sekolah Asal</label>
                     <input type="text" name="sekolah_asal"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan nama sekolah asal">
+                        placeholder="Masukkan nama sekolah asal" value="{{ old('sekolah_asal') }}">
                     @error('sekolah_asal')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
@@ -124,7 +125,7 @@
                     <label class="mb-1 block text-sm font-medium">NPSN Sekolah Asal</label>
                     <input type="text" name="npsn_sekolah_asal"
                         class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Masukkan NPSN">
+                        placeholder="Masukkan NPSN" value="{{ old('npsn_sekolah_asal') }}">
                     @error('npsn_sekolah_asal')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror

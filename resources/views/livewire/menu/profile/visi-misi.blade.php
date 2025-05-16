@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Judul -->
-                <h1 class="animate-fade-in-up mb-6 text-center text-start text-3xl font-bold text-orange-600 delay-100">
+                <h1 class="animate-fade-in-up mb-6 text-start text-3xl font-bold text-orange-600 delay-100">
                     Visi & Misi Yayasan Haadii Nurul Ikhlas
                 </h1>
 
@@ -76,14 +76,8 @@
                         {!! $visiMisi->misi !!}
                     </div>
                 </div>
-
-                <!-- Ajakan -->
-                <p class="mt-6 text-center text-start text-lg font-semibold text-gray-800">
-                    Bersama kita wujudkan perubahan nyata untuk masyarakat yang lebih baik!
-                </p>
             </div>
         </div>
-
     </div>
 </body>
 
