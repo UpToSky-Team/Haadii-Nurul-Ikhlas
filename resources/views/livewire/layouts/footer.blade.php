@@ -21,11 +21,10 @@
             <div>
                 <h4 class="mb-4 text-lg font-semibold text-[#FDC261]">Navigasi</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="transition hover:text-[#FDC261] hover:underline">Beranda</a></li>
-                    <li><a href="#" class="transition hover:text-[#FDC261] hover:underline">Profil</a></li>
-                    <li><a href="#" class="transition hover:text-[#FDC261] hover:underline">Program</a></li>
-                    <li><a href="#" class="transition hover:text-[#FDC261] hover:underline">Donasi</a></li>
-                    <li><a href="#" class="transition hover:text-[#FDC261] hover:underline">Dokumentasi</a></li>
+                    <li><a href="/" class="transition hover:text-[#FDC261] hover:underline">Beranda</a></li>
+                    <li><a href="/layanan-donasi" class="transition hover:text-[#FDC261] hover:underline">Donasi</a></li>
+                    <li><a href="/publikasi" class="transition hover:text-[#FDC261] hover:underline">Publikasi</a></li>
+                    <li><a href="/hubungi-kami" class="transition hover:text-[#FDC261] hover:underline">Kontak</a></li>
                 </ul>
             </div>
 

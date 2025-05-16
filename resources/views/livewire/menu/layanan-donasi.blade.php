@@ -138,14 +138,6 @@
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
 
-                        <label class="block text-sm font-medium text-gray-700">Tanggal Transfer <span
-                                class="text-red-500">*</span></label>
-                        <input type="date" name="tanggal_transfer" placeholder="Tanggal Transfer"
-                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400" />
-                        @error('tanggal_transfer')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-
                         <label class="block text-sm font-medium text-gray-700">Bukti Transfer <span
                                 class="text-red-500">*</span></label>
                         <input type="file" name="bukti_transfer" class="w-full text-sm text-gray-600" />

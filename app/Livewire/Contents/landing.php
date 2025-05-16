@@ -29,6 +29,8 @@ class Landing extends Component
         $dataVideo = Galeri::where('jenis', '=', 'video')->latest()->take(2)->get();
         $dataFoto = Galeri::where('jenis', '=', 'gambar')->latest()->take(6)->get();
         $banner = Banner::latest()->take(3)->get();
+        $bannerOne = Banner::first();
+        $jumlahBanner= Banner::count();
         $yayasan = Yayasan::get();
 
         return view('livewire.contents.landing', [
@@ -38,7 +40,9 @@ class Landing extends Component
             'kegiatanUnggulan' => $kegiatanUnggulan,
             'jenisDonasi' => $jenisDonasi,
             'banner' => $banner,
+            'bannerOne' => $bannerOne,
             'yayasan' => $yayasan,
+            'jumlahBanner' => $jumlahBanner,
         ]);
     }
 }

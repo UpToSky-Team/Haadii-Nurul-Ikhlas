@@ -73,55 +73,68 @@
     </section>
 
     <section>
-        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+        <div id="{{ $jumlahBanner == 1 ? '' : 'default-carousel' }}" class="relative w-full" data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative aspect-[16/6] overflow-hidden sm:aspect-[16/9] md:aspect-[16/6] lg:aspect-[16/5]">
                 <!-- Item 1 -->
-                @foreach ($banner as $data)
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ Storage::url($data->banner) }}" class="block h-full w-full object-cover"
-                            alt="...">
-                    </div>
-                @endforeach
+                @if ($jumlahBanner == 1)
+                    <a href="{{ Storage::url($bannerOne->banner) }}" target="_blank" rel="noopener">
+                        <div class="">
+                            <img src="{{ Storage::url($bannerOne->banner) }}" class="block h-full w-full object-cover"
+                                alt="...">
+                        </div>
+                    </a>
+                @else
+                    @foreach ($banner as $data)
+                        <a href="{{ Storage::url($data->banner) }}" target="_blank" rel="noopener">
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ Storage::url($data->banner) }}" class="block h-full w-full object-cover"
+                                    alt="...">
+                            </div>
+                        </a>
+                    @endforeach
+                @endif
             </div>
 
-            <!-- Slider indicators -->
-            <div class="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
-                <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="true"
-                    aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="false"
-                    aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="false"
-                    aria-label="Slide 3" data-carousel-slide-to="2"></button>
-            </div>
+            @if ($jumlahBanner != 1)
+                <!-- Slider indicators -->
+                <div class="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
+                    <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="true"
+                        aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="false"
+                        aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                    <button type="button" class="h-3 w-3 rounded-full bg-white/70 hover:bg-white" aria-current="false"
+                        aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                </div>
 
-            <!-- Slider controls -->
-            <button type="button"
-                class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-                data-carousel-prev>
-                <span
-                    class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                    <svg class="h-4 w-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 1 1 5l4 4" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-                data-carousel-next>
-                <span
-                    class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                    <svg class="h-4 w-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                        <svg class="h-4 w-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                        <svg class="h-4 w-4 text-white rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
+            @endif
         </div>
     </section>
 
@@ -251,10 +264,11 @@
                     @if (!empty($video))
                         @foreach ($video as $data)
                             @if ($data->jenis == 'video')
-                            <video controls class="h-64 w-full rounded-lg shadow-md md:h-96 md:w-2/3" title="Video Kegiatan Yayasan">
-                                <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
-                                Browser Anda tidak mendukung tag video.
-                            </video>
+                                <video controls class="h-64 w-full rounded-lg shadow-md md:h-96 md:w-2/3"
+                                    title="Video Kegiatan Yayasan">
+                                    <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
+                                    Browser Anda tidak mendukung tag video.
+                                </video>
                             @endif
                         @endforeach
                     @endif

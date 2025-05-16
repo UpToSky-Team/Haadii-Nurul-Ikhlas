@@ -63,17 +63,20 @@
                               </tr>
                             </table>
                         @else
-                            <p><strong>Nama Yayasan:</strong> Yayasan Haadii Nurul Ikhlas</p>
-                            <p><strong>Alamat:</strong> Jl. Contoh Alamat No. 123, Citeureup, Bogor</p>
-                            <p><strong>Email:</strong> yayasan@contoh.org</p>
-                            <p><strong>Telepon:</strong> 0812-3456-7890</p>
+                            <table class="w-full text-sm text-gray-700">
+                              <span class="italic text-gray-400">Informasi belum tersedia.</span>
+                            </table>
                         @endif
                     </div>
                     <div class="rounded-xl bg-white p-6 shadow-lg">
                       <h2 class="mb-4 text-xl font-semibold text-gray-800">Deskripsi</h2>
                       <div>
                         <div class="text-justify">
-                          {!! $yayasan->first()->deskripsi !!}
+                        @if ($yayasan->isNotEmpty() && !empty($yayasan->first()->deskripsi))
+                            {!! $yayasan->first()->deskripsi !!}
+                        @else
+                            <span class="italic text-gray-400">Deskripsi belum tersedia.</span>
+                        @endif
                         </div>
                       </div>
                     </div>
