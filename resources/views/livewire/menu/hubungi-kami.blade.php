@@ -41,44 +41,44 @@
                         <h2 class="mb-4 text-xl font-semibold text-gray-800">Informasi Yayasan</h2>
                         @if ($yayasan->isNotEmpty())
                             <table class="w-full text-sm text-gray-700">
-                              <tr class="align-top">
-                                <td class="py-2 font-semibold">Nama Yayasan</td>
-                                <td class="py-2 px-2">:</td>
-                                <td class="py-2">{{ $yayasan->first()->nama }}</td>
-                              </tr>
-                              <tr class="align-top">
-                                <td class="py-2 font-semibold">Alamat</td>
-                                <td class="py-2 px-2">:</td>
-                                <td class="py-2">{{ $yayasan->first()->alamat }}</td>
-                              </tr>
-                              <tr class="align-top">
-                                <td class="py-2 font-semibold">Email</td>
-                                <td class="py-2 px-2">:</td>
-                                <td class="py-2">{{ $yayasan->first()->email }}</td>
-                              </tr>
-                              <tr class="align-top">
-                                <td class="py-2 font-semibold">Telepon</td>
-                                <td class="py-2 px-2">:</td>
-                                <td class="py-2">{{ $yayasan->first()->telepon }}</td>
-                              </tr>
+                                <tr class="align-top">
+                                    <td class="py-2 font-semibold">Nama Yayasan</td>
+                                    <td class="px-2 py-2">:</td>
+                                    <td class="py-2">{{ $yayasan->first()->nama }}</td>
+                                </tr>
+                                <tr class="align-top">
+                                    <td class="py-2 font-semibold">Alamat</td>
+                                    <td class="px-2 py-2">:</td>
+                                    <td class="py-2">{{ $yayasan->first()->alamat }}</td>
+                                </tr>
+                                <tr class="align-top">
+                                    <td class="py-2 font-semibold">Email</td>
+                                    <td class="px-2 py-2">:</td>
+                                    <td class="py-2">{{ $yayasan->first()->email }}</td>
+                                </tr>
+                                <tr class="align-top">
+                                    <td class="py-2 font-semibold">Telepon</td>
+                                    <td class="px-2 py-2">:</td>
+                                    <td class="py-2">{{ $yayasan->first()->no_telepon }}</td>
+                                </tr>
                             </table>
                         @else
                             <table class="w-full text-sm text-gray-700">
-                              <span class="italic text-gray-400">Informasi belum tersedia.</span>
+                                <span class="italic text-gray-400">Informasi belum tersedia.</span>
                             </table>
                         @endif
                     </div>
                     <div class="rounded-xl bg-white p-6 shadow-lg">
-                      <h2 class="mb-4 text-xl font-semibold text-gray-800">Deskripsi</h2>
-                      <div>
-                        <div class="text-justify">
-                        @if ($yayasan->isNotEmpty() && !empty($yayasan->first()->deskripsi))
-                            {!! $yayasan->first()->deskripsi !!}
-                        @else
-                            <span class="italic text-gray-400">Deskripsi belum tersedia.</span>
-                        @endif
+                        <h2 class="mb-4 text-xl font-semibold text-gray-800">Deskripsi</h2>
+                        <div>
+                            <div class="text-justify">
+                                @if ($yayasan->isNotEmpty() && !empty($yayasan->first()->deskripsi))
+                                    {!! $yayasan->first()->deskripsi !!}
+                                @else
+                                    <span class="italic text-gray-400">Deskripsi belum tersedia.</span>
+                                @endif
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </div>
 
