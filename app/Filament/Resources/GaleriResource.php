@@ -42,7 +42,7 @@ class GaleriResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('galeri_url')
-                    ->label('Foto')
+                    ->label('Foto atau Video')
                     ->required()
                     ->disk('public')
                     ->directory(fn($get) => self::getStoragePath($get))

@@ -107,14 +107,11 @@ class StatusRegistrationResource extends Resource
                     ->label('Lihat'),
                 EditAction::make()
                     ->label('Edit'),
-                DeleteAction::make()
-                    ->label('Hapus'),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
