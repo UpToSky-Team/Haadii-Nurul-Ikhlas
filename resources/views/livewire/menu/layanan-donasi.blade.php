@@ -132,7 +132,7 @@
                             @foreach ($bank as $data)
                                 <option value="{{ $data->id_bank }}">{{ $data->nama_bank }}</option>
                             @endforeach
-                            <option value="Lainnya">Lainnya</option>
+                            <option value="Lainnya">Qris</option>
                         </select>
                         @error('nama_bank')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>

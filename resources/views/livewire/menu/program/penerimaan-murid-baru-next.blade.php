@@ -48,12 +48,13 @@
                         <div>
                             <input type="hidden" name="id_registration" value="{{ $id_registration }}">
                             <label for="foto_siswa" class="mb-2 block text-sm font-medium text-gray-700">Unggah Foto
-                                Siswa</label>
+                                Siswa <i style="font: italic">(png, jpg)</i> </label>
                             <input id="foto_siswa" name="foto_siswa" type="file" accept="image/*"
                                 class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-md transition hover:shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
                             @error('foto_siswa')
                                 <p class="mt-1 text-sm text-red-600">{{ $errors->first('foto_siswa') }}</p>
                             @enderror
+                            <p></p>
                             @if ($foto_siswa)
                                 <a href="{{ Storage::url($foto_siswa) }}" target="_blank"
                                     class="mb-2 inline-block text-blue-600 hover:underline">Lihat Foto Siswa</a>
@@ -61,7 +62,7 @@
                         </div>
                         <div>
                             <label for="akta_lahir" class="mb-2 block text-sm font-medium text-gray-700">Unggah Akta
-                                Lahir</label>
+                                Lahir <i>(pdf)</i></label>
                             <input id="akta_lahir" name="akta_lahir" type="file" accept="image/*,application/pdf"
                                 class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-md transition hover:shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
                             @error('akta_lahir')
@@ -74,7 +75,7 @@
                         </div>
                         <div>
                             <label for="kartu_keluarga" class="mb-2 block text-sm font-medium text-gray-700">Unggah
-                                Kartu Keluarga</label>
+                                Kartu Keluarga <i>(pdf)</i></label>
                             <input id="kartu_keluarga" name="kartu_keluarga" type="file"
                                 accept="image/*,application/pdf"
                                 class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-md transition hover:shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
@@ -88,7 +89,7 @@
                         </div>
                         <div>
                             <label for="ijazah" class="mb-2 block text-sm font-medium text-gray-700">Unggah
-                                Ijazah</label>
+                                Ijazah <i>(pdf)</i></label>
                             <input id="ijazah" name="ijazah" type="file" accept="image/*,application/pdf"
                                 class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-md transition hover:shadow-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-500">
                             @error('ijazah')
@@ -105,6 +106,7 @@
                                 @if ($dokumen && $dokumen->isNotEmpty())
                                     <a href="{{ Storage::url($dokumen->first()->dokumen) }}" target="_blank" class="text-blue-600 hover:underline">Download Dokumen</a>
                                 @endif
+                                <i>(pdf)</i>
                             </label>
                             <input id="dokumen_tulis" name="dokumen_tulis" type="file"
                                 accept="image/*,application/pdf"

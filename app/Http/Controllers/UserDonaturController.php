@@ -42,7 +42,7 @@ class UserDonaturController extends Controller
             'nama_bank' => 'required|string|max:255',
             'jenis_donasi' => 'required',
             'tanggal_transfer' => 'required|date',
-            'bukti_transfer' => 'required|file|max:2048',
+            'bukti_transfer' => 'required|file|max:10048',
         ]);
 
         if ($request->hasFile('bukti_transfer')) {
