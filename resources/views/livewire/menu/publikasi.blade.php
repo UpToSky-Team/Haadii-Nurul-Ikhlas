@@ -103,27 +103,45 @@
                     @if (!empty($foto))
                         @foreach ($foto as $data)
                             <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
-                                <img src="{{ Storage::url($data->galeri_url) }}" alt="{{ $data->galeri_url }}"
-                                    class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
+                                <div class="group relative">
+                                    <img src="{{ Storage::url($data->galeri_url) }}" alt="{{ $data->galeri_url }}"
+                                        class="rounded-lg shadow transition-transform duration-300 hover:scale-105">
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                                        <p class="px-2 text-center text-sm text-white">{{ $data->caption }}</p>
+                                    </div>
+                                </div>
                             </a>
                         @endforeach
                     @endif
                 </div>
-                <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div class="mt-10 columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:columns-3">
                     @if (!empty($video))
                         @foreach ($video as $data)
                             @if ($data->jenis === 'video')
-                                <div
-                                    class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                                <div class="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                                    data-embed-type="link">
                                     <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri"
                                         class="block">
-                                        <div class="relative aspect-video w-full overflow-hidden">
-                                            <video controls
-                                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                                title="Video Kegiatan Yayasan" preload="metadata">
-                                                <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
-                                                Browser Anda tidak mendukung tag video.
-                                            </video>
+                                        <div class="relative w-full overflow-hidden">
+                                            <div class="group relative">
+                                                <video controls
+                                                    class="h-auto w-full rounded-t-xl bg-black object-contain transition-transform duration-300 group-hover:scale-105"
+                                                    title="Video Kegiatan Yayasan" preload="metadata">
+                                                    <source src="{{ Storage::url($data->galeri_url) }}"
+                                                        type="video/mp4">
+                                                    Browser Anda tidak mendukung tag video.
+                                                </video>
+                                                @if ($data->caption)
+                                                    <div
+                                                        class="absolute inset-0 flex items-center justify-center rounded-t-xl bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                                                        <p
+                                                            class="mx-4 max-w-xs rounded-lg bg-black bg-opacity-70 px-4 py-2 text-center text-sm text-white">
+                                                            {{ $data->caption }}
+                                                        </p>
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -131,12 +149,12 @@
 
                             @if ($data->jenis === 'link')
                                 <div
-                                    class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                                    <div class="relative aspect-video w-full overflow-hidden">
-                                        <!-- YouTube embed container -->
-                                        <div class="absolute inset-0 h-full w-full">
+                                    class="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                                    <div class="relative w-full overflow-hidden rounded-t-xl">
+                                        <!-- Container untuk embed dengan aspect ratio yang fleksibel -->
+                                        <div class="relative w-full rounded-t-xl bg-white">
                                             <div
-                                                class="h-full w-full [&>iframe]:h-full [&>iframe]:w-full [&>iframe]:border-0 [&>iframe]:object-cover">
+                                                class="[&>iframe]:block [&>iframe]:min-h-48 [&>iframe]:w-full [&>iframe]:rounded-t-xl [&>iframe]:border-0">
                                                 {!! $data->galeri_url !!}
                                             </div>
                                         </div>
@@ -146,6 +164,63 @@
                         @endforeach
                     @endif
                 </div>
+
+                {{-- JavaScript untuk menyesuaikan iframe height --}}
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Function untuk menyesuaikan iframe height
+                        function adjustIframeHeight() {
+                            const iframes = document.querySelectorAll('iframe');
+
+                            iframes.forEach(iframe => {
+                                // Cek apakah iframe sudah ter-load
+                                iframe.onload = function() {
+                                    try {
+                                        // Deteksi platform berdasarkan src
+                                        const src = iframe.src.toLowerCase();
+
+                                        if (src.includes('youtube.com') || src.includes('youtu.be')) {
+                                            // YouTube - deteksi shorts vs regular
+                                            if (src.includes('shorts')) {
+                                                iframe.style.height = '600px'; // Portrait untuk shorts
+                                                iframe.style.aspectRatio = '9/16';
+                                            } else {
+                                                iframe.style.height = '315px'; // Landscape untuk video biasa
+                                                iframe.style.aspectRatio = '16/9';
+                                            }
+                                        } else if (src.includes('tiktok.com')) {
+                                            // TikTok - selalu portrait
+                                            iframe.style.height = '800px';
+                                            iframe.style.aspectRatio = '9/16';
+                                        } else if (src.includes('instagram.com')) {
+                                            // Instagram - bisa square atau portrait
+                                            iframe.style.height = '800px';
+                                            iframe.style.aspectRatio = '9/16';
+                                        } else {
+                                            // Default untuk platform lain
+                                            iframe.style.height = '315px';
+                                            iframe.style.aspectRatio = '16/9';
+                                        }
+                                    } catch (e) {
+                                        // Fallback jika tidak bisa detect
+                                        iframe.style.height = '315px';
+                                    }
+                                };
+
+                                // Trigger onload jika iframe sudah loaded
+                                if (iframe.complete) {
+                                    iframe.onload();
+                                }
+                            });
+                        }
+
+                        // Jalankan saat DOM ready
+                        adjustIframeHeight();
+
+                        // Jalankan ulang setiap 2 detik untuk iframe yang ter-load belakangan
+                        setTimeout(adjustIframeHeight, 2000);
+                    });
+                </script>
             </div>
         </div>
 

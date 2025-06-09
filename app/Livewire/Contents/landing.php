@@ -26,7 +26,7 @@ class Landing extends Component
         $dataBerita = Berita::latest()->take(3)->get();
         $kegiatanUnggulan = Kegiatan::where('status', 'unggulan')->latest()->take(6)->get();
         $jenisDonasi = JenisDonasi::latest()->take(6)->get();
-        $dataVideo = Galeri::whereIn('jenis', ['link', 'video'])->latest()->take(2)->get();
+        $dataVideo = Galeri::whereIn('jenis', ['link', 'video'])->latest()->take(6)->get();
         $dataFoto = Galeri::where('jenis', '=', 'gambar')->latest()->take(6)->get();
         $banner = Banner::latest()->take(3)->get();
         $bannerOne = Banner::first();

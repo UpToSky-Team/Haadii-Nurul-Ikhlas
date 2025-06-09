@@ -46,7 +46,7 @@ class GaleriResource extends Resource
                     ->label('Tipe Media')
                     ->options([
                         'upload' => 'Upload File',
-                        'link' => 'Link YouTube',
+                        'link' => 'Link Embed',
                     ])
                     ->required()
                     ->live(),
@@ -59,7 +59,7 @@ class GaleriResource extends Resource
                     ->visible(fn($get) => $get('media_type') === 'upload'),
 
                 Textarea::make('galeri_link')
-                    ->label('Link Embed YouTube')
+                    ->label('Link Embed ')
                     ->placeholder('<iframe src=.....  allowfullscreen></iframe>')
                     ->visible(fn($get) => $get('media_type') === 'link'),
 

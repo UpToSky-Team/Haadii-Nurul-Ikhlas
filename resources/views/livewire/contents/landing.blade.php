@@ -267,102 +267,112 @@
                         </h2>
                     </div>
 
-                    <!-- Video Grid -->
-                    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="mt-10 columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:columns-3">
                         @if (!empty($video))
                             @foreach ($video as $data)
                                 @if ($data->jenis === 'video')
-                                    <div class="group relative">
-                                        <!-- Video Card -->
-                                        <div
-                                            class="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
-                                            <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri"
-                                                class="block">
-                                                <div class="relative aspect-video overflow-hidden">
-                                                    <!-- Video Element -->
+                                    <div class="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                                        data-embed-type="link">
+                                        <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri"
+                                            class="block">
+                                            <div class="relative w-full overflow-hidden">
+                                                <div class="group relative">
                                                     <video controls
-                                                        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                                        title="Video Kegiatan Yayasan" preload="metadata"
-                                                        controlsList="nodownload">
+                                                        class="h-auto w-full rounded-t-xl bg-black object-contain transition-transform duration-300 group-hover:scale-105"
+                                                        title="Video Kegiatan Yayasan" preload="metadata">
                                                         <source src="{{ Storage::url($data->galeri_url) }}"
                                                             type="video/mp4">
                                                         Browser Anda tidak mendukung tag video.
                                                     </video>
-
-                                                    <!-- Overlay Gradient -->
-                                                    <div
-                                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                    </div>
-
-                                                    <!-- Play Icon Overlay -->
-                                                    <div
-                                                        class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    @if ($data->caption)
                                                         <div
-                                                            class="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
-                                                            <svg class="ml-1 h-8 w-8 text-white" fill="currentColor"
-                                                                viewBox="0 0 20 20">
-                                                                <path
-                                                                    d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                                                            </svg>
+                                                            class="absolute inset-0 flex items-center justify-center rounded-t-xl bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                                                            <p
+                                                                class="mx-4 max-w-xs rounded-lg bg-black bg-opacity-70 px-4 py-2 text-center text-sm text-white">
+                                                                {{ $data->caption }}
+                                                            </p>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
-                                            </a>
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 @endif
 
                                 @if ($data->jenis === 'link')
-                                    <div class="group relative">
-                                        <!-- YouTube/Link Card -->
-                                        <div
-                                            class="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-gradient-to-br from-red-900/20 to-slate-900 shadow-xl transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
-                                            <div class="relative aspect-video overflow-hidden">
-                                                <!-- YouTube Embed Container -->
-                                                <div class="absolute inset-0 h-full w-full">
-                                                    <div
-                                                        class="h-full w-full [&>iframe]:h-full [&>iframe]:w-full [&>iframe]:rounded-t-2xl [&>iframe]:border-0">
-                                                        {!! $data->galeri_url !!}
-                                                    </div>
-                                                </div>
-
-                                                <!-- Hover Overlay -->
+                                    <div
+                                        class="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                                        <div class="relative w-full overflow-hidden rounded-t-xl">
+                                            <!-- Container untuk embed dengan aspect ratio yang fleksibel -->
+                                            <div class="relative w-full rounded-t-xl bg-white">
                                                 <div
-                                                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    class="[&>iframe]:block [&>iframe]:min-h-48 [&>iframe]:w-full [&>iframe]:rounded-t-xl [&>iframe]:border-0">
+                                                    {!! $data->galeri_url !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
                             @endforeach
-                        @else
-                            <!-- Empty State -->
-                            <div class="col-span-full py-16 text-center">
-                                <div class="mx-auto mb-6 h-24 w-24 text-gray-600">
-                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        class="h-full w-full">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <h3 class="mb-2 text-xl font-semibold text-gray-400">Belum Ada Video</h3>
-                                <p class="text-gray-500">Video dokumentasi akan ditampilkan di sini</p>
-                            </div>
                         @endif
                     </div>
 
-                    <!-- Bottom Decoration -->
-                    <div class="mt-16 text-center">
-                        <div class="inline-flex items-center gap-2 text-gray-400">
-                            <div class="h-px w-8 bg-gradient-to-r from-transparent to-gray-600"></div>
-                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <div class="h-px w-8 bg-gradient-to-l from-transparent to-gray-600"></div>
-                        </div>
-                    </div>
+                    {{-- JavaScript untuk menyesuaikan iframe height --}}
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Function untuk menyesuaikan iframe height
+                            function adjustIframeHeight() {
+                                const iframes = document.querySelectorAll('iframe');
+
+                                iframes.forEach(iframe => {
+                                    // Cek apakah iframe sudah ter-load
+                                    iframe.onload = function() {
+                                        try {
+                                            // Deteksi platform berdasarkan src
+                                            const src = iframe.src.toLowerCase();
+
+                                            if (src.includes('youtube.com') || src.includes('youtu.be')) {
+                                                // YouTube - deteksi shorts vs regular
+                                                if (src.includes('shorts')) {
+                                                    iframe.style.height = '600px'; // Portrait untuk shorts
+                                                    iframe.style.aspectRatio = '9/16';
+                                                } else {
+                                                    iframe.style.height = '315px'; // Landscape untuk video biasa
+                                                    iframe.style.aspectRatio = '16/9';
+                                                }
+                                            } else if (src.includes('tiktok.com')) {
+                                                // TikTok - selalu portrait
+                                                iframe.style.height = '800px';
+                                                iframe.style.aspectRatio = '9/16';
+                                            } else if (src.includes('instagram.com')) {
+                                                // Instagram - bisa square atau portrait
+                                                iframe.style.height = '800px';
+                                                iframe.style.aspectRatio = '9/16';
+                                            } else {
+                                                // Default untuk platform lain
+                                                iframe.style.height = '315px';
+                                                iframe.style.aspectRatio = '16/9';
+                                            }
+                                        } catch (e) {
+                                            // Fallback jika tidak bisa detect
+                                            iframe.style.height = '315px';
+                                        }
+                                    };
+
+                                    // Trigger onload jika iframe sudah loaded
+                                    if (iframe.complete) {
+                                        iframe.onload();
+                                    }
+                                });
+                            }
+
+                            // Jalankan saat DOM ready
+                            adjustIframeHeight();
+
+                            // Jalankan ulang setiap 2 detik untuk iframe yang ter-load belakangan
+                            setTimeout(adjustIframeHeight, 2000);
+                        });
+                    </script>
                 </div>
             </div>
 
