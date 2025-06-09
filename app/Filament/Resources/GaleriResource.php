@@ -59,8 +59,8 @@ class GaleriResource extends Resource
                     ->visible(fn($get) => $get('media_type') === 'upload'),
 
                 Textarea::make('galeri_link')
-                    ->label('Link YouTube')
-                    ->placeholder('https://www.youtube.com/watch?v=...')
+                    ->label('Link Embed YouTube')
+                    ->placeholder('<iframe src=.....  allowfullscreen></iframe>')
                     ->visible(fn($get) => $get('media_type') === 'link'),
 
                 Textarea::make('caption')
