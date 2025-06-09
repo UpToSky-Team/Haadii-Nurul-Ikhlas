@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('galeris', function (Blueprint $table) {
             $table->uuid('id_galeri')->primary();
-            $table->string('galeri_url');
+            $table->text('galeri_url');
             $table->text('caption');
-            $table->enum('jenis', ['video', 'gambar'])->default('gambar');
+            $table->enum('jenis', ['video', 'gambar', 'link'])->default('link');
             $table->uuid('id_admin');
             $table->foreign('id_admin')->references(columns: 'id_admin')->on('users')->cascadeOnDelete();
             $table->softDeletes();

@@ -80,6 +80,16 @@
                 </div>
 
                 <div>
+                    <label class="mb-1 block text-sm font-medium">Email Yang Dapat Di Hubungi</label>
+                    <input type="text" name="email_anak"
+                        class="w-full rounded-xl border border-gray-300 px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="example@..." value="{{ old('email_anak') }}">
+                    @error('email_anak')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
                     <label class="mb-1 block text-sm font-medium">Tempat Lahir <span
                             class="text-red-500">*</span></label>
                     <input type="text" name="tempat_lahir"

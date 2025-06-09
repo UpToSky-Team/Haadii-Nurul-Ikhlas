@@ -30,7 +30,10 @@ class BerkasPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'regis' ) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -38,7 +41,10 @@ class BerkasPolicy
      */
     public function update(User $user, Berkas $berkas): bool
     {
-        return true;
+        if ( Auth::check() && Auth::user()->role == 'admin' || Auth::user()->role == 'regis' ) {
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -80,6 +80,7 @@ class ArtikelResource extends Resource
                     ->label('Thumbnail Gambar Artikel (Slug)')
                     ->image()
                     ->imageEditor()
+                    ->required()
                     ->directory('artikel')
                     ->visibility('public')
                     ->columnSpanFull(),
@@ -91,6 +92,7 @@ class ArtikelResource extends Resource
                             ->label('Gambar Artikel')
                             ->image()
                             ->imageEditor()
+                            ->required()
                             ->directory('artikel')
                             ->visibility('public'),
 

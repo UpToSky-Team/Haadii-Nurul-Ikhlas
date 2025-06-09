@@ -83,14 +83,16 @@
                         <label class="block text-sm font-medium text-gray-700">Donasi Atas Nama <span
                                 class="text-red-500">*</span></label>
                         <input type="text" name="nama" placeholder="Nama Anda"
-                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400" />
+                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                            value="{{ old('nama') }}" />
                         @error('nama')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
 
                         <label class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" name="email" placeholder="Email"
-                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400" />
+                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                            value="{{ old('email') }}" />
                         @error('email')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -98,7 +100,8 @@
                         <label class="block text-sm font-medium text-gray-700">Nomor Telepon <span
                                 class="text-red-500">*</span></label>
                         <input type="tel" name="telepon" placeholder="Nomor Telepon"
-                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400" />
+                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                            value="{{ old('telepon') }}" />
                         @error('telepon')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -106,7 +109,8 @@
                         <label class="block text-sm font-medium text-gray-700">Jumlah Donasi <span
                                 class="text-red-500">*</span></label>
                         <input type="number" name="jumlah_donasi" placeholder="Jumlah Donasi"
-                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400" />
+                            class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                            value="{{ old('jumlah_donasi') }}" />
                         @error('jumlah_donasi')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -115,9 +119,9 @@
                                 class="text-red-500">*</span></label>
                         <select name="jenis_donasi"
                             class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-                            <option disabled selected>---</option>
+                            <option disabled {{ old('jenis_donasi') ? '' : 'selected' }}>---</option>
                             @foreach ($jenis as $data)
-                                <option value="{{ $data->id_jenis_donasi }}">{{ $data->jenis }}</option>
+                                <option value="{{ $data->id_jenis_donasi }}" {{ old('jenis_donasi') == $data->id_jenis_donasi ? 'selected' : '' }}>{{ $data->jenis }}</option>
                             @endforeach
                         </select>
                         @error('jenis_donasi')
@@ -128,11 +132,11 @@
                                 class="text-red-500">*</span></label>
                         <select name="nama_bank"
                             class="w-full rounded-md border border-emerald-500 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-                            <option disabled selected>Nama Bank :</option>
+                            <option disabled {{ old('nama_bank') ? '' : 'selected' }}>Nama Bank :</option>
                             @foreach ($bank as $data)
-                                <option value="{{ $data->id_bank }}">{{ $data->nama_bank }}</option>
+                                <option value="{{ $data->id_bank }}" {{ old('nama_bank') == $data->id_bank ? 'selected' : '' }}>{{ $data->nama_bank }}</option>
                             @endforeach
-                            <option value="Lainnya">Qris</option>
+                            {{-- <option value="Lainnya">Qris</option> --}}
                         </select>
                         @error('nama_bank')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>

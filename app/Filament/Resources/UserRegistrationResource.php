@@ -69,9 +69,8 @@ class UserRegistrationResource extends Resource
                     ->prefix('+62')
                     ->required(),
                 TextInput::make('email_anak')
-                    ->label('Email Anak')
+                    ->label('Email Yang Dapat Di Hubungi')
                     ->email()
-                    ->required()
                     ->maxLength(255),
                 TextInput::make('tempat_lahir')
                     ->label('Tempat Lahir')
@@ -152,7 +151,7 @@ class UserRegistrationResource extends Resource
                         return '+62' . $state;
                     }),
                 TextColumn::make('email_anak')
-                    ->label('Email Anak')
+                    ->label('Email')
                     ->searchable(),
                 TextColumn::make('tempat_lahir')
                     ->label('Tempat Lahir')

@@ -56,7 +56,7 @@
                 <h2 class="mb-4 text-xl font-semibold sm:text-2xl">Berita Pilihan</h2>
                 @foreach ($berita as $data)
                     <a href="{{ route('berita.detail', $data->id_berita) }}"
-                        class="flex flex-col rounded-xl mb-4 bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
+                        class="mb-4 flex flex-col rounded-xl bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
                         <div class="flex-shrink-0">
                             <img src="{{ Storage::url($data->slug) }}" alt="{{ $data->slug }}"
                                 class="h-full w-full rounded-t-xl object-cover sm:h-full sm:w-80 sm:rounded-l-xl sm:rounded-t-none">
@@ -69,7 +69,7 @@
                     </a>
                 @endforeach
                 <div class="mt-4" onclick="refreshPage()">
-                    {{ $berita->links() }}  
+                    {{ $berita->links() }}
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
                     </a>
                 @endforeach
                 <div class="mt-4" onclick="refreshPage()">
-                    {{ $berita->links() }}  
+                    {{ $berita->links() }}
                 </div>
             </div>
 
@@ -109,20 +109,40 @@
                         @endforeach
                     @endif
                 </div>
-                <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     @if (!empty($video))
                         @foreach ($video as $data)
-                            <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri">
-                                <div class="relative aspect-video w-full overflow-hidden rounded-lg shadow-md">
-                                    <video controls class="h-full w-full" title="Video Kegiatan Yayasan">
-                                        <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
-                                        Browser Anda tidak mendukung tag video.
-                                    </video>
-                                    <div
-                                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50">
+                            @if ($data->jenis === 'video')
+                                <div
+                                    class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                                    <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri"
+                                        class="block">
+                                        <div class="relative aspect-video w-full overflow-hidden">
+                                            <video controls
+                                                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                title="Video Kegiatan Yayasan" preload="metadata">
+                                                <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
+                                                Browser Anda tidak mendukung tag video.
+                                            </video>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+
+                            @if ($data->jenis === 'link')
+                                <div
+                                    class="group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                                    <div class="relative aspect-video w-full overflow-hidden">
+                                        <!-- YouTube embed container -->
+                                        <div class="absolute inset-0 h-full w-full">
+                                            <div
+                                                class="h-full w-full [&>iframe]:h-full [&>iframe]:w-full [&>iframe]:border-0 [&>iframe]:object-cover">
+                                                {!! $data->galeri_url !!}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </a>
+                            @endif
                         @endforeach
                     @endif
                 </div>

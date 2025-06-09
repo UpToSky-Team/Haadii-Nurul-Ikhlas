@@ -8,6 +8,7 @@ use App\Models\Galeri;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -41,31 +42,45 @@ class GaleriResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('galeri_url')
-                    ->label('Foto atau Video')
+                Select::make('media_type')
+                    ->label('Tipe Media')
+                    ->options([
+                        'upload' => 'Upload File',
+                        'link' => 'Link YouTube',
+                    ])
                     ->required()
+                    ->live(),
+
+                FileUpload::make('galeri_upload')
+                    ->label('Upload Gambar / Video')
                     ->disk('public')
                     ->directory(fn($get) => self::getStoragePath($get))
                     ->imageEditor()
-                    ->afterStateUpdated(function ($state, callable $set) {
-                        // Tentukan jenis file berdasarkan ekstensi setelah upload
-                        $jenis = self::getFileType($state);
-                        $set('jenis', $jenis); // Set field hidden 'jenis' dengan nilai 'gambar' atau 'video'
-                    }),
+                    ->visible(fn($get) => $get('media_type') === 'upload'),
+
+                Textarea::make('galeri_link')
+                    ->label('Link YouTube')
+                    ->placeholder('https://www.youtube.com/watch?v=...')
+                    ->visible(fn($get) => $get('media_type') === 'link'),
+
                 Textarea::make('caption')
                     ->label('Keterangan')
                     ->required()
                     ->columnSpanFull(),
-                Hidden::make('jenis')
-                    ->default(fn($get) => self::getFileType($get('galeri_url'))),
+
+                Hidden::make('media_type'),
+                Hidden::make('galeri_url'), // nilai ini di-set saat simpan
+                Hidden::make('jenis'),       // nilai ini di-set saat simpan
                 Hidden::make('id_admin')
-                    ->default(Auth::user()->id_admin),
-            ]);
+                    ->default(Auth::user()?->id_admin),
+            ])
+            ->columns(1);
     }
+
 
     private static function getStoragePath($get): string
     {
-        $file = $get('galeri_url');
+        $file = $get('galeri_file');
 
         // Cek apakah file adalah array dan ambil elemen pertama
         if (is_array($file) && !empty($file)) {
@@ -76,7 +91,7 @@ class GaleriResource extends Resource
         if ($file instanceof \Illuminate\Http\UploadedFile) {
             $file = $file->getClientOriginalName();
         } elseif (!is_string($file) || empty($file)) {
-            return 'other'; // Default jika tidak ada file
+            return 'link'; // Default jika tidak ada file
         }
 
         // Pastikan mendapatkan path file yang benar
@@ -98,7 +113,7 @@ class GaleriResource extends Resource
         if ($file instanceof UploadedFile) {
             $file = $file->getClientOriginalName();
         } elseif (!is_string($file) || empty($file)) {
-            return 'other'; // Default jika tidak ada file
+            return 'link'; // Default jika tidak ada file
         }
 
         // Pastikan mendapatkan path file yang benar
@@ -106,6 +121,7 @@ class GaleriResource extends Resource
 
         return in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp']) ? 'gambar' : 'video';
     }
+
 
     public static function table(Table $table): Table
     {

@@ -79,6 +79,7 @@ class BeritaResource extends Resource
                     ->label('Thumbnail Gambar Berita (Slug)')
                     ->image()
                     ->imageEditor()
+                    ->required()
                     ->directory('berita')
                     ->visibility('public')
                     ->columnSpanFull(),
@@ -91,6 +92,7 @@ class BeritaResource extends Resource
                             ->label('Gambar Berita')
                             ->image()
                             ->imageEditor()
+                            ->required()
                             ->directory('berita')
                             ->visibility('public'),
 

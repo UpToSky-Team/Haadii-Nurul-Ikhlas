@@ -16,7 +16,7 @@ class Publikasi extends Component
         $berita = Berita::orderBy('created_at', 'desc')->paginate(10);
         $artikel = Artikel::orderBy('created_at', 'desc')->paginate(10);
         $galeriFoto = Galeri::where('jenis', 'gambar')->orderBy('created_at', 'desc')->paginate(10);
-        $galeriVideo = Galeri::where('jenis', 'video')->orderBy('created_at', 'desc')->paginate(10);
+        $galeriVideo = Galeri::orderBy('created_at', 'desc')->paginate(10);
         return view('livewire.menu.publikasi', [
             'berita' => $berita,
             'artikel' => $artikel,

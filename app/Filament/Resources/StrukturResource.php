@@ -49,9 +49,8 @@ class StrukturResource extends Resource
                     ->required()
                     ->numeric()
                     ->minValue(0)
-                    ->maxValue(10)
                     ->default(0)
-                    ->label('Level (0-10)'),
+                    ->label('Level'),
                 FileUpload::make('gambar_url')
                     ->label('Foto')
                     ->image()
