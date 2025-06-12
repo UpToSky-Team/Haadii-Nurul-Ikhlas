@@ -121,29 +121,16 @@
                             @if ($data->jenis === 'video')
                                 <div class="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
                                     data-embed-type="link">
-                                    <a href="{{ Storage::url($data->galeri_url) }}" data-lightbox="galeri"
-                                        class="block">
-                                        <div class="relative w-full overflow-hidden">
-                                            <div class="group relative">
-                                                <video controls
-                                                    class="h-auto w-full rounded-t-xl bg-black object-contain transition-transform duration-300 group-hover:scale-105"
-                                                    title="Video Kegiatan Yayasan" preload="metadata">
-                                                    <source src="{{ Storage::url($data->galeri_url) }}"
-                                                        type="video/mp4">
-                                                    Browser Anda tidak mendukung tag video.
-                                                </video>
-                                                @if ($data->caption)
-                                                    <div
-                                                        class="absolute inset-0 flex items-center justify-center rounded-t-xl bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                                                        <p
-                                                            class="mx-4 max-w-xs rounded-lg bg-black bg-opacity-70 px-4 py-2 text-center text-sm text-white">
-                                                            {{ $data->caption }}
-                                                        </p>
-                                                    </div>
-                                                @endif
-                                            </div>
+                                    <div class="relative w-full overflow-hidden">
+                                        <div class="group relative">
+                                            <video controls
+                                                class="h-auto w-full rounded-t-xl bg-black object-contain transition-transform duration-300 group-hover:scale-105"
+                                                title="Video Kegiatan Yayasan" preload="metadata">
+                                                <source src="{{ Storage::url($data->galeri_url) }}" type="video/mp4">
+                                                Browser Anda tidak mendukung tag video.
+                                            </video>
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
                             @endif
 
