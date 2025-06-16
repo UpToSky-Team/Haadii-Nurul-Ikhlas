@@ -226,8 +226,8 @@
                             {{ $count }}
                         </div>
                         <h3 class="mb-2 text-xl font-semibold text-[#3B9B3C]">{{ $data->jenis }}</h3>
-                        <div class="text-sm text-gray-600">
-                            {{ Str::words(strip_tags($data->description), 20) }}
+                        <div class="text-sm text-gray-600 richeditor-content">
+                            {!! Str::words(strip_tags($data->description), 20) !!}
                         </div>
                     </div>
                     @php $count++; @endphp
