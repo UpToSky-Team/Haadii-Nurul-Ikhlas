@@ -187,7 +187,9 @@
                 <div
                     class="mb-8 max-w-sm rounded-lg border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105">
                     <a href="{{ route('berita.detail', $data->id_berita) }}">
-                        <img class="rounded-t-lg" src="{{ Storage::url($data->slug) }}" alt="Berita 1" />
+                        <div class="w-full flex justify-center">
+                            <img class="w-5/12 " src="{{ Storage::url($data->slug) }}" alt="Berita 1" />
+                        </div>
                         <div class="p-5">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                                 {{ $data->judul }}
