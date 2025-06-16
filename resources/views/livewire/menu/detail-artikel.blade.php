@@ -58,14 +58,17 @@
                     class="font-medium">{{ $artikel->created_at->format('d F Y') }}</span>
             </div>
 
+            <div class="flex justify-center">
+                <img src="{{ Storage::url($artikel->slug) }}" alt="{{ $artikel->slug }}"
+                    class="mb-6 w-4/12 rounded-xl object-cover shadow" />
+            </div>
+
             <!-- Gambar Artikel -->
-            <img src="{{ Storage::url($artikel->slug) }}" alt="{{ $artikel->slug }}"
-                class="mb-6 w-full rounded-xl object-cover shadow" />
 
             <!-- Isi Artikel -->
             <div
                 class="prose prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-xl max-w-none">
-                <div class="text-justify">
+                <div class="text-justify richeditor-content">
                     {!! $artikel->content !!}
                 </div>
             </div>

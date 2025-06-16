@@ -47,9 +47,9 @@
       <section class="bg-white p-6 md:p-10 rounded-xl shadow-md text-justify">
         <div class="flex flex-col items-center">
           @if (!empty($sejarah->gambar_url))
-          <figure class="w-full max-w-3xl mx-auto mb-6">
-            <img class="rounded-lg w-full shadow-sm" src="{{ Storage::url($sejarah->gambar_url) }}" alt="image description">
-          </figure>
+          <div class="w-full justify-center flex max-w-3xl mx-auto mb-6">
+            <img class="rounded-lg w-4/12  shadow-sm" src="{{ Storage::url($sejarah->gambar_url) }}" alt="image description">
+          </div>
           @endif
         </div>
 

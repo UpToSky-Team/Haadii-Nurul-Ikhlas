@@ -62,13 +62,15 @@
             </div>
 
             <!-- Gambar -->
-            <img src="{{ Storage::url($berita?->slug) }}" alt="{{ $berita?->slug }}"
-                class="mb-6 w-full rounded-xl object-cover shadow" />
+            <div class="flex justify-center">
+                <img src="{{ Storage::url($berita?->slug) }}" alt="{{ $berita?->slug }}"
+                    class="mb-6 w-4/12 object-cover shadow" />
+            </div>
 
             <!-- Isi Berita -->
             <div
                 class="prose prose-p:leading-relaxed prose-img:rounded-xl prose-h2:mt-6 prose-h2:mb-2 prose-h2:text-x max-w-none">
-                <div class="text-justify">
+                <div class="richeditor-content text-justify">
                     {!! $berita?->content !!}
                 </div>
             </div>

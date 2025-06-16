@@ -49,10 +49,10 @@
         <div class="rounded-xl bg-white px-6 pt-16 shadow-lg md:px-12 lg:px-20">
             <div class="flex flex-col items-center">
                 @if (!empty($maksudTujuan->gambar_url))
-                    <figure class="mx-auto mb-6 w-full max-w-3xl">
-                        <img class="w-full rounded-lg shadow-sm" src="{{ Storage::url($maksudTujuan->gambar_url) }}"
+                    <div class="flex justify-center mx-auto mb-6 w-full max-w-3xl">
+                        <img class="w-4/12 rounded-lg shadow-sm" src="{{ Storage::url($maksudTujuan->gambar_url) }}"
                             alt="image description">
-                    </figure>
+                    </div>
                 @endif
             </div>
             <!-- Judul -->
@@ -76,6 +76,7 @@
                     {!! $maksudTujuan->tujuan !!}
                 </div>
             </div>
+
 
             <!-- Ajakan -->
             <div class="pb-10">

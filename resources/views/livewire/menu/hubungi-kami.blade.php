@@ -71,7 +71,7 @@
                     <div class="rounded-xl bg-white p-6 shadow-lg">
                         <h2 class="mb-4 text-xl font-semibold text-gray-800">Deskripsi</h2>
                         <div>
-                            <div class="text-justify">
+                            <div class="text-justify richeditor-content">
                                 @if ($yayasan->isNotEmpty() && !empty($yayasan->first()->deskripsi))
                                     {!! $yayasan->first()->deskripsi !!}
                                 @else

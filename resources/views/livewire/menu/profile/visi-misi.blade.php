@@ -49,10 +49,10 @@
             <div class="animate-fade-in-up rounded-lg bg-white p-8 shadow-lg">
                 <div class="flex flex-col items-center">
                     @if (!empty($visiMisi->gambar_url))
-                        <figure class="mx-auto mb-6 w-full max-w-3xl">
-                            <img class="w-full rounded-lg shadow-sm" src="{{ Storage::url($visiMisi->gambar_url) }}"
+                        <div class="flex justify-center mx-auto mb-6 w-full max-w-3xl">
+                            <img class="w-4/12 rounded-lg shadow-sm" src="{{ Storage::url($visiMisi->gambar_url) }}"
                                 alt="image description">
-                        </figure>
+                        </div>
                     @endif
                 </div>
 
@@ -64,7 +64,7 @@
                 <!-- Visi -->
                 <div class="mb-8">
                     <h2 class="mb-3 text-start text-2xl font-semibold text-gray-700">Visi</h2>
-                    <div class="richeditor-content value-db rounded-lg bg-orange-100 p-4 text-justify leading-relaxed">
+                    <div class="richeditor-content richeditor-content rounded-lg bg-orange-100 p-4 text-justify leading-relaxed">
                         {!! $visiMisi->visi !!}
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <!-- Misi -->
                 <div>
                     <h2 class="mb-3 text-start text-2xl font-semibold text-gray-700">Misi</h2>
-                    <div class="richeditor-content value-db rounded-lg bg-gray-50 p-6 text-justify shadow-sm">
+                    <div class="richeditor-content richeditor-content rounded-lg bg-gray-50 p-6 text-justify shadow-sm">
                         {!! $visiMisi->misi !!}
                     </div>
                 </div>

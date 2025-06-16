@@ -43,15 +43,15 @@
             margin-left: 20px;
         }
 
-        .value-db h1 {
+        .richeditor-content h1 {
             font-size: 32px;
         }
 
-        .value-db h2 {
+        .richeditor-content h2 {
             font-size: 24px;
         }
 
-        .value-db h3 {
+        .richeditor-content h3 {
             font-size: 18px;
         }
     </style>

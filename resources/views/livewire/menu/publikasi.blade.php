@@ -57,13 +57,13 @@
                 @foreach ($berita as $data)
                     <a href="{{ route('berita.detail', $data->id_berita) }}"
                         class="mb-4 flex flex-col rounded-xl bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
-                        <div class="flex-shrink-0">
+                        <div class="flex justify-center">
                             <img src="{{ Storage::url($data->slug) }}" alt="{{ $data->slug }}"
-                                class="h-full w-full rounded-t-xl object-cover sm:h-full sm:w-80 sm:rounded-l-xl sm:rounded-t-none">
+                                class="h-80 rounded-t-xl object-cover sm:h-8/12 sm:rounded-l-xl sm:rounded-t-none">
                         </div>
                         <div class="p-4 sm:m-5 sm:ml-4">
                             <h3 class="mb-1 text-lg font-semibold">{{ $data->judul }}</h3>
-                            <div class="mb-1 text-gray-600">{!! Str::words($data->content, 25, '...') !!}</div>
+                            <div class="mb-1 text-gray-600 richeditor-content">{!! Str::words($data->content, 25, '...') !!}</div>
                             <p class="text-sm text-gray-500">Tanggal: {{ $data->created_at->format('d F Y') }}</p>
                         </div>
                     </a>
@@ -81,12 +81,12 @@
                         class="flex flex-col rounded-xl bg-white shadow transition-transform duration-300 hover:scale-105 hover:shadow-md sm:flex-row">
                         <div class="flex-shrink-0">
                             <img src="{{ Storage::url($data->slug) }}" alt="{{ $data->slug }}"
-                                class="h-full w-full rounded-t-xl object-cover sm:h-full sm:w-80 sm:rounded-l-xl sm:rounded-t-none">
+                                class="h-80 rounded-t-xl object-cover sm:h-8/12 sm:rounded-l-xl sm:rounded-t-none">
                         </div>
                         <div class="p-4 sm:m-5 sm:ml-4">
                             <h3 class="mb-1 text-lg font-semibold">{{ $data->judul }}</h3>
-                            <div class="mb-1 text-gray-600">{!! Str::words($data->content, 25, '...') !!}</div>
-                            <p class="text-sm text-gray-500">Oleh: {{ $data->users->name }} |
+                            <div class="mb-1 text-gray-600 richeditor-content">{!! Str::words($data->content, 25, '...') !!}</div>
+                            <p class="text-sm text-gray-500 ">Oleh: {{ $data->users->name }} |
                                 {{ $data->created_at->format('d F Y') }}</p>
                         </div>
                     </a>
