@@ -15,9 +15,11 @@
                 <h3 class="mb-4 text-xl font-bold text-white sm:text-2xl">
                     HAADII NURUL IKHLAS
                 </h3>
-                <p class="mb-6 text-sm leading-relaxed text-white sm:text-base">
-                    Yayasan Haadii Nurul Ikhlas Merupakan Yayasan Panti Asuhan Muhammadiyah
-                </p>
+                <div class="mb-6 text-sm leading-relaxed text-white sm:text-base">
+                    {!! $yayasan->isNotEmpty() && $yayasan->first()->deskripsi
+                        ? Str::before($yayasan->first()->deskripsi, '.').'.'
+                        : 'Yayasan Haadii Nurul Ikhlas' !!}
+                </div>
 
                 <!-- Sosial Media & CTA -->
                 <div class="flex flex-wrap items-center justify-center gap-3 sm:justify-start sm:gap-4">
