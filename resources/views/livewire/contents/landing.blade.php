@@ -17,7 +17,7 @@
                 </h3>
                 <div class="mb-6 text-sm leading-relaxed text-white sm:text-base">
                     {!! $yayasan->isNotEmpty() && $yayasan->first()->deskripsi
-                        ? Str::before($yayasan->first()->deskripsi, '.').'.'
+                        ? Str::before($yayasan->first()->deskripsi, '.') . '.'
                         : 'Yayasan Haadii Nurul Ikhlas' !!}
                 </div>
 
@@ -187,8 +187,8 @@
                 <div
                     class="mb-8 max-w-sm rounded-lg border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105">
                     <a href="{{ route('berita.detail', $data->id_berita) }}">
-                        <div class="w-full flex justify-center">
-                            <img class="w-5/12 " src="{{ Storage::url($data->slug) }}" alt="Berita 1" />
+                        <div class="flex w-full justify-center">
+                            <img class="w-5/12" src="{{ Storage::url($data->slug) }}" alt="Berita 1" />
                         </div>
                         <div class="p-5">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
@@ -226,13 +226,14 @@
                             {{ $count }}
                         </div>
                         <h3 class="mb-2 text-xl font-semibold text-[#3B9B3C]">{{ $data->jenis }}</h3>
-                        <div class="text-sm text-gray-600 richeditor-content">
+                        <div class="richeditor-content text-sm text-gray-600">
                             {!! Str::words(strip_tags($data->description), 20) !!}
                         </div>
                     </div>
                     @php $count++; @endphp
                 @endforeach
             </div>
+        </div>
     </section>
 
 
